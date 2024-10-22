@@ -26,3 +26,4 @@ replay_pid*
 # Papyrus files
 *.notation
 *.uml
+*.project
