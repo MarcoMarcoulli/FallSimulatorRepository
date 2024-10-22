@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_IEx8YIQjEe-gKancSkmJvg" name="FallSimulatorUML">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_IHAJ8IQjEe-gKancSkmJvg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="_L1B64IQjEe-gKancSkmJvg" name="FallSimulator">
+    <ownedComment xmi:type="uml:Comment" xmi:id="_zyH-sIQmEe-gKancSkmJvg">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_GFg2gIQnEe-gKancSkmJvg" annotatedElement="_zyH-sIQmEe-gKancSkmJvg">
+        <body>yvuxerthjhbk</body>
+      </ownedComment>
+      <body>Extension Point: l'utente inserisce un' altra curva&#xD;
+Condizione: almeno una curva è stata inserita</body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_TAMhEIQjEe-gKancSkmJvg" name="Analizza la caduta lungo una curva" isAbstract="true">
+      <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_NpAvEIQlEe-gKancSkmJvg" name="ExtensionPoint1"/>
+      <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_ToAyMIQnEe-gKancSkmJvg" name="ExtensionPoint2"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_XoRfcIQjEe-gKancSkmJvg" name="Analizza la caduta lungo una curva interpolatrice (spline cubica)" visibility="package">
+      <generalization xmi:type="uml:Generalization" xmi:id="_GVp2MIQlEe-gKancSkmJvg" general="_TAMhEIQjEe-gKancSkmJvg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_fK3uMIQjEe-gKancSkmJvg" name="Analizza la caduta lungo un ramo di circonferenza">
+      <generalization xmi:type="uml:Generalization" xmi:id="_EcRSsIQlEe-gKancSkmJvg" general="_QPznoIQkEe-gKancSkmJvg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_pYVAsIQjEe-gKancSkmJvg" name="Analizza la caduta lungo una cicloide">
+      <generalization xmi:type="uml:Generalization" xmi:id="_BUfpcIQlEe-gKancSkmJvg" general="_QPznoIQkEe-gKancSkmJvg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_tZjacIQjEe-gKancSkmJvg" name="Analizza la caduta lungo una parabola">
+      <generalization xmi:type="uml:Generalization" xmi:id="_CALDsIQlEe-gKancSkmJvg" general="_QPznoIQkEe-gKancSkmJvg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_-GQBQIQjEe-gKancSkmJvg" name="Analizza e confronta le cadute lungo due o più curve ">
+      <extend xmi:type="uml:Extend" xmi:id="_No-54IQlEe-gKancSkmJvg" extendedCase="_TAMhEIQjEe-gKancSkmJvg" extensionLocation="_NpAvEIQlEe-gKancSkmJvg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_QPznoIQkEe-gKancSkmJvg" name="Analizza la caduta lungo una curva standard" isAbstract="true">
+      <generalization xmi:type="uml:Generalization" xmi:id="_Hgl_UIQlEe-gKancSkmJvg" general="_TAMhEIQjEe-gKancSkmJvg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_SBrGgIQnEe-gKancSkmJvg" name="InstanceSpecification9"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_ooOkAIQkEe-gKancSkmJvg" name="utente"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_as-CsIQnEe-gKancSkmJvg" memberEnd="_atBtEIQnEe-gKancSkmJvg _atBtEYQnEe-gKancSkmJvg">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_atBGAIQnEe-gKancSkmJvg" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_atBGAYQnEe-gKancSkmJvg" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_atBtEIQnEe-gKancSkmJvg" name="analizza la caduta lungo una curva" type="_TAMhEIQjEe-gKancSkmJvg" association="_as-CsIQnEe-gKancSkmJvg"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_atBtEYQnEe-gKancSkmJvg" name="utente" type="_ooOkAIQkEe-gKancSkmJvg" association="_as-CsIQnEe-gKancSkmJvg"/>
+  </packagedElement>
+</uml:Model>
