@@ -4,21 +4,27 @@
 
 package ingdelsw.FallSimulator;
 
-/************************************************************/
-/**
- * 
- */
+import java.util.ArrayList;
+
+import ingdelsw.FallSimulator.InputManager;
+import ingdelsw.FallSimulator.SimulationManager;
+
 public class Interface {
-				/**
-				 * 
-				 */
-				public InputManager ;
-				/**
-				 * 
-				 */
-				public SimulationManager ;
-				/**
-				 * 
-				 */
-				private UIStates states;
+				
+	private InputManager inputManager;
+    private ArrayList<SimulationManager> simulations;
+    private UIStates state;
+    
+    public enum UIStates {
+    	WAITING_FOR_START_POINT,
+        WAITING_FOR_END_POINT,
+        CHOOSING_CURVE,
+        INSERTING_INTERMEDIATE_POINTS,
+        CHOOSING_CONVEXITY,
+        CHOOSING_RADIUS,
+        CHOOSING_MASS,
+        WAITING_TO_START_SIMULATION,
+        SIMULATING,
+        SHOWING_SIMULATION_RESULTS;
+    }
 }
