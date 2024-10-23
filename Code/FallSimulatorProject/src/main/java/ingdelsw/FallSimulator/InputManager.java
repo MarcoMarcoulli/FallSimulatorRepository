@@ -5,6 +5,9 @@
 package ingdelsw.FallSimulator;
 
 import ingdelsw.FallSimulator.Math.Point;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 
 public class InputManager {
 	
@@ -33,6 +36,12 @@ public class InputManager {
     		this.endPoint=endPoint;
     	}
 	}
+	
+	// Mostra una finestra di errore quando viene catturata l'eccezione
+	public void handleException(Exception e) {
+        Alert alert = new Alert(AlertType.ERROR, e.getMessage(), ButtonType.OK);
+        alert.showAndWait();
+    }
 	
 	// Metodo per cancellare i punti inseriti
     public void clearInput() {
