@@ -21,5 +21,23 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <!-- JavaFX Base Module -->
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-base</artifactId>
+        <version>23</version> 
+    </dependency>
+    <!-- JavaFX Controls Module -->
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-controls</artifactId>
+        <version>23</version> 
+    </dependency>
+    <!-- JavaFX Graphics Module -->
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-graphics</artifactId>
+        <version>23</version> 
+    </dependency>
   </dependencies>
 </project>
