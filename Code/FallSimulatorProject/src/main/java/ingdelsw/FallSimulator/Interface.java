@@ -8,14 +8,18 @@ import java.util.ArrayList;
 
 import ingdelsw.FallSimulator.InputManager;
 import ingdelsw.FallSimulator.SimulationManager;
+import javafx.application.Application;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
-public class Interface {
+public class Interface extends Application{
 				
 	private InputManager inputManager;
     private ArrayList<SimulationManager> simulations;
@@ -40,5 +44,36 @@ public class Interface {
         WAITING_TO_START_SIMULATION,
         SIMULATING,
         SHOWING_SIMULATION_RESULTS;
+    }
+    
+    @Override
+    public void start(Stage primaryStage) {
+    	
+    	// Layout principale
+        BorderPane root = new BorderPane();
+        
+        // Pannello di controllo (a sinistra)
+        controlPanel = new VBox(10);
+        controlPanel.setPrefWidth(308); // Imposta la larghezza predefinita
+        controlPanel.setStyle("-fx-background-color: lightgray;"); // Colore grigio chiaro per il controllo
+        root.setLeft(controlPanel);
+        
+        // Canvas per disegno (a destra)
+        curveCanvas = new Canvas();
+        pointsCanvas = new Canvas();
+        
+        // Aggiunge entrambi i Canvas al centro del layout
+        StackPane stackPane = new StackPane();
+        stackPane.getChildren().addAll(curveCanvas, pointsCanvas);
+        root.setCenter(stackPane);
+        
+        root.setLeft(controlPanel);
+        
+        inputManager = new InputManager();
+        simulations = new ArrayList<>();
+    }
+    
+    public static void main(String[] args) {
+        launch(args);
     }
 }
