@@ -8,12 +8,26 @@ import java.util.ArrayList;
 
 import ingdelsw.FallSimulator.InputManager;
 import ingdelsw.FallSimulator.SimulationManager;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class Interface {
 				
 	private InputManager inputManager;
     private ArrayList<SimulationManager> simulations;
     private UIStates state;
+    
+    private Canvas pointsCanvas;
+    private Canvas curveCanvas;
+    private VBox controlPanel;
+    private HBox curveButtons;
+    private Label startPointMessage, endPointMessage, chooseCurveMessage, intermediatePointsMessage, chooseMassMessage, chooseRadiusMessage, chooseConvexityMessage;
+    private Button btnCancelInput, btnCycloid, btnParabola, btnCubicSpline, btnCircumference, btnConfirmRadius, btnConvexityUp, btnConvexityDown;
+    private Slider radiusSlider;
     
     public enum UIStates {
     	WAITING_FOR_START_POINT,
