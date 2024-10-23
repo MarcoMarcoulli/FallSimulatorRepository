@@ -4,31 +4,22 @@
 
 package ingdelsw.FallSimulator.Math;
 
-/************************************************************/
-/**
- * 
- */
-public class Point {
-	/**
-	 * 
-	 */
-	private Real x;
-	/**
-	 * 
-	 */
-	private Real y;
 
-	/**
-	 * 
-	 * @return 
-	 */
-	public Real getX() {
+public class Point {
+	
+	private double x,y;
+	
+	public Point(double x, double y) {
+		this.x = x;
+		this.y = y;
 	}
 
-	/**
-	 * 
-	 * @return 
-	 */
-	public Real getY() {
+	public double getX() {
+		return x;
+	}
+
+	
+	public double getY() {
+		return y;
 	}
 }
