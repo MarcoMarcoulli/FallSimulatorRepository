@@ -6,83 +6,52 @@ package ingdelsw.FallSimulator.Math.Curves;
 
 import ingdelsw.FallSimulator.Math.Point;
 
-/************************************************************/
-/**
- * 
- */
 class Circumference extends Curve {
-	/**
-	 * 
-	 */
-	private float r;
-	/**
-	 * 
-	 */
+	
+	private double r;
 	private int convexity;
 
-	/**
-	 * 
-	 * @param r 
-	 */
-	public void setR(float r) {
+	public Circumference(Point startPoint, Point endPoint, double r, int convexity) {
+    	super(startPoint, endPoint);
+        this.r=r;
+        this.convexity=convexity;
+    }
+	
+	public void setR(double r) {
+		this.r=r;
 	}
 
-	/**
-	 * 
-	 * @return 
-	 */
-	public float getR() {
+	
+	public double getR() {
+		return r;
 	}
 
-	/**
-	 * 
-	 * @param var 
-	 * @return 
-	 */
-	public float evaluateFunction(float var) {
-	}
+	
+	public double evaluateFunction(double var) {
+    	return Math.sqrt(2*var*r - Math.pow(var, 2));
+    }
 
-	/**
-	 * 
-	 * @return 
-	 */
+	
 	public float aCoefficient() {
 	}
 
-	/**
-	 * 
-	 * @return 
-	 */
+	
 	public float bCoefficient() {
 	}
 
-	/**
-	 * 
-	 * @return 
-	 */
+	
 	public float cCoefficient() {
 	}
 
-	/**
-	 * 
-	 * @return 
-	 */
+	
 	public float delta() {
 	}
 
-	/**
-	 * 
-	 * @param startPoint 
-	 * @return 
-	 */
+	
 	public float xCenter(Point startPoint) {
 	}
 
-	/**
-	 * 
-	 * @return 
-	 * @param startPoint 
-	 */
+	
 	public float yCenter(Point startPoint) {
 	}
 }

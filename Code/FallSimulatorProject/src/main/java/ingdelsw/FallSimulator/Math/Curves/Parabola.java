@@ -4,28 +4,22 @@
 
 package ingdelsw.FallSimulator.Math.Curves;
 
-/************************************************************/
-/**
- * 
- */
+import ingdelsw.FallSimulator.Math.Point;
+
 public class Parabola extends Curve {
-	/**
-	 * 
-	 */
-	public float a;
+	
+	public double a;
+	
+	public Parabola(Point startPoint, Point endPoint) {
+    	super(startPoint,endPoint);
+        a=(endPoint.getX()-startPoint.getX())/Math.pow(endPoint.getY()-startPoint.getY(), 2);
+    }
 
-	/**
-	 * 
-	 * @return 
-	 */
-	public float getA() {
+	public double getA() {
+		return a;
 	}
 
-	/**
-	 * 
-	 * @return 
-	 * @param x 
-	 */
-	public float evaluateY(float x) {
-	}
+	public double evaluateY(double x) {
+    	return Math.sqrt(x/a);
+    }
 }

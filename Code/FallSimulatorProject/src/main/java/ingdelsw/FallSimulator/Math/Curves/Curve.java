@@ -4,35 +4,22 @@
 
 package ingdelsw.FallSimulator.Math.Curves;
 
+import java.util.ArrayList;
+
 import ingdelsw.FallSimulator.Math.Point;
 
-/************************************************************/
-/**
- * 
- */
 public abstract class Curve {
-	/**
-	 * 
-	 */
-	protected float intervalX;
-	/**
-	 * 
-	 */
-	protected float intervalY;
+	
+	protected double intervalX,intervalY;
 
-	/**
-	 * 
-	 * @return 
-	 * @param startPoint 
-	 * @param numPoints 
-	 */
-	public abstract Point calculatePointList(Point startPoint, int numPoints);
-
-	/**
-	 * 
-	 * @param startPoint 
-	 * @param numPoints 
-	 */
+	public Curve(Point startPoint, Point endPoint)
+	{
+		intervalX = endPoint.getX()-startPoint.getX();
+		intervalY = endPoint.getY()-startPoint.getY();
+	}
+	
+	public abstract ArrayList<Point> calculatePointList(Point startPoint, int numPoints);
+	
 	public void drawCurve(Point startPoint, int numPoints) {
 	}
 }
