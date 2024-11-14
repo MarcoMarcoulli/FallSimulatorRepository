@@ -4,7 +4,6 @@
 
 package ingdelsw.FallSimulator.Math;
 
-
 public class Point {
 	
 	private double x,y;
@@ -17,9 +16,17 @@ public class Point {
 	public double getX() {
 		return x;
 	}
-
 	
 	public double getY() {
 		return y;
 	}
 }
+
+
+
+
+
+
+
+
+
