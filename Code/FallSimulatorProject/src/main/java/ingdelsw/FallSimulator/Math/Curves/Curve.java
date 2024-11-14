@@ -10,7 +10,12 @@ import ingdelsw.FallSimulator.Math.Point;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public abstract class Curve {
+	
+	protected static final Logger LOGGER = LogManager.getLogger();
 	
 	protected double intervalX,intervalY;
 	protected Point startPoint, endPoint;
