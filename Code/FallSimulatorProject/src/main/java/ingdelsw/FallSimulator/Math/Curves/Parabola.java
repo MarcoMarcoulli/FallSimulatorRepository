@@ -22,4 +22,9 @@ public class Parabola extends Curve {
 	public double evaluateY(double x) {
     	return Math.sqrt(x/a);
     }
+	
+	public String curveName()
+	{
+		return "Parabola";
+	}
 }

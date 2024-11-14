@@ -6,18 +6,15 @@ package ingdelsw.FallSimulator.Math.Curves;
 
 import ingdelsw.FallSimulator.Math.Point;
 
-/************************************************************/
-/**
- * 
- */
 public class CubicSpline extends Curve
  {
-				/**
-				 * 
-				 */
-				public CubicSegment[] ;
-				/**
-				 * 
-				 */
-				public Point[] controlPoints;
+				
+	public CubicSegment[];
+	
+	public Point[] controlPoints;
+	
+	public String curveName()
+	{
+		return "Spline";
+	}
 }

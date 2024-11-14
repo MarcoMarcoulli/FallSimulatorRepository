@@ -25,4 +25,9 @@ public class Cycloid extends Curve {
 	
 	public float calculateAlfa(float x, float y) {
 	}
+	
+	public String curveName()
+	{
+		return "Cicloide";
+	}
 }

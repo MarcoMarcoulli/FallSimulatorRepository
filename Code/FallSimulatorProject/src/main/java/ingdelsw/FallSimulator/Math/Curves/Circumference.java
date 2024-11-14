@@ -64,4 +64,9 @@ class Circumference extends Curve {
 		double yCenter = (Math.pow(intervalX, 2) + Math.pow(intervalY, 2) - 2*xCenter(startPoint)*intervalX)/(2*intervalY);
 		return yCenter;
 	}
+	
+	public String curveName()
+	{
+		return "Circonferenza";
+	}
 }
