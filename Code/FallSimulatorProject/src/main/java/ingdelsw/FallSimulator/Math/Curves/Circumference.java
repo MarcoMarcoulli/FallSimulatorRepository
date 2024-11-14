@@ -49,14 +49,19 @@ class Circumference extends Curve {
 	}
 
 	
-	public float delta() {
+	public double delta() {
+		return Math.pow(bCoefficient(), 2) - 4*aCoefficient()*cCoefficient();
 	}
 
 	
-	public float xCenter(Point startPoint) {
+	public double xCenter(Point startPoint) {
+		double xCenter = (bCoefficient() + convexity*(intervalX/Math.abs(intervalX))*Math.sqrt(delta()))/(2*aCoefficient());
+    	return xCenter;
 	}
 
 	
-	public float yCenter(Point startPoint) {
+	public double yCenter(Point startPoint) {
+		double yCenter = (Math.pow(intervalX, 2) + Math.pow(intervalY, 2) - 2*xCenter(startPoint)*intervalX)/(2*intervalY);
+		return yCenter;
 	}
 }
