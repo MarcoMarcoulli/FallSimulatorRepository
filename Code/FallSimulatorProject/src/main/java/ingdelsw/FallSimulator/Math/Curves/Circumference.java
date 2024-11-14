@@ -24,31 +24,28 @@ class Circumference extends Curve {
     	this.r = r;
         this.convexity = convexity;
     }
-	
-	public void setR(double r) {
-		this.r=r;
-	}
 
-	
 	public double getR() {
 		return r;
 	}
 
-	
 	public double evaluateFunction(double var) {
     	return Math.sqrt(2*var*r - Math.pow(var, 2));
     }
 
 	
-	public float aCoefficient() {
+	public double aCoefficient() {
+		return Math.pow(intervalX, 2) + Math.pow(intervalY, 2);
 	}
 
 	
-	public float bCoefficient() {
+	public double bCoefficient() {
+		return intervalX*((Math.pow(intervalX, 2) + Math.pow(intervalY, 2)));
 	}
 
 	
-	public float cCoefficient() {
+	public double cCoefficient() {
+		return (Math.pow(Math.pow(intervalX, 2) + Math.pow(intervalY, 2), 2)/4) - Math.pow(intervalY, 2)*Math.pow(r, 2);
 	}
 
 	
