@@ -4,6 +4,9 @@
 
 package ingdelsw.FallSimulator;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import ingdelsw.FallSimulator.Math.Point;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -12,6 +15,8 @@ import javafx.scene.control.Alert.AlertType;
 public class InputManager {
 	
 	private Point startPoint, endPoint;
+	
+	protected static final Logger LOGGER = LogManager.getLogger();
 	
 	public Point getStartPoint() {
 		return startPoint;
@@ -24,6 +29,7 @@ public class InputManager {
 	
 	public void setStartPoint(Point startPoint) {
 		this.startPoint = startPoint;
+		LOGGER.debug("startPoint : " + this.startPoint);
 	}
 
 	//controllo che il punto di arrivo sia più basso del punto di partenza
@@ -35,6 +41,7 @@ public class InputManager {
     	else {
     		this.endPoint=endPoint;
     	}
+		LOGGER.debug("startPoint : " + this.startPoint);
 	}
 	
 	// Mostra una finestra di errore quando viene catturata l'eccezione
