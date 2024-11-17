@@ -13,8 +13,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -27,10 +29,13 @@ public class Interface extends Application{
     
     private Canvas pointsCanvas;
     private Canvas curveCanvas;
+    private Pane animationPane;
     private VBox controlPanel;
-    private HBox curveButtons;
+    private HBox curveButtons, iconButtons;
     private Label startPointMessage, endPointMessage, chooseCurveMessage, intermediatePointsMessage, chooseMassMessage, chooseRadiusMessage, chooseConvexityMessage;
-    private Button btnCancelInput, btnCycloid, btnParabola, btnCubicSpline, btnCircumference, btnConfirmRadius, btnConvexityUp, btnConvexityDown;
+    private Button btnCancelInput, btnCycloid, btnParabola, btnCubicSpline, btnCircumference, btnConfirmRadius, btnConvexityUp, 
+    			   btnConvexityDown, btnStopIntermediatePointsInsertion, btnStartSimulation, btnInsertAnotherCurve; 
+    private ImageView iconViewBernoulli, iconViewGalileo, iconViewJakob, iconViewLeibnitz, iconViewNewton;
     private Slider radiusSlider;
     
     public enum UIStates {
@@ -51,6 +56,25 @@ public class Interface extends Application{
     	
     	// Layout principale
         BorderPane root = new BorderPane();
+        
+        btnCancelInput = new Button("Cancella Input");
+        btnCancelInput.getStyleClass().add("button");
+        btnCancelInput.getStyleClass().add("cancel-button");
+        // Pulsanti per le curve
+        btnCubicSpline = new Button("Spline Cubica");
+        btnCubicSpline.getStyleClass().add("button");
+        btnCycloid = new Button("Cicloide");
+        btnCycloid.getStyleClass().add("button");
+        btnParabola = new Button("Parabola");
+        btnParabola.getStyleClass().add("button");
+        btnCircumference = new Button("Circonferenza");
+        btnCircumference.getStyleClass().add("button");
+        btnConfirmRadius = new Button("Seleziona Raggio");
+        btnConvexityUp = new Button("verso l'alto");
+        btnConvexityDown = new Button("verso il basso");
+        btnStopIntermediatePointsInsertion = new Button("Fine immissione");
+        btnStartSimulation = new Button("avvia simulazione");
+        btnInsertAnotherCurve = new Button("inserisci un' altra curva");
         
         // Pannello di controllo (a sinistra)
         controlPanel = new VBox(10);

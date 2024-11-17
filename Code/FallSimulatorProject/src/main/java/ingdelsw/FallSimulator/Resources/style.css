@@ -1,0 +1,63 @@
+/* Stile per il pannello di controllo */
+.control-panel {
+    -fx-background-color: #d1d1d1; /* Colore di sfondo grigio chiaro */
+    -fx-padding: 15px;             /* Aumentato il padding per maggiore spazio */
+    -fx-spacing: 15px;             /* Spaziatura uniforme tra i componenti */
+    -fx-pref-width: 420px;         /* Larghezza aumentata per visibilità e bilanciamento */
+    -fx-border-color: #cccccc;     /* Leggero bordo per definire il pannello */
+    -fx-border-width: 1px;
+}
+
+/* Stile per i pulsanti generici */
+.button {
+    -fx-background-color: #4CAF50; /* Verde più scuro per maggiore contrasto */
+    -fx-text-fill: white;          /* Colore del testo bianco */
+    -fx-font-size: 15px;           /* Font leggermente più grande */
+    -fx-font-weight: bold;         /* Grassetto per un testo più incisivo */
+    -fx-padding: 2px 4px;         /* Padding migliorato per equilibrio visivo */
+    -fx-border-radius: 5px;        /* Bordo arrotondato più morbido */
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.2), 5, 0.0, 0, 2); /* Leggera ombra */
+    -fx-cursor: hand;              /* Cambia il cursore in mano quando si passa sopra */
+}
+
+/* Stile per il pulsante "Cancella Input" */
+.cancel-button {
+    -fx-background-color: #ff4444; /* Colore rosso per evidenziare l'azione di cancellazione */
+    -fx-padding: 2px 4px;        /* Padding leggermente maggiore */
+    -fx-margin-top: auto;          /* Mantiene il pulsante in fondo al control panel */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.15), 4, 0.0, 0, 1);
+}
+
+/* Stile per le etichette di testo */
+.label {
+    -fx-font-size: 14px;           /* Dimensione del font per leggibilità */
+    -fx-font-weight: bold;         /* Testo in grassetto per enfasi */
+    -fx-text-fill: #333333;        /* Colore testo grigio scuro */
+    -fx-alignment: center;    /* Allinea il testo a sinistra per migliore lettura */
+}
+
+/* Stile per i Canvas */
+.canvas {
+    -fx-border-color: #dddddd;     /* Bordo leggero intorno al Canvas */
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.1), 6, 0.0, 0, 3);
+}
+
+/* Stile per i pulsanti delle icone */
+.icon-buttons {
+    -fx-spacing: 6px;              /* Maggiore spaziatura tra le icone */
+}
+
+/* Stile per il layout dei pulsanti delle curve */
+.curve-buttons {
+    -fx-spacing: 6px;             /* Spaziatura bilanciata per i pulsanti delle curve */
+}
+
+
+
+

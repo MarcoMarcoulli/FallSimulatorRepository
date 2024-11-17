@@ -19,6 +19,9 @@ public abstract class Curve {
 	
 	protected double intervalX,intervalY;
 	protected Point startPoint, endPoint;
+	
+	public abstract ArrayList<Point> calculatePointList();
+	public abstract double[] calculateSlopes();
 
 	public Curve(Point startPoint, Point endPoint)
 	{
@@ -28,7 +31,6 @@ public abstract class Curve {
 		intervalY = endPoint.getY()-startPoint.getY();
 	}
 	
-	public abstract ArrayList<Point> calculatePointList();
 	
 	public void drawCurve(GraphicsContext gc) {
         gc.setStroke(Color.BLUE);
