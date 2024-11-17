@@ -18,6 +18,17 @@ public class Cycloid extends Curve {
         r=calculateR(intervalX,intervalY);
     }
 	
+	private double f(double a, double x, double y) {
+        return ((a - Math.sin(a)) / (1 - Math.cos(a))) - (x/y);
+    }
+    
+    // Derivata di f(t)
+    private double df(double a) {
+        double numerator = Math.pow(Math.sin(a), 2)-a*Math.sin(a);
+        double denominator = Math.pow(1-Math.cos(a), 2);
+        return 1 + numerator / denominator;
+    }
+	
 	// Metodo di Newton-Raphson per trovare t
     private double calculateAlfa(double x, double y) {
         double alfa = 4*Math.atan(x/(2*y)); //buona approssimazione iniziale
