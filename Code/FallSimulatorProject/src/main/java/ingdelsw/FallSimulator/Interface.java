@@ -32,7 +32,8 @@ public class Interface extends Application{
     private Pane animationPane;
     private VBox controlPanel;
     private HBox curveButtons, iconButtons;
-    private Label startPointMessage, endPointMessage, chooseCurveMessage, intermediatePointsMessage, chooseMassMessage, chooseRadiusMessage, chooseConvexityMessage;
+    private Label startPointMessage, endPointMessage, chooseCurveMessage, intermediatePointsMessage, chooseMassMessage, 
+    			  chooseRadiusMessage, chooseConvexityMessage, simulatingMessage;
     private Button btnCancelInput, btnCycloid, btnParabola, btnCubicSpline, btnCircumference, btnConfirmRadius, btnConvexityUp, 
     			   btnConvexityDown, btnStopIntermediatePointsInsertion, btnStartSimulation, btnInsertAnotherCurve; 
     private ImageView iconViewBernoulli, iconViewGalileo, iconViewJakob, iconViewLeibnitz, iconViewNewton;
@@ -56,6 +57,15 @@ public class Interface extends Application{
     	
     	// Layout principale
         BorderPane root = new BorderPane();
+        
+        startPointMessage = new Label("Inserisci il punto di partenza".toUpperCase());
+        endPointMessage = new Label("Inserisci il punto di arrivo".toUpperCase());
+        chooseCurveMessage = new Label("scegli una curva".toUpperCase());
+        intermediatePointsMessage = new Label("Inserisci dei punti intermedi da interpolare".toUpperCase());
+        chooseMassMessage = new Label("Inserisci chi vuoi far scivolare".toUpperCase()); 
+        chooseRadiusMessage = new Label("Seleziona il raggio della circonferenza".toUpperCase());
+        chooseConvexityMessage = new Label("scegli la convessita".toUpperCase());
+        simulatingMessage = new Label("Simulazione in corso".toUpperCase());
         
         btnCancelInput = new Button("Cancella Input");
         btnCancelInput.getStyleClass().add("button");
