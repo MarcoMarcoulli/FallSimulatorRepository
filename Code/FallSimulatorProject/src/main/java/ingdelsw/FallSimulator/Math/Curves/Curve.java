@@ -20,6 +20,8 @@ public abstract class Curve {
 	protected double intervalX,intervalY;
 	protected Point startPoint, endPoint;
 	
+	protected static final int numPoints = 5000;
+	
 	public abstract ArrayList<Point> calculatePointList();
 	public abstract double[] calculateSlopes();
 

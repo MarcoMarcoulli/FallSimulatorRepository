@@ -19,9 +19,26 @@ public class Parabola extends Curve {
 		return a;
 	}
 
-	public double evaluateY(double x) {
-    	return Math.sqrt(x/a);
+	public double evaluateX(double y) {
+		return a*Math.pow(y, 2);
     }
+	
+	public Point[] calculatePoints() 
+    {
+    	Point[] points = new Point[numPoints];
+    	double x = startPoint.getX();
+    	double y = startPoint.getY();
+    	double t, yPow;
+    	for (int i=0; i < numPoints; i++) {
+    		t = (double) i / (numPoints - 1); 
+            yPow = intervalY * Math.pow(t, 3);  
+            y = startPoint.getY() + yPow;
+            x = startPoint.getX() + evaluateX(y-startPoint.getY());
+            points[i] = new Point(x,y);
+    		LOGGER.debug("punto " + i +"-esimo - X : " + x + " Y : "+ y);
+        }
+    	return points;
+	}
 	
 	public String curveName()
 	{
