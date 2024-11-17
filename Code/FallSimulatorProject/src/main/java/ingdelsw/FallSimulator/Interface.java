@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import ingdelsw.FallSimulator.InputManager;
 import ingdelsw.FallSimulator.SimulationManager;
 import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -113,6 +114,15 @@ public class Interface extends Application{
         
         inputManager = new InputManager();
         simulations = new ArrayList<>();
+        
+        // Configura la finestra per aprirsi a schermo intero 
+        primaryStage.setMaximized(true);
+        
+        // Configura la scena
+        Scene scene = new Scene(root, 1000, 700);
+        primaryStage.setTitle("Fall Simulator");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
     
     public static void main(String[] args) {
