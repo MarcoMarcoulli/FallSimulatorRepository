@@ -13,6 +13,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -85,6 +86,13 @@ public class Interface extends Application{
         btnStopIntermediatePointsInsertion = new Button("Fine immissione");
         btnStartSimulation = new Button("avvia simulazione");
         btnInsertAnotherCurve = new Button("inserisci un' altra curva");
+        
+        // Carica le icone
+        Image iconBernoulli = new Image(getClass().getResource("/images/Bernoulli.png").toExternalForm());
+        Image iconGalileo = new Image(getClass().getResource("/images/Galileo.png").toExternalForm());
+        Image iconJakob = new Image(getClass().getResource("/images/Jakob.png").toExternalForm());
+        Image iconLeibnitz = new Image(getClass().getResource("/images/Leibnitz.png").toExternalForm());
+        Image iconNewton = new Image(getClass().getResource("/images/Newton.png").toExternalForm());
         
         // Pannello di controllo (a sinistra)
         controlPanel = new VBox(10);
