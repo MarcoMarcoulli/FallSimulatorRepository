@@ -4,27 +4,72 @@
 
 package ingdelsw.FallSimulator.Math.Curves;
 
+import ingdelsw.FallSimulator.Math.Point;
 
 public class Cycloid extends Curve {
 	
-	private double r;
+	private double r; // Raggio della circonferenza generatrice della cicloide
 	
-	private float alfa;
+	private double alfa; //angolo di rotazione della circonferenza 
+	
+	public Cycloid(Point startPoint, Point endPoint) {
+    	super(startPoint, endPoint);
+    	alfa=calculateAlfa(intervalX,intervalY);
+        r=calculateR(intervalX,intervalY);
+    }
+	
+	// Metodo di Newton-Raphson per trovare t
+    private double calculateAlfa(double x, double y) {
+        double alfa = 4*Math.atan(x/(2*y)); //buona approssimazione iniziale
+        for (int i = 0; i < 100; i++) {
+            double f_alfa = f(alfa, x, y);
+            double df_alfa = df(alfa);
+            double alfa_new = alfa - f_alfa / df_alfa;
 
-	public float evaluateX(float a) {
-	}
+            // Controllo la convergenza
+            if (Math.abs(alfa_new - alfa) < 1e-6) {
+            	System.out.println("alfa : " + alfa_new);
+                return alfa_new; // Ritorna il valore di a quando è sufficientemente vicino
+            }
+            alfa = alfa_new;
+        }
+        throw new RuntimeException("Il metodo non converge dopo " + 100 + " iterazioni.");
+    }
+    
+	
+	private double calculateR(double x,double y)
+    {
+    	double r = y/(1-Math.cos(calculateAlfa(x,y)));
+    	System.out.println("raggio : " + r);
+    	return r;
+    }
+
+	public double evaluateX(double a) {
+    	return r*(a-Math.sin(a));
+    }
 
 	
-	public float evaluateY(float a) {
-	}
-
+	public double evaluateY(double a) {
+    	return r*(1-Math.cos(a));
+    }
 	
-	public float calculateR(float x, float y) {
-	}
-
-	
-	public float calculateAlfa(float x, float y) {
-	}
+	public Point[] calculatePoints() 
+    {
+    	Point[] points = new Point[numPoints];
+    	double t, aPow;
+    	double a = 0;
+    	double x = startPoint.getX();
+    	double y = startPoint.getY();
+    	for (int i=0; i < numPoints; i++) {
+    		t = (double) i / (numPoints - 1); // Parametro normale da 0 a 1
+            aPow = alfa * Math.pow(t, 3);     // Densità maggiore all'inizio con t^2.5
+            x = startPoint.getX() + evaluateX(aPow);
+    		y = startPoint.getY() + evaluateY(aPow);
+            points[i] = new Point(x, y);
+    		//System.out.println("punto " + i + "-esimo - X : " + x + " Y : "+ y );
+        }
+    	return points;
+    }
 	
 	public String curveName()
 	{
