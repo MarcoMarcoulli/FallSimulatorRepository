@@ -5,6 +5,7 @@
 package ingdelsw.FallSimulator.Math.Curves;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import ingdelsw.FallSimulator.Math.Point;
 import javafx.scene.canvas.GraphicsContext;
@@ -15,30 +16,70 @@ import org.apache.logging.log4j.Logger;
 
 public abstract class Curve {
 	
-	protected static final Logger LOGGER = LogManager.getLogger();
-	
-	protected double intervalX,intervalY;
+	protected double intervalX, intervalY;
 	protected Point startPoint, endPoint;
+	protected int red, green, blue;
+	protected static final int numPoints = 3000;
 	
-	protected static final int numPoints = 5000;
-	
-	public abstract ArrayList<Point> calculatePointList();
+	public abstract Point[] calculatePoints();
 	public abstract double[] calculateSlopes();
-
+	public abstract String curveName();
+	
 	public Curve(Point startPoint, Point endPoint)
 	{
 		this.startPoint = startPoint;
 		this.endPoint = endPoint;
 		intervalX = endPoint.getX()-startPoint.getX();
 		intervalY = endPoint.getY()-startPoint.getY();
+		
 	}
 	
+	public void setRandomColors()
+	{
+		Random random = new Random();
+		red = random.nextInt(230);
+		blue = random.nextInt(230);
+		green = random.nextInt(230);
+	}
 	
-	public void drawCurve(GraphicsContext gc) {
-        gc.setStroke(Color.BLUE);
-        gc.setLineWidth(2);
-        ArrayList<Point> points = calculatePointList();
-        for (int i = 0; i < points.size() - 1; i++) 
-        	gc.strokeLine(points.get(i).getX(), points.get(i).getY(), points.get(i+1).getX(), points.get(i+1).getY());
-    }
+	public void setRed(int red)
+	{
+		this.red = red;
+	}
+	
+	public void setGreen(int green)
+	{
+		this.green = green;
+	}
+	
+	public void setBlue(int blue)
+	{
+		this.blue = blue;
+	}
+	
+	public int getRed()
+	{
+		return red;
+	}
+	
+	public int getGreen()
+	{
+		return green;
+	}
+	
+	public int getBlue()
+	{
+		return blue;
+	}
+	
+	public static int getNumPoints()
+	{
+		return numPoints;
+	}
+	
+	public Point getStartPoint()
+	{
+		return startPoint;
+	}
+	
 }

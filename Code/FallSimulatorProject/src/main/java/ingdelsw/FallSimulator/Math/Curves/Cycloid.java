@@ -8,17 +8,16 @@ import ingdelsw.FallSimulator.Math.Point;
 
 public class Cycloid extends Curve {
 	
-	private double r; // Raggio della circonferenza generatrice della cicloide
-	
-	private double alfa; //angolo di rotazione della circonferenza 
-	
-	public Cycloid(Point startPoint, Point endPoint) {
+	private double alfa;
+	private double r; // Raggio del cerchio generatore della cicloide
+
+    public Cycloid(Point startPoint, Point endPoint) {
     	super(startPoint, endPoint);
     	alfa=calculateAlfa(intervalX,intervalY);
         r=calculateR(intervalX,intervalY);
     }
-	
-	private double f(double a, double x, double y) {
+    
+    private double f(double a, double x, double y) {
         return ((a - Math.sin(a)) / (1 - Math.cos(a))) - (x/y);
     }
     
@@ -28,8 +27,8 @@ public class Cycloid extends Curve {
         double denominator = Math.pow(1-Math.cos(a), 2);
         return 1 + numerator / denominator;
     }
-	
-	// Metodo di Newton-Raphson per trovare t
+    
+    // Metodo di Newton-Raphson per trovare t
     private double calculateAlfa(double x, double y) {
         double alfa = 4*Math.atan(x/(2*y)); //buona approssimazione iniziale
         for (int i = 0; i < 100; i++) {
@@ -47,24 +46,22 @@ public class Cycloid extends Curve {
         throw new RuntimeException("Il metodo non converge dopo " + 100 + " iterazioni.");
     }
     
-	
-	private double calculateR(double x,double y)
+    private double calculateR(double x,double y)
     {
     	double r = y/(1-Math.cos(calculateAlfa(x,y)));
     	System.out.println("raggio : " + r);
     	return r;
     }
-
-	public double evaluateX(double a) {
+    
+    public double evaluateX(double a) {
     	return r*(a-Math.sin(a));
     }
-
-	
-	public double evaluateY(double a) {
+    
+    public double evaluateY(double a) {
     	return r*(1-Math.cos(a));
     }
-	
-	public Point[] calculatePoints() 
+    
+    public Point[] calculatePoints() 
     {
     	Point[] points = new Point[numPoints];
     	double t, aPow;
@@ -73,7 +70,7 @@ public class Cycloid extends Curve {
     	double y = startPoint.getY();
     	for (int i=0; i < numPoints; i++) {
     		t = (double) i / (numPoints - 1); // Parametro normale da 0 a 1
-            aPow = alfa * Math.pow(t, 3);     // Densità maggiore all'inizio con t^2.5
+            aPow = alfa * Math.pow(t, 3);     // Densità maggiore all'inizio con t^4
             x = startPoint.getX() + evaluateX(aPow);
     		y = startPoint.getY() + evaluateY(aPow);
             points[i] = new Point(x, y);
@@ -81,9 +78,26 @@ public class Cycloid extends Curve {
         }
     	return points;
     }
-	
-	public String curveName()
+    
+    public double[] calculateSlopes()
+    {
+    	double[] slopes = new double[numPoints];
+    	double t, aPow;
+    	double a = 0;
+    	slopes[0] = Math.atan(Double.POSITIVE_INFINITY);
+    	System.out.println((slopes[0]/Math.PI)*180);
+    	for (int i=1; i < numPoints; i++) {
+    		t = (double) i / (numPoints - 1); 
+            aPow = alfa * Math.pow(t, 3);                 
+            slopes[i] =  Math.atan(Math.sin(aPow)/(1-Math.cos(aPow)));
+            //System.out.println((slopes[i]/Math.PI)*180);
+        }
+    	return slopes;
+    }
+    
+    public String curveName()
 	{
-		return "Cicloide";
+		return "cicloide";
 	}
+
 }
