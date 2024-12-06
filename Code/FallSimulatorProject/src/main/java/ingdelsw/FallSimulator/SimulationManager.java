@@ -4,6 +4,7 @@
 
 package ingdelsw.FallSimulator;
 
+import ingdelsw.FallSimulator.ListenerInterfaces.MassArrivalListener;
 import ingdelsw.FallSimulator.Math.Point;
 import ingdelsw.FallSimulator.Math.Curves.Curve;
 
