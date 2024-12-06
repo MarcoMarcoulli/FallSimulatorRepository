@@ -4,18 +4,17 @@
 
 package ingdelsw.FallSimulator;
 
-import ingdelsw.FallSimulator.MassIcon;
 import ingdelsw.FallSimulator.Math.Point;
 import javafx.scene.image.ImageView;
 
 public class Mass {
-	
-	private Point position;
-	private MassIcon iconType;
-	private ImageView icon;
-	private final double massDiameter = 40;
-	
-	public Mass(Point startPosition, MassIcon iconType, ImageView icon) {
+    private Point position;
+    private MassIcon iconType;
+    private ImageView icon;
+    private final double massDiameter = 40;
+
+    // Costruttore
+    public Mass(Point startPosition, MassIcon iconType, ImageView icon) {
         this.position = startPosition;
         this.icon = icon;
         this.icon.setX(position.getX() - massDiameter/2);
@@ -24,5 +23,28 @@ public class Mass {
         icon.setFitWidth(massDiameter);
         icon.setFitHeight(massDiameter);
     }
-	
+
+    // Getter e Setter per la posizione corrente
+    public Point getCurrentPosition() {
+        return position;
+    }
+    
+    public double getMassDiameter()
+    {
+    	return massDiameter;
+    }
+
+    public void setCurrentPosition(Point newPosition) {
+        position = newPosition;
+        icon.relocate(position.getX() - massDiameter/2, position.getY() - massDiameter/2);
+    }
+
+    public String getIconTypeString() {
+        return iconType.name();
+    }
+    
+    public ImageView getIcon()
+    {
+    	return icon;
+    }
 }
