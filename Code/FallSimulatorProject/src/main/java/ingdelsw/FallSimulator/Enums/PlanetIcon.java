@@ -1,4 +1,4 @@
-package ingdelsw.FallSimulator;
+package ingdelsw.FallSimulator.Enums;
 
 public enum PlanetIcon {
 	MOON,
