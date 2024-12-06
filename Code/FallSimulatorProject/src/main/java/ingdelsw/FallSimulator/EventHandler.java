@@ -1,11 +1,13 @@
 package ingdelsw.FallSimulator;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
 
+import ingdelsw.FallSimulator.Enums.MassIcon;
+import ingdelsw.FallSimulator.Enums.PlanetIcon;
+import ingdelsw.FallSimulator.ListenerInterfaces.MassArrivalListener;
+import ingdelsw.FallSimulator.ListenerInterfaces.WindowResizingListener;
 import ingdelsw.FallSimulator.Math.Point;
 import ingdelsw.FallSimulator.Math.Curves.Circumference;
 import ingdelsw.FallSimulator.Math.Curves.CubicSpline;
@@ -60,16 +62,16 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
         layout.getBtnStopIntermediatePointsInsertion().setOnAction(e -> handleStopIntermediatePointsInsertionClick());
         layout.getBtnInsertAnotherCurve().setOnAction(e -> handleInsertAnotherCurveClick());
         layout.getBtnStartSimulation().setOnAction(e -> handleStartSimulationClick());
-		layout.getIconViewBernoulli().setOnMouseClicked(e -> handleMassSelection(MassIcon.BERNOULLI, (ImageView) e.getSource()));
-		layout.getIconViewGalileo().setOnMouseClicked(e -> handleMassSelection(MassIcon.GALILEO, (ImageView) e.getSource()));
-		layout.getIconViewJakob().setOnMouseClicked(e -> handleMassSelection(MassIcon.JAKOB, (ImageView) e.getSource()));
-		layout.getIconViewLeibnitz().setOnMouseClicked(e -> handleMassSelection(MassIcon.LEIBNITZ, (ImageView) e.getSource()));
-		layout.getIconViewNewton().setOnMouseClicked(e -> handleMassSelection(MassIcon.NEWTON, (ImageView) e.getSource()));
-		layout.getIconViewMoon().setOnMouseClicked(e -> handleGravitySelection(PlanetIcon.MOON));
-		layout.getIconViewMars().setOnMouseClicked(e -> handleGravitySelection(PlanetIcon.MARS));
-		layout.getIconViewEarth().setOnMouseClicked(e -> handleGravitySelection(PlanetIcon.EARTH));
-		layout.getIconViewJupiter().setOnMouseClicked(e -> handleGravitySelection(PlanetIcon.JUPITER));
-		layout.getIconViewSun().setOnMouseClicked(e -> handleGravitySelection(PlanetIcon.SUN));
+		
+		for(MassIcon mass : MassIcon.values())
+		{
+			layout.getMass(mass).setOnMouseClicked(e -> handleMassSelection(mass, (ImageView) e.getSource()));
+		}
+		
+		for(PlanetIcon planet : PlanetIcon.values())
+		{
+			layout.getPlanet(planet).setOnMouseClicked(e -> handleGravitySelection(planet));
+		}
 		
 		 // Ottieni lo schermo primario
         Screen primaryScreen = Screen.getPrimary();
@@ -102,6 +104,34 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
 	{
 		return layout;
 	}
+	
+	 public void handleGravitySelection(PlanetIcon iconType)
+	    {
+	    	double gMm;
+	    	switch(iconType) {
+	    		case MOON : 
+	    			gMm = 1620;
+	    			break;
+	    		case MARS : 
+	    			gMm = 3730;
+	    			break;
+	    		case EARTH : 
+	    			gMm = 9810;
+	    			break;
+	    		case JUPITER : 
+	    			gMm = 24790;
+	    			break;
+	    		case SUN : 
+	    			gMm = 274000;
+	    			break;
+	    		default: gMm = 0;
+	    	}
+	    	g = gMm/(pixelHeightMm*100);
+	    	System.out.println("g : " + g);
+	    	layout.getControlPanel().getChildren().clear();
+	    	layout.getControlPanel().getChildren().addAll(layout.getStartPointMessage(), layout.getBtnCancelInput());
+	    	state = UIStates.WAITING_FOR_START_POINT;
+	    }
 	
 	public void handleUIState(Point p)
 	{
@@ -344,7 +374,7 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
         simulations.getLast().setMass(new Mass(inputController.getStartPoint(), iconType, mass));
         layout.getAnimationPane().getChildren().add(simulations.getLast().getMass().getIcon());
         layout.getControlPanel().getChildren().clear();
-        layout.getMassIconButtons().getChildren().remove(selectedMass);
+        layout.getMassIconButtons().getChildren().remove(selectedMass.getParent());
         if(layout.getMassIconButtons().getChildren().isEmpty())
         	layout.getControlPanel().getChildren().addAll(layout.getBtnStartSimulation(), layout.getBtnCancelInput()); 
         else layout.getControlPanel().getChildren().addAll(layout.getBtnStartSimulation(), layout.getBtnInsertAnotherCurve(), layout.getBtnCancelInput()); 
@@ -387,7 +417,7 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
     	}
     }
     
- // Funzione per estrarre il numero dal testo della Label
+    // Funzione per estrarre il numero dal testo della Label
     private static int extractNumber(String text) {
         // Rimuove tutto tranne i numeri
         String numberStr = text.replaceAll("[^\\d]", ""); // "\\d" corrisponde a cifre, il caret "^" nega tutto il resto
@@ -412,34 +442,6 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
     	{
     		simulations.get(i).startAnimation();
     	}
-    }
-    
-    public void handleGravitySelection(PlanetIcon iconType)
-    {
-    	double gMm;
-    	switch(iconType) {
-    		case MOON : 
-    			gMm = 1620;
-    			break;
-    		case MARS : 
-    			gMm = 3730;
-    			break;
-    		case EARTH : 
-    			gMm = 9810;
-    			break;
-    		case JUPITER : 
-    			gMm = 24790;
-    			break;
-    		case SUN : 
-    			gMm = 274000;
-    			break;
-    		default: gMm = 0;
-    	}
-    	g = gMm/(pixelHeightMm*100);
-    	System.out.println("g : " + g);
-    	layout.getControlPanel().getChildren().clear();
-    	layout.getControlPanel().getChildren().addAll(layout.getStartPointMessage(), layout.getBtnCancelInput());
-    	state = UIStates.WAITING_FOR_START_POINT;
     }
     
     @Override 

@@ -35,7 +35,7 @@
 
 /* Stile per le etichette di testo */
 .label {
-    -fx-font-size: 15px;           /* Dimensione del font per leggibilità */
+    -fx-font-size: 14px;           /* Dimensione del font per leggibilità */
     -fx-font-weight: bold;         /* Testo in grassetto per enfasi */
     -fx-text-fill: #333333;        /* Colore testo grigio scuro */
     -fx-alignment: center;    /* Allinea il testo a sinistra per migliore lettura */

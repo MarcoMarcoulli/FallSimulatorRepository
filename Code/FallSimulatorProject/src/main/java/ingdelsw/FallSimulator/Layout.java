@@ -4,6 +4,9 @@ package ingdelsw.FallSimulator;
 import java.util.ArrayList;
 import java.util.List;
 
+import ingdelsw.FallSimulator.Enums.MassIcon;
+import ingdelsw.FallSimulator.Enums.PlanetIcon;
+import ingdelsw.FallSimulator.ListenerInterfaces.WindowResizingListener;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -30,31 +33,31 @@ public class Layout {
     private Pane animationPane;
     
     private HBox curveButtons;
-    private HBox  massIconButtons;
-    private HBox  convexityButtons;
-    private HBox  planetIconButtons;
+    private HBox massIconButtons;
+    private HBox convexityButtons;
+    private HBox planetIconButtons;
     
     private Label startPointMessage;
-    private Label  endPointMessage;
-    private Label  chooseCurveMessage;
-    private Label  intermediatePointsMessage;
-    private Label  chooseMassMessage;
-    private Label  chooseRadiusMessage;
-    private Label  chooseConvexityMessage;
-    private Label  selectGravityMessage;
-    private Label  simulatingMessage;
+    private Label endPointMessage;
+    private Label chooseCurveMessage;
+    private Label intermediatePointsMessage;
+    private Label chooseMassMessage;
+    private Label chooseRadiusMessage;
+    private Label chooseConvexityMessage;
+    private Label selectGravityMessage;
+    private Label simulatingMessage;
     
     private Button btnCancelInput;
-    private Button  btnCycloid;
-    private Button  btnParabola;
-    private Button  btnCubicSpline;
-    private Button  btnCircumference;
-    private Button  btnConfirmRadius;
-    private Button  btnConvexityUp;
-    private Button  btnConvexityDown;
-    private Button  btnStopIntermediatePointsInsertion;
-    private Button  btnStartSimulation;
-    private Button  btnInsertAnotherCurve;
+    private Button btnCycloid;
+    private Button btnParabola;
+    private Button btnCubicSpline;
+    private Button btnCircumference;
+    private Button btnConfirmRadius;
+    private Button btnConvexityUp;
+    private Button btnConvexityDown;
+    private Button btnStopIntermediatePointsInsertion;
+    private Button btnStartSimulation;
+    private Button btnInsertAnotherCurve;
     
     private Slider radiusSlider;
     
@@ -96,6 +99,8 @@ public class Layout {
         controlPanel = new VBox(10);
         controlPanel.getStyleClass().add("control-panel");
         controlPanel.getStyleClass().add("control-panel");
+        controlPanel.setPrefWidth(435);
+        controlPanel.setMinWidth(435);
         
         // Canvas per disegno (a destra)
         curveCanvas = new Canvas();
@@ -377,45 +382,29 @@ public class Layout {
     public void setRadiusSlider(Slider radiusSlider) {
         this.radiusSlider = radiusSlider;
     }
-
-    public ImageView getIconViewMoon() {
-        return (ImageView)iconViewMoon.getChildren().getFirst();
-    }
-
-    public ImageView getIconViewMars() {
-        return (ImageView)iconViewMars.getChildren().getFirst();
-    }
-
-    public ImageView getIconViewEarth() {
-        return (ImageView)iconViewEarth.getChildren().getFirst();
-    }
-
-    public ImageView getIconViewJupiter() {
-        return (ImageView)iconViewJupiter.getChildren().getFirst();
-    }
-
-    public ImageView getIconViewSun() {
-        return (ImageView)iconViewSun.getChildren().getFirst();
+    
+    public ImageView getPlanet(PlanetIcon planet)
+    {
+    	switch(planet) {
+    		case MOON: return (ImageView)iconViewMoon.getChildren().getFirst();
+    		case MARS: return (ImageView)iconViewMars.getChildren().getFirst();
+    		case EARTH: return (ImageView)iconViewEarth.getChildren().getFirst();
+    		case JUPITER: return (ImageView)iconViewJupiter.getChildren().getFirst();
+    		case SUN: return (ImageView)iconViewSun.getChildren().getFirst();
+    		default: return null;
+    	}
     }
     
-    public ImageView getIconViewBernoulli() {
-        return (ImageView)iconViewBernoulli.getChildren().getFirst();
-    }
-
-    public ImageView getIconViewGalileo() {
-        return (ImageView)iconViewGalileo.getChildren().getFirst();
-    }
-
-    public ImageView getIconViewJakob() {
-        return (ImageView)iconViewJakob.getChildren().getFirst();
-    }
-
-    public ImageView getIconViewLeibnitz() {
-        return (ImageView)iconViewLeibnitz.getChildren().getFirst();
-    }
-
-    public ImageView getIconViewNewton() {
-        return (ImageView)iconViewNewton.getChildren().getFirst();
+    public ImageView getMass(MassIcon mass)
+    {
+    	switch(mass) {
+    		case BERNOULLI: return (ImageView)iconViewBernoulli.getChildren().getFirst();
+    		case JAKOB: return (ImageView)iconViewJakob.getChildren().getFirst();
+    		case GALILEO: return (ImageView)iconViewGalileo.getChildren().getFirst();
+    		case LEIBNITZ: return (ImageView)iconViewLeibnitz.getChildren().getFirst();
+    		case NEWTON: return (ImageView)iconViewNewton.getChildren().getFirst();
+    		default: return null;
+    	}
     }
     
     public GraphicsContext getGC()
