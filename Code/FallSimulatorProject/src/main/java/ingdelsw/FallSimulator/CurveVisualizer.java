@@ -1,8 +1,8 @@
-package ingdelsw.FallSimulator;
+package ingdelsw.fallsimulator;
 
 import java.util.Random;
 
-import ingdelsw.FallSimulator.Math.Point;
+import ingdelsw.fallsimulator.math.Point;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 

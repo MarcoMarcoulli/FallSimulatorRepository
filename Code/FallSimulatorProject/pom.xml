@@ -65,7 +65,7 @@
                 </execution>
             </executions>
             <configuration>
-                <mainClass>ingdelsw.FallSimulator.FallSimulator</mainClass> 
+                <mainClass>ingdelsw.fallsimulator.FallSimulator</mainClass> 
             </configuration>
         </plugin>
      </plugins>
