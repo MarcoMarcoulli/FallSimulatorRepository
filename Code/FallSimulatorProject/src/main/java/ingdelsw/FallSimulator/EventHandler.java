@@ -1,19 +1,19 @@
-package ingdelsw.FallSimulator;
+package ingdelsw.fallsimulator;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
 
-import ingdelsw.FallSimulator.Enums.MassIcon;
-import ingdelsw.FallSimulator.Enums.PlanetIcon;
-import ingdelsw.FallSimulator.ListenerInterfaces.MassArrivalListener;
-import ingdelsw.FallSimulator.ListenerInterfaces.WindowResizingListener;
-import ingdelsw.FallSimulator.Math.Point;
-import ingdelsw.FallSimulator.Math.Curves.Circumference;
-import ingdelsw.FallSimulator.Math.Curves.CubicSpline;
-import ingdelsw.FallSimulator.Math.Curves.Cycloid;
-import ingdelsw.FallSimulator.Math.Curves.NonConvergenceException;
-import ingdelsw.FallSimulator.Math.Curves.Parabola;
+import ingdelsw.fallsimulator.enums.MassIcon;
+import ingdelsw.fallsimulator.enums.PlanetIcon;
+import ingdelsw.fallsimulator.listeners.MassArrivalListener;
+import ingdelsw.fallsimulator.listeners.WindowResizingListener;
+import ingdelsw.fallsimulator.math.Point;
+import ingdelsw.fallsimulator.math.curves.Circumference;
+import ingdelsw.fallsimulator.math.curves.CubicSpline;
+import ingdelsw.fallsimulator.math.curves.Cycloid;
+import ingdelsw.fallsimulator.math.curves.NonConvergenceException;
+import ingdelsw.fallsimulator.math.curves.Parabola;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;

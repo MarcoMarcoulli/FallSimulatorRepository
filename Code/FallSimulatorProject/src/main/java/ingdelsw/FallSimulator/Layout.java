@@ -1,12 +1,12 @@
 
-package ingdelsw.FallSimulator;
+package ingdelsw.fallsimulator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import ingdelsw.FallSimulator.Enums.MassIcon;
-import ingdelsw.FallSimulator.Enums.PlanetIcon;
-import ingdelsw.FallSimulator.ListenerInterfaces.WindowResizingListener;
+import ingdelsw.fallsimulator.enums.MassIcon;
+import ingdelsw.fallsimulator.enums.PlanetIcon;
+import ingdelsw.fallsimulator.listeners.WindowResizingListener;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
