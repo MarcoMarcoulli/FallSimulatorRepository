@@ -4,8 +4,6 @@
 
 package ingdelsw.fallsimulator;
 
-import java.util.Arrays;
-
 import ingdelsw.fallsimulator.listeners.MassArrivalListener;
 import ingdelsw.fallsimulator.math.Point;
 import ingdelsw.fallsimulator.math.curves.Curve;
@@ -117,49 +115,46 @@ public class SimulationManager {
         
         timer = new AnimationTimer() {
         	
-        	@Override
-        	public void handle(long now) {
-        	    if (startTime == 0) 
-        	        startTime = now; // Inizializza il tempo di inizio
+            @Override
+            public void handle(long now) {
+                if (startTime == 0) 
+                	startTime = now; // Inizializza il tempo di inizio
 
-        	    double elapsedTime = (now - startTime) / 1_000_000_000.0; // Tempo trascorso in secondi
+                double elapsedTime = (now - startTime) / 1_000_000_000.0; // Tempo trascorso in secondi
+                
+                // Trova il punto più vicino al tempo trascorso
+                for (int i = 0; i < times.length - 1; i++) {
+                	
+                    if(elapsedTime >= times[i] && elapsedTime < times[i + 1]) 
+                    {
+                    	if(i<(times.length - 2) && (points[i+2].getY() < points[0].getY()))
+                    	{
+                    		mass.getIcon().relocate(points[i].getX() - mass.getMassDiameter() / 2, points[i].getY() - mass.getMassDiameter() / 2);
+                            this.stop();
+                            listener.onMassArrival(SimulationManager.this, false);
+                    	}
+                    	
+                        // Calcola la posizione interpolata tra points[i] e points[i+1]
+                        double ratio = (elapsedTime - times[i]) / (times[i + 1] - times[i]);
+                        double x = points[i].getX() + (points[i + 1].getX() - points[i].getX()) * ratio - mass.getMassDiameter() / 2;
+                        double y = points[i].getY() + (points[i + 1].getY() - points[i].getY()) * ratio - mass.getMassDiameter() / 2;
 
-        	    // Trova l'indice più vicino utilizzando la ricerca binaria
-        	    int index = Arrays.binarySearch(times, elapsedTime);
-
-        	    if (index < 0) {
-        	        // Se non c'è una corrispondenza esatta, `binarySearch` restituisce -(insertionPoint) - 1
-        	        index = -index - 2; // Otteniamo l'indice dell'elemento precedente
-        	    }
-
-        	    // Gestione dell'ultimo segmento
-        	    if (index >= times.length - 1) {
-        	        double newX = points[points.length - 1].getX() - mass.getMassDiameter() / 2;
-        	        double newY = points[points.length - 1].getY() - mass.getMassDiameter() / 2;
-        	        mass.getIcon().relocate(newX, newY);
-        	        this.stop();
-        	        listener.onMassArrival(SimulationManager.this, true);
-        	        return;
-        	    }
-
-        	    // Gestione di una condizione speciale
-        	    if (index < times.length - 2 && points[index + 2].getY() < points[0].getY()) {
-        	        mass.getIcon().relocate(points[index].getX() - mass.getMassDiameter() / 2,
-        	                                points[index].getY() - mass.getMassDiameter() / 2);
-        	        this.stop();
-        	        listener.onMassArrival(SimulationManager.this, false);
-        	        return;
-        	    }
-
-        	    // Calcola la posizione interpolata tra points[index] e points[index + 1]
-        	    double ratio = (elapsedTime - times[index]) / (times[index + 1] - times[index]);
-        	    double x = points[index].getX() + (points[index + 1].getX() - points[index].getX()) * ratio - mass.getMassDiameter() / 2;
-        	    double y = points[index].getY() + (points[index + 1].getY() - points[index].getY()) * ratio - mass.getMassDiameter() / 2;
-
-        	    // Posiziona la massa
-        	    mass.getIcon().relocate(x, y);
-        	}
-
+                        // Posiziona la massa
+                        mass.getIcon().relocate(x, y);
+                        break;
+                    }
+       
+                }
+                
+                // Ferma l'animazione se abbiamo raggiunto l'ultimo punto
+                if (elapsedTime >= times[times.length - 1]) {
+                	double newX = points[points.length-1].getX() - mass.getMassDiameter() / 2;
+                	double newY = points[points.length-1].getY() - mass.getMassDiameter() / 2;
+                	mass.getIcon().relocate(newX, newY);
+                    this.stop();
+                    listener.onMassArrival(SimulationManager.this, true);
+                }
+            }
         };
 
         // Avvia l'AnimationTimer
