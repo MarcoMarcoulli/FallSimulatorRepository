@@ -3,7 +3,7 @@
     -fx-background-color: #d1d1d1; /* Colore di sfondo grigio chiaro */
     -fx-padding: 15px;             /* Aumentato il padding per maggiore spazio */
     -fx-spacing: 15px;             /* Spaziatura uniforme tra i componenti */
-    -fx-pref-width: 420px;         /* Larghezza aumentata per visibilità e bilanciamento */
+    -fx-pref-width: 430px;         /* Larghezza aumentata per visibilità e bilanciamento */
     -fx-border-color: #cccccc;     /* Leggero bordo per definire il pannello */
     -fx-border-width: 1px;
 }
@@ -35,7 +35,14 @@
 
 /* Stile per le etichette di testo */
 .label {
-    -fx-font-size: 14px;           /* Dimensione del font per leggibilità */
+    -fx-font-size: 15px;           /* Dimensione del font per leggibilità */
+    -fx-font-weight: bold;         /* Testo in grassetto per enfasi */
+    -fx-text-fill: #333333;        /* Colore testo grigio scuro */
+    -fx-alignment: center;    /* Allinea il testo a sinistra per migliore lettura */
+}
+
+.label-masses {
+    -fx-font-size: 12px;           /* Dimensione del font per leggibilità */
     -fx-font-weight: bold;         /* Testo in grassetto per enfasi */
     -fx-text-fill: #333333;        /* Colore testo grigio scuro */
     -fx-alignment: center;    /* Allinea il testo a sinistra per migliore lettura */
@@ -50,7 +57,7 @@
 
 /* Stile per i pulsanti delle icone */
 .icon-buttons {
-    -fx-spacing: 6px;              /* Maggiore spaziatura tra le icone */
+    -fx-spacing: 12px;              /* Maggiore spaziatura tra le icone */
 }
 
 /* Stile per il layout dei pulsanti delle curve */
