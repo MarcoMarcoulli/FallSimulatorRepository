@@ -12,6 +12,7 @@ import ingdelsw.FallSimulator.Math.Point;
 import ingdelsw.FallSimulator.Math.Curves.Circumference;
 import ingdelsw.FallSimulator.Math.Curves.CubicSpline;
 import ingdelsw.FallSimulator.Math.Curves.Cycloid;
+import ingdelsw.FallSimulator.Math.Curves.NonConvergenceException;
 import ingdelsw.FallSimulator.Math.Curves.Parabola;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
@@ -204,7 +205,23 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
     public void handleCycloidClick()
     {
     	layout.getControlPanel().getChildren().clear();
-    	Cycloid cycloid = new Cycloid(inputController.getStartPoint(),inputController.getEndPoint());
+    	Cycloid cycloid;
+    	try{
+    		cycloid = new Cycloid(inputController.getStartPoint(),inputController.getEndPoint());
+    	}
+    	catch(NonConvergenceException e)
+    	{
+    		try {
+                // Blocca il thread per 6 secondi (6000 millisecondi)
+    			inputController.handleException(e);
+                Thread.sleep(6000);
+                handleCancelInputClick();
+                return;
+            } catch (InterruptedException e2) {
+                System.err.println("Il thread è stato interrotto durante il sonno.");
+                return;
+            }
+    	}
     	cycloid.setRandomColors();
     	simulations.add(new SimulationManager(cycloid, this));
     	

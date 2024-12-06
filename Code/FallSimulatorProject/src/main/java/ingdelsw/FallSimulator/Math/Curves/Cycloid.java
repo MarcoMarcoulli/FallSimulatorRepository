@@ -6,12 +6,11 @@ package ingdelsw.FallSimulator.Math.Curves;
 
 import ingdelsw.FallSimulator.Math.Point;
 
-public class Cycloid extends Curve {
-	
+public class Cycloid extends Curve{
 	private double alfa;
 	private double r; // Raggio del cerchio generatore della cicloide
 
-    public Cycloid(Point startPoint, Point endPoint) {
+    public Cycloid(Point startPoint, Point endPoint) throws NonConvergenceException{
     	super(startPoint, endPoint);
     	alfa=calculateAlfa(intervalX,intervalY);
         r=calculateR(intervalX,intervalY);
@@ -29,26 +28,26 @@ public class Cycloid extends Curve {
     }
     
     // Metodo di Newton-Raphson per trovare t
-    private double calculateAlfa(double x, double y) {
-        double alfa = 4*Math.atan(x/(2*y)); //buona approssimazione iniziale
+    private double calculateAlfa(double x, double y) throws NonConvergenceException {
+        double alfaLocal = 4*Math.atan(x/(2*y)); //buona approssimazione iniziale
         for (int i = 0; i < 100; i++) {
-            double f_alfa = f(alfa, x, y);
-            double df_alfa = df(alfa);
-            double alfa_new = alfa - f_alfa / df_alfa;
+            double f_alfa = f(alfaLocal, x, y);
+            double df_alfa = df(alfaLocal);
+            double alfa_new = alfaLocal - f_alfa / df_alfa;
 
             // Controllo la convergenza
-            if (Math.abs(alfa_new - alfa) < 1e-6) {
+            if (Math.abs(alfa_new - alfaLocal) < 1e-6) {
             	System.out.println("alfa : " + alfa_new);
                 return alfa_new; // Ritorna il valore di a quando è sufficientemente vicino
             }
-            alfa = alfa_new;
+            alfaLocal = alfa_new;
         }
-        throw new RuntimeException("Il metodo non converge dopo " + 100 + " iterazioni.");
+        throw new NonConvergenceException(100);
     }
     
     private double calculateR(double x,double y)
     {
-    	double r = y/(1-Math.cos(calculateAlfa(x,y)));
+    	double r = y/(1-Math.cos(alfa));
     	System.out.println("raggio : " + r);
     	return r;
     }
@@ -99,5 +98,4 @@ public class Cycloid extends Curve {
 	{
 		return "cicloide";
 	}
-
 }
