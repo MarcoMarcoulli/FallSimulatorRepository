@@ -1,2 +1,2 @@
 # FallSimulatorRepository
-Simulation of free fall of masses along curves
+Simulation of the free fall of masses along curves
