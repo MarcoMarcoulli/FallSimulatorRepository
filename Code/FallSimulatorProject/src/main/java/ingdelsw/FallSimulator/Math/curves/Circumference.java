@@ -4,9 +4,14 @@
 
 package ingdelsw.fallsimulator.math.curves;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import ingdelsw.fallsimulator.math.Point;
 
 public class Circumference extends Curve {
+	
+	private static final Logger logger = LogManager.getLogger(Circumference.class);
 	
 	private double r; 
 	private int convexity;
@@ -33,27 +38,29 @@ public class Circumference extends Curve {
     	return r;
     }
     
-    public double evaluateFunction(double var) {
-    	return Math.sqrt(2*var*r - Math.pow(var, 2));
+    public double evaluateFunction(double variable) {
+    	return Math.sqrt(2*variable*r - Math.pow(variable, 2));
     }
     
     public Point[] calculatePoints() {
-    	Point[] points = new Point[numPoints];
+    	Point[] points = new Point[NUMPOINTS];
     	double xCenter = xCenter(startPoint) + startPoint.getX();
     	double yCenter = yCenter(startPoint) + startPoint.getY();
-    	double x, y;
+    	double x;
+    	double y;
     	
     	if(convexity == 1)
     	{
     		double t;
     		double  xPow;
-    		
-        	for (int i=0; i < numPoints; i++) {
-        		t = (double) i / (numPoints - 1); // Parametro normale da 0 a 1
+    		logger.info("calcolo punti circonferenza con concavità verso l'alto");
+        	for (int i=0; i < NUMPOINTS; i++) {
+        		t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
                 xPow = intervalX * Math.pow(t, 3);     // Densità maggiore all'inizio con t^2
         		x = startPoint.getX() + xPow;
                 y = yCenter + evaluateFunction(x + r - xCenter);
                 points[i] = new Point(x,y);
+                logger.debug("Punto[{}]: x = {}, y = {}", i, x, y);
             }
     	}
     	
@@ -61,13 +68,14 @@ public class Circumference extends Curve {
     	{
     		double t;
     		double  yPow;
-    		
-        	for (int i=0; i < numPoints; i++) {
-        		t = (double) i / (numPoints - 1); // Parametro normale da 0 a 1
+    		logger.info("calcolo punti circonferenza con concavità verso il basso");
+        	for (int i=0; i < NUMPOINTS; i++) {
+        		t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
                 yPow = intervalY * Math.pow(t, 3);     // Densità maggiore all'inizio con t^2
         		y = startPoint.getY() + yPow;
                 x = xCenter + (intervalX/Math.abs(intervalX))*evaluateFunction(y + r - yCenter);
                 points[i] = new Point(x,y);
+                logger.debug("Punto[{}]: x = {}, y = {}", i, x, y);
             }
     	}
     	return points;
@@ -80,7 +88,7 @@ public class Circumference extends Curve {
     
     private double bCoefficient()
     {
-    	return intervalX*((Math.pow(intervalX, 2) + Math.pow(intervalY, 2)));
+    	return intervalX*(Math.pow(intervalX, 2) + Math.pow(intervalY, 2));
     }
     
     private double cCoefficient()
@@ -97,45 +105,50 @@ public class Circumference extends Curve {
     {	
     	double xCenter;
     	xCenter = (bCoefficient() + convexity*(intervalX/Math.abs(intervalX))*Math.sqrt(delta()))/(2*aCoefficient());
-    	//System.out.print("xCenter : " + (xCenter+startPoint.getX()));
-    	//System.out.print(" xR : " + (xCenter+startPoint.getX()-r));
+    	logger.debug(" yCenter : {}", xCenter+startPoint.getX());
     	return xCenter;
     }
     
     private double yCenter(Point startPoint)
     {
     	double yCenter = (Math.pow(intervalX, 2) + Math.pow(intervalY, 2) - 2*xCenter(startPoint)*intervalX)/(2*intervalY);
-    	//System.out.println(" yCenter : " + (yCenter+startPoint.getY()));
+    	logger.debug(" yCenter : {}", yCenter+startPoint.getY());
     	return yCenter;
     } 
     
     public double[] calculateSlopes()
     {
-    	double[] slopes = new double[numPoints];
+    	double[] slopes = new double[NUMPOINTS];
     	
     	if(convexity == 1)
     	{
-    		double t, xCubic, x;
+    		double t;
+    		double xCubic;
+    		double x;
     		double x0 = r - xCenter(startPoint);
-        	for (int i=0; i < numPoints; i++) {
-        		t = (double) i / (numPoints - 1); // Parametro normale da 0 a 1
+    		logger.info("calcolo pendenze circonferenza con concavità verso l'alto");
+        	for (int i=0; i < NUMPOINTS; i++) {
+        		t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
                 xCubic = intervalX * Math.pow(t, 3);     // Densità maggiore all'inizio con t^3
                 x = x0 +xCubic;
                 slopes[i] = Math.atan((r-x)/Math.sqrt(2*r*x - Math.pow(x, 2)));
-                //System.out.println((slopes[i]/Math.PI)*180);
+                logger.debug("pendenza[{}]: {} ", i, (slopes[i] / Math.PI) * 180);
             }
     	}
     	
     	else if(convexity == -1)
     	{
-    		double t, yPow, y;
+    		double t;
+    		double yPow;
+    		double y;
     		double y0 = r - yCenter(startPoint);
-        	for (int i=0; i < numPoints; i++) {
-        		t = (double) i / (numPoints - 1); // Parametro normale da 0 a 1
+    		logger.info("calcolo pendenze circonferenza con concavità verso il basso");
+        	for (int i=0; i < NUMPOINTS; i++) {
+        		t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
                 yPow = intervalY * Math.pow(t, 3);     // Densità maggiore all'inizio con t^3
                 y = y0 + yPow;
                 slopes[i] = Math.PI/2 - Math.atan((r-y)/Math.sqrt(2*r*y - Math.pow(y, 2)));
-                //System.out.println((slopes[i]/Math.PI)*180);
+                logger.debug("pendenza[{}]: {} ", i, (slopes[i] / Math.PI) * 180);
             }
     	}
     	return slopes;

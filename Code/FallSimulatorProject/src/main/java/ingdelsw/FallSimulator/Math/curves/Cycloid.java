@@ -4,99 +4,105 @@
 
 package ingdelsw.fallsimulator.math.curves;
 
+import ingdelsw.fallsimulator.math.NonConvergenceException;
 import ingdelsw.fallsimulator.math.Point;
 
-public class Cycloid extends Curve{
-	private double alfa;
-	private double r; // Raggio del cerchio generatore della cicloide
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-    public Cycloid(Point startPoint, Point endPoint) throws NonConvergenceException{
-    	super(startPoint, endPoint);
-    	alfa=calculateAlfa(intervalX,intervalY);
-        r=calculateR(intervalX,intervalY);
+public class Cycloid extends Curve {
+	
+    private static final Logger logger = LogManager.getLogger(Cycloid.class);
+
+    private double alfa;
+    private double r; // Raggio del cerchio generatore della cicloide
+
+    public Cycloid(Point startPoint, Point endPoint) throws NonConvergenceException {
+        super(startPoint, endPoint);
+        alfa = calculateAlfa(intervalX, intervalY);
+        r = calculateR(intervalY);
     }
-    
+
     private double f(double a, double x, double y) {
-        return ((a - Math.sin(a)) / (1 - Math.cos(a))) - (x/y);
+        return ((a - Math.sin(a)) / (1 - Math.cos(a))) - (x / y);
     }
     
-    // Derivata di f(t)
+    //derivata di f 
     private double df(double a) {
-        double numerator = Math.pow(Math.sin(a), 2)-a*Math.sin(a);
-        double denominator = Math.pow(1-Math.cos(a), 2);
+        double numerator = Math.pow(Math.sin(a), 2) - a * Math.sin(a);
+        double denominator = Math.pow(1 - Math.cos(a), 2);
         return 1 + numerator / denominator;
     }
-    
+
     // Metodo di Newton-Raphson per trovare t
     private double calculateAlfa(double x, double y) throws NonConvergenceException {
-        double alfaLocal = 4*Math.atan(x/(2*y)); //buona approssimazione iniziale
+        double alfaLocal = 4 * Math.atan(x / (2 * y)); // buona approssimazione iniziale
         int maxIterations = 100;
         for (int i = 0; i < maxIterations; i++) {
-            double f_alfa = f(alfaLocal, x, y);
-            double df_alfa = df(alfaLocal);
-            double alfa_new = alfaLocal - f_alfa / df_alfa;
+            double fAlfa = f(alfaLocal, x, y);
+            double dfAlfa = df(alfaLocal);
+            double alfaNew = alfaLocal - fAlfa / dfAlfa;
 
             // Controllo la convergenza
-            if (Math.abs(alfa_new - alfaLocal) < 1e-6) {
-            	System.out.println("alfa : " + alfa_new);
-                return alfa_new; // Ritorna il valore di a quando è sufficientemente vicino
+            if (Math.abs(alfaNew - alfaLocal) < 1e-6) {
+                logger.info("Convergenza raggiunta: alfa = {}", alfaNew);
+                return alfaNew; // Ritorna il valore di a quando è sufficientemente vicino
             }
-            alfaLocal = alfa_new;
+            alfaLocal = alfaNew;
         }
+        logger.error("Il metodo di Newton-Raphson non converge dopo {} iterazioni", maxIterations);
         throw new NonConvergenceException(maxIterations);
     }
-    
-    private double calculateR(double x,double y)
-    {
-    	double r = y/(1-Math.cos(alfa));
-    	System.out.println("raggio : " + r);
-    	return r;
+
+    private double calculateR(double y) {
+        double rad = y / (1 - Math.cos(alfa));
+        logger.debug("Raggio calcolato: {}", r);
+        return rad;
     }
-    
+
     public double evaluateX(double a) {
-    	return r*(a-Math.sin(a));
+        return r * (a - Math.sin(a));
     }
-    
+
     public double evaluateY(double a) {
-    	return r*(1-Math.cos(a));
+        return r * (1 - Math.cos(a));
     }
-    
-    public Point[] calculatePoints() 
-    {
-    	Point[] points = new Point[numPoints];
-    	double t, aPow;
-    	double a = 0;
-    	double x = startPoint.getX();
-    	double y = startPoint.getY();
-    	for (int i=0; i < numPoints; i++) {
-    		t = (double) i / (numPoints - 1); // Parametro normale da 0 a 1
-            aPow = alfa * Math.pow(t, 3);     // Densità maggiore all'inizio con t^4
+
+    public Point[] calculatePoints() {
+        Point[] points = new Point[NUMPOINTS];
+        double t;
+        double aPow;
+        double x;
+        double y;
+        logger.info("calcolo punti cicloide");
+        for (int i = 0; i < NUMPOINTS; i++) {
+            t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
+            aPow = alfa * Math.pow(t, 3); // Densità maggiore all'inizio con t^4
             x = startPoint.getX() + evaluateX(aPow);
-    		y = startPoint.getY() + evaluateY(aPow);
+            y = startPoint.getY() + evaluateY(aPow);
             points[i] = new Point(x, y);
-    		//System.out.println("punto " + i + "-esimo - X : " + x + " Y : "+ y );
+            logger.debug("Punto[{}]: x = {}, y = {}", i, x, y);
         }
-    	return points;
+        return points;
     }
-    
-    public double[] calculateSlopes()
-    {
-    	double[] slopes = new double[numPoints];
-    	double t, aPow;
-    	double a = 0;
-    	slopes[0] = Math.atan(Double.POSITIVE_INFINITY);
-    	System.out.println((slopes[0]/Math.PI)*180);
-    	for (int i=1; i < numPoints; i++) {
-    		t = (double) i / (numPoints - 1); 
-            aPow = alfa * Math.pow(t, 3);                 
-            slopes[i] =  Math.atan(Math.sin(aPow)/(1-Math.cos(aPow)));
-            //System.out.println((slopes[i]/Math.PI)*180);
+
+    public double[] calculateSlopes() {
+        double[] slopes = new double[NUMPOINTS];
+        double t;
+        double aPow;
+        logger.info("calcolo pendenze cicloide");
+        slopes[0] = Math.atan(Double.POSITIVE_INFINITY);
+        logger.debug("pendenza[0]: {} ", (slopes[0] / Math.PI) * 180);
+        for (int i = 1; i < NUMPOINTS; i++) {
+            t = (double) i / (NUMPOINTS - 1);
+            aPow = alfa * Math.pow(t, 3);
+            slopes[i] = Math.atan(Math.sin(aPow) / (1 - Math.cos(aPow)));
+            logger.debug("pendenza[{}]: {} ", i, (slopes[i] / Math.PI) * 180);
         }
-    	return slopes;
+        return slopes;
     }
-    
-    public String curveName()
-	{
-		return "cicloide";
-	}
+
+    public String curveName() {
+        return "cicloide";
+    }
 }
