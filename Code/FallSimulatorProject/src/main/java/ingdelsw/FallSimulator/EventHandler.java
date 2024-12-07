@@ -41,7 +41,7 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
     
 	private static EventHandler theHandler = null;
 	
-	private static double g;
+	private double g;
 	
 	double pixelHeightMm;
 	
@@ -52,7 +52,7 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
 		simulations = new ArrayList<>();
 		state = UIStates.SELECTING_GRAVITY;
 		// Gestione del click sul pannello di disegno
-        layout.getPointsCanvas().setOnMouseClicked(e -> handleMouseClick(e, inputController));
+        layout.getPointsCanvas().setOnMouseClicked(this::handleMouseClick);
         layout.getBtnCancelInput().setOnAction(e -> handleCancelInputClick());
         layout.getBtnParabola().setOnAction(e -> handleParabolaClick());
         layout.getBtnCycloid().setOnAction(e -> handleCycloidClick());
@@ -168,11 +168,12 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
 	        gc.setFill(Color.rgb(randomRed, randomGreen, randomBlue));
 	        gc.fillOval(p.getX() - 5, p.getY() - 5, 10, 10);  // Cerchio verde per il punto intermedio
 	        break;
+	     default: break;
 		}
 	}
 	
 	// Gestione dei click per selezionare il punto di partenza
-    public void handleMouseClick(MouseEvent event, InputController inputController) {
+    public void handleMouseClick(MouseEvent event) {
         double x = event.getX();
         double y = event.getY();
         Point p = new Point(x,y);
@@ -219,6 +220,7 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
                 return;
             } catch (InterruptedException e2) {
                 System.err.println("Il thread è stato interrotto durante il sonno.");
+                Thread.currentThread().interrupt();
                 return;
             }
     	}
@@ -287,9 +289,7 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
     	double initialRadius = (deltaX/Math.abs(deltaX))*circumference.getR();
     	layout.setRadiusSlider(new Slider(initialRadius, initialRadius*3, initialRadius));
     	// Aggiungi un listener per il valore dello slider e chiama la funzione
-        layout.getRadiusSlider().valueProperty().addListener((observable, oldValue, newValue) -> {
-            handleSliderChange(newValue.doubleValue(), 1);
-        });
+        layout.getRadiusSlider().valueProperty().addListener((observable, oldValue, newValue) -> handleSliderChange(newValue.doubleValue(), 1));
         layout.getBtnConfirmRadius().setOnAction(e -> handleConfirmRadiusClick());
         layout.getControlPanel().getChildren().clear();
         layout.getControlPanel().getChildren().addAll(layout.getChooseRadiusMessage(), layout.getRadiusSlider(), layout.getBtnConfirmRadius(), layout.getBtnCancelInput());
@@ -313,9 +313,7 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
     	
     	layout.setRadiusSlider(slider); 
     	// Aggiungi un listener per il valore dello slider e chiama la funzione
-        layout.getRadiusSlider().valueProperty().addListener((observable, oldValue, newValue) -> {
-            handleSliderChange(newValue.doubleValue(), -1);
-        });
+        layout.getRadiusSlider().valueProperty().addListener((observable, oldValue, newValue) -> handleSliderChange(newValue.doubleValue(), -1));
         layout.getBtnConfirmRadius().setOnAction(e -> handleConfirmRadiusClick());
         layout.getControlPanel().getChildren().clear();
         layout.getControlPanel().getChildren().addAll(layout.getChooseRadiusMessage(), layout.getRadiusSlider(), layout.getBtnConfirmRadius());

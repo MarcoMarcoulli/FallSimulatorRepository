@@ -16,7 +16,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 
 public class InputController {
-    private Point startPoint, endPoint;
+    private Point startPoint;
+    private Point  endPoint;
     private ArrayList<Point> intermediatePoints;
     private static InputController theController = null;
     
@@ -87,7 +88,7 @@ public class InputController {
     
     // Metodo per cancellare i punti intermedi
     public void clearIntermediatePoints() {
-        intermediatePoints.clear();;
+        intermediatePoints.clear();
     }
     
     // Metodo per cancellare tutti i punti inseriti
