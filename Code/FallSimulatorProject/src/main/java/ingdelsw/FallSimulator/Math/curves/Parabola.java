@@ -5,61 +5,63 @@
 package ingdelsw.fallsimulator.math.curves;
 
 import ingdelsw.fallsimulator.math.Point;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Parabola extends Curve {
-	
-	private double a;  // Coefficiente della parabola
+
+    private static final Logger logger = LogManager.getLogger(Parabola.class);
+
+    private double a;  // Coefficiente della parabola
 
     public Parabola(Point startPoint, Point endPoint) {
-    	super(startPoint,endPoint);
-        a=(endPoint.getX()-startPoint.getX())/Math.pow(endPoint.getY()-startPoint.getY(), 2);
+        super(startPoint, endPoint);
+        a = (endPoint.getX() - startPoint.getX()) / Math.pow(endPoint.getY() - startPoint.getY(), 2);
+        logger.info("coefficiente a = {}", a);
     }
-    
-    public double getA()
-    {
-    	return a;
+
+    public double getA() {
+        return a;
     }
-    
+
     public double evaluateX(double y) {
-    	return a*Math.pow(y, 2);
+        return a * Math.pow(y, 2);
     }
-    
-    public Point[] calculatePoints() 
-    {
-    	Point[] points = new Point[numPoints];
-    	double x;
-    	double y;
-    	double t;
-    	double  yPow;
-    	for (int i=0; i < numPoints; i++) {
-    		t = (double) i / (numPoints - 1); // Parametro normale da 0 a 1
-            yPow = intervalY * Math.pow(t, 3);   // Densità maggiore all'inizio con t^2.5
+
+    public Point[] calculatePoints() {
+        Point[] points = new Point[NUMPOINTS];
+        double x;
+        double y;
+        double t;
+        double yPow;
+        logger.info("calcolo punti parabola");
+        for (int i = 0; i < NUMPOINTS; i++) {
+            t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
+            yPow = intervalY * Math.pow(t, 3); // Densità maggiore all'inizio con t^2.5
             y = startPoint.getY() + yPow;
-            x = startPoint.getX() + evaluateX(y-startPoint.getY());
-            points[i] = new Point(x,y);
-    		//System.out.println("punto " + i + "-esimo - X : " + x + " Y : "+ y );
+            x = startPoint.getX() + evaluateX(y - startPoint.getY());
+            points[i] = new Point(x, y);
+            logger.debug("Punto[{}]: X = {}, Y = {}", i, x, y);
         }
-    	return points;
-	}
-    
-    public double[] calculateSlopes()
-    {
-    	double[] slopes = new double[numPoints];
-    	double y;
-    	double t;
-    	double  yPow;
-    	for (int i=0; i < numPoints; i++) {
-    		t = (double) i / (numPoints - 1); // Parametro normale da 0 a 1
-            yPow = intervalY * Math.pow(t, 3);     // Densità maggiore all'inizio con t^2.5
-    		slopes[i] = Math.PI/2 - Math.atan(2*a*yPow);
-            System.out.println((slopes[i]/Math.PI)*180);
-        }
-    	return slopes;
+        return points;
     }
-    
-    public String curveName()
-	{
-		return "parabola";
-	}
-    
+
+    public double[] calculateSlopes() {
+        double[] slopes = new double[NUMPOINTS];
+        double yPow;
+        double t;
+        logger.info("calcolo pendenze parabola");
+        for (int i = 0; i < NUMPOINTS; i++) {
+            t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
+            yPow = intervalY * Math.pow(t, 3); // Densità maggiore all'inizio con t^2.5
+            slopes[i] = Math.PI / 2 - Math.atan(2 * a * yPow);
+            logger.debug("pendenza[{}]: {} ", i, (slopes[i] / Math.PI) * 180);
+        }
+        return slopes;
+    }
+
+    public String curveName() {
+        return "parabola";
+    }
 }
+

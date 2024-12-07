@@ -10,10 +10,15 @@ import java.util.List;
 
 import org.apache.commons.math3.analysis.interpolation.SplineInterpolator;
 import org.apache.commons.math3.analysis.polynomials.PolynomialSplineFunction;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import ingdelsw.fallsimulator.math.Point;
 
 public class CubicSpline extends Curve {
+	
+	private static final Logger logger = LogManager.getLogger(CubicSpline.class);
+	
 	private PolynomialSplineFunction splineFunction;  // Funzione spline generata
 	private Point[] controlPoints;  // Array dei punti di controllo
 	
@@ -63,45 +68,51 @@ public class CubicSpline extends Curve {
 	    
 	    public Point[] calculatePoints()
         {
-        	Point[] points = new Point[numPoints];
-        	double x, y,  t, xPow;
-        	for (int i=0; i < numPoints - 1; i++) {
-        		t = (double) i / (numPoints - 1); // Parametro normale da 0 a 1
+        	Point[] points = new Point[NUMPOINTS];
+        	double x;
+        	double y;
+        	double t;
+        	double xPow;
+        	logger.info("calcolo punti spline");
+        	for (int i=0; i < NUMPOINTS - 1; i++) {
+        		t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
                 xPow = intervalX * Math.pow(t, 3);     // Densità maggiore all'inizio con t^2
                 x = startPoint.getX() + xPow;
         		y = evaluateY(x);
         		points[i] = new Point(x, y);
-        		//System.out.println("punto " + i + "-esimo - X : " + x + " Y : "+ y );
+        		logger.debug("Punto[{}]: x = {}, y = {}", i, x, y);
             }
-        	points[numPoints-1] = endPoint;
+        	points[NUMPOINTS-1] = endPoint;
         	return points;
         }
 	    
 	    public double[] calculateSlopes()
 	    {
-	    	double[] slopes = new double[numPoints];
+	    	double[] slopes = new double[NUMPOINTS];
 	    	if(splineFunction == null)
 	    	{
+	    		logger.info("calcolo pendenza segmento lineare");
 	    		double m = (controlPoints[1].getY() - controlPoints[0].getY()) / (controlPoints[1].getX() - controlPoints[0].getX());
-	    		for(int i=0; i < numPoints; i++)
+	    		for(int i=0; i < NUMPOINTS; i++)
 	    		{	
 	    			slopes[i] = Math.atan(m);
-	    			System.out.println((slopes[i]/Math.PI)*180);
 	    		}
+	    		logger.debug("pendenza: {} ", (slopes[0] / Math.PI) * 180);
 	    		return slopes;
 	    	}
 	    	else {
 	    		double x;
 	    		double  t;
 	    		double  xPow;
-		    	for (int i=0; i < numPoints - 1; i++) {
-		    		t = (double) i / (numPoints - 1); // Parametro normale da 0 a 1
+	    		logger.info("calcolo pendenze spline");
+		    	for (int i=0; i < NUMPOINTS - 1; i++) {
+		    		t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
 	                xPow = intervalX * Math.pow(t, 3);     // Densità maggiore all'inizio con t^2
 	                x = startPoint.getX() + xPow;
 		            slopes[i] = Math.atan(splineFunction.derivative().value(x));
-		            //System.out.println("slopes "+ i + "-esima : " + (slopes[i]/Math.PI)*180);
+		            logger.debug("pendenza[{}]: {} ", i, (slopes[i] / Math.PI) * 180);
 		    	}
-		    	slopes[numPoints-1] = slopes[numPoints-2];
+		    	slopes[NUMPOINTS-1] = slopes[NUMPOINTS-2];
 		    	return slopes;
 	    	}
 	    }

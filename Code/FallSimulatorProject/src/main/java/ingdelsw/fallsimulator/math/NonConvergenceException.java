@@ -1,4 +1,4 @@
-package ingdelsw.fallsimulator.math.curves;
+package ingdelsw.fallsimulator.math;
 
 public class NonConvergenceException extends Exception {
 

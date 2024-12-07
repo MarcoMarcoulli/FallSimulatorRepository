@@ -4,29 +4,26 @@
 
 package ingdelsw.fallsimulator.math.curves;
 
-import java.util.ArrayList;
 import java.util.Random;
-
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import ingdelsw.fallsimulator.math.Point;
 
 public abstract class Curve {
 	
-	protected double intervalX, intervalY;
-	protected Point startPoint, endPoint;
-	protected int red, green, blue;
-	protected static final int numPoints = 7000;
+	protected double intervalX;
+	protected double intervalY;
+	protected Point startPoint;
+	protected Point endPoint;
+	protected int red;
+	protected int green;
+	protected int blue;
+	protected static final int  NUMPOINTS = 7000;
 	
 	public abstract Point[] calculatePoints();
 	public abstract double[] calculateSlopes();
 	public abstract String curveName();
 	
-	public Curve(Point startPoint, Point endPoint)
+	protected Curve(Point startPoint, Point endPoint)
 	{
 		this.startPoint = startPoint;
 		this.endPoint = endPoint;
@@ -35,9 +32,9 @@ public abstract class Curve {
 		
 	}
 	
+	Random random = new Random();
 	public void setRandomColors()
 	{
-		Random random = new Random();
 		red = random.nextInt(230);
 		blue = random.nextInt(230);
 		green = random.nextInt(230);
@@ -75,7 +72,7 @@ public abstract class Curve {
 	
 	public static int getNumPoints()
 	{
-		return numPoints;
+		return NUMPOINTS;
 	}
 	
 	public Point getStartPoint()
