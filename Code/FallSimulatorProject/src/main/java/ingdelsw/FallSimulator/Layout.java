@@ -127,12 +127,13 @@ public class Layout {
         selectGravityMessage = new Label("scegli il campo gravitazionale".toUpperCase());
         controlPanel.getChildren().addAll(selectGravityMessage, planetIconButtons);
         startPointMessage = new Label("Inserisci il punto di partenza".toUpperCase());
-        startPointMessage.getStyleClass().add("label".toUpperCase());
+        final String label = "label";
+        startPointMessage.getStyleClass().add(label);
         controlPanel.getChildren().add(startPointMessage);
         endPointMessage = new Label("Inserisci il punto di arrivo".toUpperCase());
-        endPointMessage.getStyleClass().add("label");
+        endPointMessage.getStyleClass().add(label);
         chooseCurveMessage = new Label("scegli una curva".toUpperCase());
-        chooseCurveMessage.getStyleClass().add("label");
+        chooseCurveMessage.getStyleClass().add(label);
         intermediatePointsMessage = new Label("Inserisci dei punti intermedi da interpolare".toUpperCase());
         chooseMassMessage = new Label("Inserisci chi vuoi far scivolare".toUpperCase()); 
         chooseRadiusMessage = new Label("Seleziona il raggio della circonferenza".toUpperCase());
@@ -140,17 +141,18 @@ public class Layout {
         simulatingMessage = new Label("Simulazione in corso".toUpperCase());
         
         btnCancelInput = new Button("Cancella Input");
-        btnCancelInput.getStyleClass().add("button");
+        final String button = "button";
+        btnCancelInput.getStyleClass().add(button);
         btnCancelInput.getStyleClass().add("cancel-button");
         // Pulsanti per le curve
         btnCubicSpline = new Button("Spline Cubica");
-        btnCubicSpline.getStyleClass().add("button");
+        btnCubicSpline.getStyleClass().add(button);
         btnCycloid = new Button("Cicloide");
-        btnCycloid.getStyleClass().add("button");
+        btnCycloid.getStyleClass().add(button);
         btnParabola = new Button("Parabola");
-        btnParabola.getStyleClass().add("button");
+        btnParabola.getStyleClass().add(button);
         btnCircumference = new Button("Circonferenza");
-        btnCircumference.getStyleClass().add("button");
+        btnCircumference.getStyleClass().add(button);
         btnConfirmRadius = new Button("Seleziona Raggio");
         btnConvexityUp = new Button("Verso l'alto");
         btnConvexityDown = new Button("Verso il basso");
@@ -230,17 +232,17 @@ public class Layout {
     	return theLayout;
     }
     
-    private static final double iconButtonDiameter = 70;
+    private static final double ICONBUTTONDIAMETER = 70;
     
     // Metodo helper per creare un pulsante icona
     private VBox createIconButton(Image image, String text) {
         ImageView iconView = new ImageView(image);
-        iconView.setFitWidth(iconButtonDiameter); // Imposta la larghezza desiderata per l'icona
-        iconView.setFitHeight(iconButtonDiameter);
+        iconView.setFitWidth(ICONBUTTONDIAMETER); // Imposta la larghezza desiderata per l'icona
+        iconView.setFitHeight(ICONBUTTONDIAMETER);
         
         // Crea la didascalia
         Label caption = new Label(text);
-        caption.getStyleClass().add("label-masses");;
+        caption.getStyleClass().add("label-masses");
 
         // Aggiungi l'icona e la didascalia in una VBox
         VBox vbox = new VBox(6); // Spaziatura tra icona e testo

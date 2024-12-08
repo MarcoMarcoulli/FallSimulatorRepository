@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import ingdelsw.fallsimulator.enums.MassIcon;
 import ingdelsw.fallsimulator.enums.PlanetIcon;
 import ingdelsw.fallsimulator.listeners.MassArrivalListener;
@@ -23,6 +26,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 
 public class EventHandler implements MassArrivalListener, WindowResizingListener{
+	
+	private static final Logger logger = LogManager.getLogger(EventHandler.class);
 	
 	public enum UIStates {
 		SELECTING_GRAVITY,
@@ -128,7 +133,7 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
 	    		default: gMm = 0;
 	    	}
 	    	g = gMm/(pixelHeightMm*100);
-	    	System.out.println("g : " + g);
+	    	logger.info("g : {}", g);
 	    	layout.getControlPanel().getChildren().clear();
 	    	layout.getControlPanel().getChildren().addAll(layout.getStartPointMessage(), layout.getBtnCancelInput());
 	    	state = UIStates.WAITING_FOR_START_POINT;
@@ -219,7 +224,7 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
                 handleCancelInputClick();
                 return;
             } catch (InterruptedException e2) {
-                System.err.println("Il thread è stato interrotto durante il sonno.");
+                logger.error("Il thread è stato interrotto durante il sonno.");
                 Thread.currentThread().interrupt();
                 return;
             }

@@ -16,6 +16,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 
 public class InputController {
+	
+	private static final Logger logger = LogManager.getLogger(InputController.class);
+	
     private Point startPoint;
     private Point  endPoint;
     private ArrayList<Point> intermediatePoints;
@@ -50,7 +53,7 @@ public class InputController {
 
     public void setStartpoint(Point startPoint) {
         this.startPoint = startPoint;
-        System.out.println("startPoint : X : " + startPoint.getX() + " Y : " + startPoint.getY());
+        logger.debug("startPoint : X : {}  Y : {}", startPoint.getX(), startPoint.getY());
     }
     
     public void setEndpoint(Point endPoint) {
@@ -61,22 +64,20 @@ public class InputController {
     	else {
     		this.endPoint=endPoint;
     	}
-    	//System.out.println("endPoint : X : " + endPoint.getX() + " Y : " + endPoint.getY());
+    	logger.debug("startPoint : X : {}  Y : {}", endPoint.getX(), endPoint.getY());
     }
     
     public void addIntermediatePoint(Point p) {
     	for(int i = 0; i<intermediatePoints.size(); i++)
     	{
     		if(intermediatePoints.get(i).getX() == p.getX())
-				return;
+    			p.setX(p.getX()+1);
     	}
     	if(endPoint.getX() <= p.getX() && startPoint.getX() <= p.getX() || endPoint.getX() >= p.getX() && startPoint.getX() >= p.getX())
     		throw new IllegalArgumentException("I punti intermedi devono essere compresi tra il punto di partenza e il punto di arrivo");
-    	/*else if(startPoint.getY() >= p.getY())
-    		throw new IllegalArgumentException("I punti intermedi devono avere quota più bassa del punto di partenza");*/
     	else{
     		intermediatePoints.add(p);
-    		//System.out.println("IntermediatePoint : " + p);
+    		logger.debug("intermediatePoint : X : {}  Y : {}", p.getX(), p.getY());
     	}
     }
     

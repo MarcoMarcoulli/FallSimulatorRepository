@@ -6,6 +6,9 @@ package ingdelsw.fallsimulator;
 
 import java.util.Arrays;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import ingdelsw.fallsimulator.listeners.MassArrivalListener;
 import ingdelsw.fallsimulator.math.Point;
 import ingdelsw.fallsimulator.math.curves.Curve;
@@ -14,8 +17,9 @@ import javafx.scene.layout.Pane;
 
 public class SimulationManager {
 	
+	private static final Logger logger = LogManager.getLogger(SimulationManager.class);
 
-    private Mass mass;  // Oggetto rappresentante la massa
+    private Mass mass; 
     private Curve curve;
     private Point[] points;
     private double[] slopes;
@@ -31,7 +35,6 @@ public class SimulationManager {
         this.curve = curve;
         this.points = curve.calculatePoints();
         this.listener = listener;
-        //System.out.println("punti calcolati");
     }
 
     public Curve getCurve() {
@@ -71,7 +74,7 @@ public class SimulationManager {
         double v2y;
         double integrand;
         double dy;
-        System.out.println("parametrizzazione curva rispetto al tempo");
+        logger.info("parametrizzazione curva rispetto al tempo");
         for (int i = 1; i < points.length-1; i++) {
         	h1 = points[i].getY() - curve.getStartPoint().getY();
         	
@@ -90,10 +93,9 @@ public class SimulationManager {
         	
         	times[i+1] = times[i] + integrand * dy;
         	
-        	//System.out.println(h1);
-        	//System.out.println((slopes[i]/Math.PI)*180);
-        	//System.out.println(i +") velocità : " + v1y);
-            //System.out.println(" tempi : " + times[i+1]);
+        	logger.debug("h1 [{}] : {}",i, h1);
+        	logger.debug("velocità [{}] : {}",i, v1y);
+            logger.debug(" tempi [{}] : {}",i+1, times[i+1]);
         }
         return times;
     }
