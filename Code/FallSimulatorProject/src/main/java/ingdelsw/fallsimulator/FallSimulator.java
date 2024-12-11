@@ -7,25 +7,33 @@ package ingdelsw.fallsimulator;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+// Import delle librerie di JavaFX per creare e gestire l'interfaccia grafica.
 
-public class FallSimulator extends Application{
-
+public class FallSimulator extends Application {
     @Override
     public void start(Stage primaryStage) {
-    	
+
         EventHandler eventHandler = EventHandler.getHandler();
-        
+       
         // Configura la finestra per aprirsi massimizzata
         primaryStage.setMaximized(true);
-    
+        // Imposta la finestra principale per avviarsi massimizzata.
+
         // Configura la scena
         Scene scene = new Scene(eventHandler.getLayout().getBorderPane(), 1000, 700);
+        // Crea una scena principale usando il layout fornito da EventHandler.
+
         primaryStage.setTitle("Fall Simulator");
+
         primaryStage.setScene(scene);
+        // Collega la scena alla finestra principale.
+
         primaryStage.show(); 
+        // Mostra la finestra principale dell'applicazione.
     }
     
     public static void main(String[] args) {
         launch(args);
+        // Metodo statico per avviare l'applicazione JavaFX.
     }
 }
