@@ -232,15 +232,15 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
     	cycloid.setRandomColors();
     	simulations.add(new SimulationManager(cycloid, this));
     	
-    	Point[] points = simulations.getLast().getPoints();
+    	Point[] points = lastSimulation().getPoints();
     	
-    	int red = simulations.getLast().getCurve().getRed();
-    	int green = simulations.getLast().getCurve().getGreen();
-    	int blue = simulations.getLast().getCurve().getBlue();
+    	int red = lastSimulation().getCurve().getRed();
+    	int green = lastSimulation().getCurve().getGreen();
+    	int blue = lastSimulation().getCurve().getBlue();
     	
     	CurveVisualizer.drawCurve(points, layout.getCurveCanvas().getGraphicsContext2D(), red,  green,  blue);
-    	simulations.getLast().setSlopes(cycloid.calculateSlopes());
-    	simulations.getLast().calculateTimeParametrization(g);
+    	lastSimulation().setSlopes(cycloid.calculateSlopes());
+    	lastSimulation().calculateTimeParametrization(g);
     	layout.getControlPanel().getChildren().addAll(layout.getChooseMassMessage(), layout.getMassIconButtons(), layout.getBtnCancelInput());
     	layout.getCurveButtons().getChildren().remove(layout.getBtnCycloid());
     }
@@ -253,16 +253,16 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
     	parabola.setRandomColors();
     	simulations.add(new SimulationManager(parabola, this));
     	
-    	Point[] points = simulations.getLast().getPoints();
+    	Point[] points = lastSimulation().getPoints();
     	
-    	int red = simulations.getLast().getCurve().getRed();
-    	int green = simulations.getLast().getCurve().getGreen();
-    	int blue = simulations.getLast().getCurve().getBlue();
+    	int red = lastSimulation().getCurve().getRed();
+    	int green = lastSimulation().getCurve().getGreen();
+    	int blue = lastSimulation().getCurve().getBlue();
     	
     	CurveVisualizer.drawCurve(points, layout.getCurveCanvas().getGraphicsContext2D(), red,  green, blue);
     	
-    	simulations.getLast().setSlopes(parabola.calculateSlopes());
-    	simulations.getLast().calculateTimeParametrization(g);
+    	lastSimulation().setSlopes(parabola.calculateSlopes());
+    	lastSimulation().calculateTimeParametrization(g);
     	layout.getControlPanel().getChildren().addAll(layout.getChooseMassMessage(), layout.getMassIconButtons(), layout.getBtnCancelInput());
     	layout.getCurveButtons().getChildren().remove(layout.getBtnParabola());
     }
@@ -281,12 +281,12 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
     	circumference.setRandomColors();
     	
     	simulations.add(new SimulationManager(circumference, this));
+ 
+    	Point[] points = lastSimulation().getPoints();
     	
-    	Point[] points = simulations.getLast().getPoints();
-    	
-    	int red = simulations.getLast().getCurve().getRed();
-    	int green = simulations.getLast().getCurve().getGreen();
-    	int blue = simulations.getLast().getCurve().getBlue();
+    	int red = lastSimulation().getCurve().getRed();
+    	int green = lastSimulation().getCurve().getGreen();
+    	int blue = lastSimulation().getCurve().getBlue();
     	
     	CurveVisualizer.drawCurve(points, layout.getCurveCanvas().getGraphicsContext2D(), red,  green,  blue);
     	
@@ -306,11 +306,11 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
     	circumference.setRandomColors();
     	simulations.add(new SimulationManager(circumference, this));
     	
-    	Point[] points = simulations.getLast().getPoints();
+    	Point[] points = lastSimulation().getPoints();
     	
-    	int red = simulations.getLast().getCurve().getRed();
-    	int green = simulations.getLast().getCurve().getGreen();
-    	int blue = simulations.getLast().getCurve().getBlue();
+    	int red = lastSimulation().getCurve().getRed();
+    	int green = lastSimulation().getCurve().getGreen();
+    	int blue = lastSimulation().getCurve().getBlue();
     	
     	CurveVisualizer.drawCurve(points, layout.getCurveCanvas().getGraphicsContext2D(), red, green,  blue);
     	
@@ -328,17 +328,18 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
     {
     	layout.getCurveCanvas().getGraphicsContext2D().clearRect(0, 0, layout.getCurveCanvas().getWidth(), layout.getCurveCanvas().getHeight());
     	Circumference circumference = new Circumference(inputController.getStartPoint(),inputController.getEndPoint(), convexity, radius);
-    	circumference.setRed(simulations.getLast().getCurve().getRed());
-    	circumference.setGreen(simulations.getLast().getCurve().getGreen());
-    	circumference.setBlue(simulations.getLast().getCurve().getBlue());
-    	simulations.removeLast();
+    	
+    	circumference.setRed(lastSimulation().getCurve().getRed());
+    	circumference.setGreen(lastSimulation().getCurve().getGreen());
+    	circumference.setBlue(lastSimulation().getCurve().getBlue());
+    	simulations.remove(lastSimulation());
     	simulations.add(new SimulationManager(circumference, this));
     	
-    	Point[] points = simulations.getLast().getPoints();
+    	Point[] points = lastSimulation().getPoints();
     	
-    	int red = simulations.getLast().getCurve().getRed();
-    	int green = simulations.getLast().getCurve().getGreen();
-    	int blue = simulations.getLast().getCurve().getBlue();
+    	int red = lastSimulation().getCurve().getRed();
+    	int green = lastSimulation().getCurve().getGreen();
+    	int blue = lastSimulation().getCurve().getBlue();
     	
     	CurveVisualizer.drawCurve(points, layout.getCurveCanvas().getGraphicsContext2D(), red, green,  blue);
     	for (int i = 0; i < simulations.size() - 1; i++) {
@@ -355,9 +356,10 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
     
     public void handleConfirmRadiusClick()
     {
-    	double[] slopes = simulations.getLast().getCurve().calculateSlopes();
-    	simulations.getLast().setSlopes(slopes);
-    	simulations.getLast().calculateTimeParametrization(g);
+    	
+    	double[] slopes = lastSimulation().getCurve().calculateSlopes();
+    	lastSimulation().setSlopes(slopes);
+    	lastSimulation().calculateTimeParametrization(g);
     	layout.getControlPanel().getChildren().clear();
     	layout.getControlPanel().getChildren().addAll(layout.getChooseMassMessage(), layout.getMassIconButtons(), layout.getBtnCancelInput());
     }
@@ -370,15 +372,15 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
     	inputController.clearIntermediatePoints();
     	simulations.add(new SimulationManager(spline, this));
     	
-    	Point[] points = simulations.getLast().getPoints();
+    	Point[] points = lastSimulation().getPoints();
     	
-    	int red = simulations.getLast().getCurve().getRed();
-    	int green = simulations.getLast().getCurve().getGreen();
-    	int blue = simulations.getLast().getCurve().getBlue();
+    	int red = lastSimulation().getCurve().getRed();
+    	int green = lastSimulation().getCurve().getGreen();
+    	int blue = lastSimulation().getCurve().getBlue();
     	
     	CurveVisualizer.drawCurve(points, layout.getCurveCanvas().getGraphicsContext2D(), red,  green,  blue);
-    	simulations.getLast().setSlopes(spline.calculateSlopes());
-    	simulations.getLast().calculateTimeParametrization(g);
+    	lastSimulation().setSlopes(spline.calculateSlopes());
+    	lastSimulation().calculateTimeParametrization(g);
     	layout.getControlPanel().getChildren().addAll(layout.getChooseMassMessage(), layout.getMassIconButtons(), layout.getBtnCancelInput());
     }
     
@@ -391,8 +393,8 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
     // Gestione della selezione della massa
     private void handleMassSelection(MassIcon iconType, ImageView selectedMass) {
         ImageView mass = new ImageView(selectedMass.getImage());
-        simulations.getLast().setMass(new Mass(inputController.getStartPoint(), iconType, mass));
-        layout.getAnimationPane().getChildren().add(simulations.getLast().getMass().getIcon());
+        lastSimulation().setMass(new Mass(inputController.getStartPoint(), iconType, mass));
+        layout.getAnimationPane().getChildren().add(lastSimulation().getMass().getIcon());
         layout.getControlPanel().getChildren().clear();
         layout.getMassIconButtons().getChildren().remove(selectedMass.getParent());
         if(layout.getMassIconButtons().getChildren().isEmpty())
@@ -462,6 +464,11 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
     	{
     		simulations.get(i).startAnimation();
     	}
+    }
+    
+    private SimulationManager lastSimulation()
+    {
+    	return simulations.get(simulations.size()-1);
     }
     
     @Override 

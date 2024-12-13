@@ -77,8 +77,8 @@ public class Layout {
     private VBox iconViewJupiter;
     private VBox iconViewSun;
     
-    private ArrayList<Label> arrivalTimeMessages;
-    private ArrayList<Label> neverArriveMessages;
+    private List<Label> arrivalTimeMessages;
+    private List<Label> neverArriveMessages;
     
     private GraphicsContext gc;
     
@@ -398,11 +398,11 @@ public class Layout {
     public ImageView getPlanet(PlanetIcon planet)
     {
     	switch(planet) {
-    		case MOON: return (ImageView)iconViewMoon.getChildren().getFirst();
-    		case MARS: return (ImageView)iconViewMars.getChildren().getFirst();
-    		case EARTH: return (ImageView)iconViewEarth.getChildren().getFirst();
-    		case JUPITER: return (ImageView)iconViewJupiter.getChildren().getFirst();
-    		case SUN: return (ImageView)iconViewSun.getChildren().getFirst();
+    		case MOON: return (ImageView)iconViewMoon.getChildren().get(0);
+    		case MARS: return (ImageView)iconViewMars.getChildren().get(0);
+    		case EARTH: return (ImageView)iconViewEarth.getChildren().get(0);
+    		case JUPITER: return (ImageView)iconViewJupiter.getChildren().get(0);
+    		case SUN: return (ImageView)(iconViewSun.getChildren()).get(0);
     		default: return null;
     	}
     }
@@ -410,11 +410,11 @@ public class Layout {
     public ImageView getMass(MassIcon mass)
     {
     	switch(mass) {
-    		case BERNOULLI: return (ImageView)iconViewBernoulli.getChildren().getFirst();
-    		case JAKOB: return (ImageView)iconViewJakob.getChildren().getFirst();
-    		case GALILEO: return (ImageView)iconViewGalileo.getChildren().getFirst();
-    		case LEIBNITZ: return (ImageView)iconViewLeibnitz.getChildren().getFirst();
-    		case NEWTON: return (ImageView)iconViewNewton.getChildren().getFirst();
+    		case BERNOULLI: return (ImageView)iconViewBernoulli.getChildren().get(0);
+    		case JAKOB: return (ImageView)iconViewJakob.getChildren().get(0);
+    		case GALILEO: return (ImageView)iconViewGalileo.getChildren().get(0);
+    		case LEIBNITZ: return (ImageView)iconViewLeibnitz.getChildren().get(0);
+    		case NEWTON: return (ImageView)iconViewNewton.getChildren().get(0);
     		default: return null;
     	}
     }
