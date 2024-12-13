@@ -171,11 +171,11 @@ public class Layout {
         Image iconNewton = new Image(getClass().getResource("/images/Newton.png").toExternalForm());
 
         // Crea pulsanti immagine
-        iconViewBernoulli = createIconButton(iconBernoulli, "BERNOULLI");
-        iconViewGalileo = createIconButton(iconGalileo, "GALILEO");
-        iconViewJakob = createIconButton(iconJakob, "JAKOB");
-        iconViewLeibnitz = createIconButton(iconLeibnitz, "LEIBNITZ");
-        iconViewNewton = createIconButton(iconNewton, "NEWTON");
+        iconViewBernoulli = createMassIconButton(iconBernoulli, "BERNOULLI");
+        iconViewGalileo = createMassIconButton(iconGalileo, "GALILEO");
+        iconViewJakob = createMassIconButton(iconJakob, "JAKOB");
+        iconViewLeibnitz = createMassIconButton(iconLeibnitz, "LEIBNITZ");
+        iconViewNewton = createMassIconButton(iconNewton, "NEWTON");
         
         massIconButtons.getChildren().addAll(iconViewBernoulli, iconViewGalileo, iconViewJakob, iconViewLeibnitz, iconViewNewton);
         
@@ -187,11 +187,11 @@ public class Layout {
         Image iconSun = new Image(getClass().getResource("/images/sun.png").toExternalForm());
 
         // Crea pulsanti immagine
-        iconViewMoon = createIconButton(iconMoon, "g = 1,62");
-        iconViewMars = createIconButton(iconMars, "g = 3,73");
-        iconViewEarth = createIconButton(iconEarth, "g = 9,81");
-        iconViewJupiter = createIconButton(iconJupiter, "g = 24,79");
-        iconViewSun = createIconButton(iconSun, "g = 274");
+        iconViewMoon = createPlanetIconButton(iconMoon,"LUNA", "g = 1,62");
+        iconViewMars = createPlanetIconButton(iconMars,"MARTE", "g = 3,73");
+        iconViewEarth = createPlanetIconButton(iconEarth,"TERRA", "g = 9,81");
+        iconViewJupiter = createPlanetIconButton(iconJupiter,"GIOVE", "g = 24,79");
+        iconViewSun = createPlanetIconButton(iconSun,"SOLE", "g = 274");
         
         planetIconButtons.getChildren().addAll(iconViewMoon, iconViewMars, iconViewEarth, iconViewJupiter, iconViewSun);
         
@@ -235,7 +235,7 @@ public class Layout {
     private static final double ICONBUTTONDIAMETER = 70;
     
     // Metodo helper per creare un pulsante icona
-    private VBox createIconButton(Image image, String text) {
+    private VBox createMassIconButton(Image image, String text) {
         ImageView iconView = new ImageView(image);
         iconView.setFitWidth(ICONBUTTONDIAMETER); // Imposta la larghezza desiderata per l'icona
         iconView.setFitHeight(ICONBUTTONDIAMETER);
@@ -245,12 +245,22 @@ public class Layout {
         caption.getStyleClass().add("label-masses");
 
         // Aggiungi l'icona e la didascalia in una VBox
-        VBox vbox = new VBox(6); // Spaziatura tra icona e testo
+        VBox vbox = new VBox(4); // Spaziatura 
         vbox.setAlignment(Pos.CENTER); // Centra tutto
         vbox.getChildren().addAll(iconView, caption);
 
         return vbox;
     }
+    
+    private VBox createPlanetIconButton(Image image, String text1, String text2) {
+        VBox vbox = createMassIconButton(image, text1);
+        Label g = new Label(text2);
+        g.getStyleClass().add("label-masses");
+        vbox.getChildren().add(g);
+        return vbox;
+    }
+    
+    
     
     public BorderPane getBorderPane()
     {
