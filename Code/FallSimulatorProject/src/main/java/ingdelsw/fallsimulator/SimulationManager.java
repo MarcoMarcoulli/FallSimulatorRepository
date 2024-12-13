@@ -13,7 +13,6 @@ import ingdelsw.fallsimulator.listeners.MassArrivalListener;
 import ingdelsw.fallsimulator.math.Point;
 import ingdelsw.fallsimulator.math.curves.Curve;
 import javafx.animation.AnimationTimer;
-import javafx.scene.layout.Pane;
 
 public class SimulationManager {
 	
@@ -25,7 +24,6 @@ public class SimulationManager {
     private double[] slopes;
     private double[] times;
     
-    Pane controlPane;
     private MassArrivalListener listener;
    
     private long startTime; // Tempo di inizio dell'animazione in nanosecondi

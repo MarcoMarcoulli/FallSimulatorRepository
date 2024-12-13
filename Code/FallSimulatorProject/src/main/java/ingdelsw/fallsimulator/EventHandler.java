@@ -48,10 +48,10 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
 	
 	private double g;
 	
-	double pixelHeightMm;
+	private double pixelHeightMm;
 	
 
-	public EventHandler(){
+	private EventHandler(){
 		inputController = InputController.getController();
 		layout = Layout.getLayout(this);
 		simulations = new ArrayList<>();

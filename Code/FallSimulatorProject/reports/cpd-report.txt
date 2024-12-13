@@ -1,0 +1,484 @@
+Found a 12 line (103 tokens) duplication in the following files: 
+Starting at line 280 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 305 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+    	Circumference circumference = new Circumference(inputController.getStartPoint(),inputController.getEndPoint(), 1);
+    	circumference.setRandomColors();
+    	
+    	simulations.add(new SimulationManager(circumference, this));
+    	
+    	Point[] points = simulations.getLast().getPoints();
+    	
+    	int red = simulations.getLast().getCurve().getRed();
+    	int green = simulations.getLast().getCurve().getGreen();
+    	int blue = simulations.getLast().getCurve().getBlue();
+    	
+    	CurveVisualizer.drawCurve(points, layout.getCurveCanvas().getGraphicsContext2D(), red,  green,  blue);
+
+=====================================================================
+Found a 11 line (98 tokens) duplication in the following files: 
+Starting at line 281 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 334 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+    	circumference.setRandomColors();
+    	
+    	simulations.add(new SimulationManager(circumference, this));
+    	
+    	Point[] points = simulations.getLast().getPoints();
+    	
+    	int red = simulations.getLast().getCurve().getRed();
+    	int green = simulations.getLast().getCurve().getGreen();
+    	int blue = simulations.getLast().getCurve().getBlue();
+    	
+    	CurveVisualizer.drawCurve(points, layout.getCurveCanvas().getGraphicsContext2D(), red,  green,  blue);
+
+=====================================================================
+Found a 10 line (98 tokens) duplication in the following files: 
+Starting at line 306 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 334 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+    	circumference.setRandomColors();
+    	simulations.add(new SimulationManager(circumference, this));
+    	
+    	Point[] points = simulations.getLast().getPoints();
+    	
+    	int red = simulations.getLast().getCurve().getRed();
+    	int green = simulations.getLast().getCurve().getGreen();
+    	int blue = simulations.getLast().getCurve().getBlue();
+    	
+    	CurveVisualizer.drawCurve(points, layout.getCurveCanvas().getGraphicsContext2D(), red, green,  blue);
+
+=====================================================================
+Found a 10 line (96 tokens) duplication in the following files: 
+Starting at line 233 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 254 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 371 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+    	simulations.add(new SimulationManager(cycloid, this));
+    	
+    	Point[] points = simulations.getLast().getPoints();
+    	
+    	int red = simulations.getLast().getCurve().getRed();
+    	int green = simulations.getLast().getCurve().getGreen();
+    	int blue = simulations.getLast().getCurve().getBlue();
+    	
+    	CurveVisualizer.drawCurve(points, layout.getCurveCanvas().getGraphicsContext2D(), red,  green,  blue);
+    	simulations.getLast().setSlopes(cycloid.calculateSlopes());
+
+=====================================================================
+Found a 9 line (88 tokens) duplication in the following files: 
+Starting at line 233 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 283 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 307 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 335 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 371 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+    	simulations.add(new SimulationManager(cycloid, this));
+    	
+    	Point[] points = simulations.getLast().getPoints();
+    	
+    	int red = simulations.getLast().getCurve().getRed();
+    	int green = simulations.getLast().getCurve().getGreen();
+    	int blue = simulations.getLast().getCurve().getBlue();
+    	
+    	CurveVisualizer.drawCurve(points, layout.getCurveCanvas().getGraphicsContext2D(), red,  green,  blue);
+
+=====================================================================
+Found a 4 line (59 tokens) duplication in the following files: 
+Starting at line 242 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 264 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+    	simulations.getLast().setSlopes(cycloid.calculateSlopes());
+    	simulations.getLast().calculateTimeParametrization(g);
+    	layout.getControlPanel().getChildren().addAll(layout.getChooseMassMessage(), layout.getMassIconButtons(), layout.getBtnCancelInput());
+    	layout.getCurveButtons().getChildren().remove(layout.getBtnCycloid());
+
+=====================================================================
+Found a 4 line (59 tokens) duplication in the following files: 
+Starting at line 297 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 321 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+        layout.getRadiusSlider().valueProperty().addListener((observable, oldValue, newValue) -> handleSliderChange(newValue.doubleValue(), 1));
+        layout.getBtnConfirmRadius().setOnAction(e -> handleConfirmRadiusClick());
+        layout.getControlPanel().getChildren().clear();
+        layout.getControlPanel().getChildren().addAll(layout.getChooseRadiusMessage(), layout.getRadiusSlider(), layout.getBtnConfirmRadius(), layout.getBtnCancelInput());
+
+=====================================================================
+Found a 4 line (52 tokens) duplication in the following files: 
+Starting at line 148 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 161 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+	        gc.setFill(Color.RED);
+	        gc.fillOval(p.getX() - 5, p.getY() - 5, 10, 10);  // Cerchio rosso per il punto di partenza
+	        layout.getControlPanel().getChildren().clear();
+	        layout.getControlPanel().getChildren().addAll(layout.getEndPointMessage(), layout.getBtnCancelInput());
+
+=====================================================================
+Found a 5 line (49 tokens) duplication in the following files: 
+Starting at line 76 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\CubicSpline.java
+Starting at line 107 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\CubicSpline.java
+
+    	logger.info("calcolo punti spline");
+    	for (int i=0; i < NUMPOINTS - 1; i++) {
+    		t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
+            xPow = intervalX * Math.pow(t, 3);     // Densità maggiore all'inizio con t^2
+            x = startPoint.getX() + xPow;
+
+=====================================================================
+Found a 3 line (45 tokens) duplication in the following files: 
+Starting at line 242 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 380 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+    	simulations.getLast().setSlopes(cycloid.calculateSlopes());
+    	simulations.getLast().calculateTimeParametrization(g);
+    	layout.getControlPanel().getChildren().addAll(layout.getChooseMassMessage(), layout.getMassIconButtons(), layout.getBtnCancelInput());
+
+=====================================================================
+Found a 2 line (43 tokens) duplication in the following files: 
+Starting at line 163 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 387 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+	        layout.getControlPanel().getChildren().clear();
+	        layout.getControlPanel().getChildren().addAll(layout.getChooseCurveMessage(), layout.getCurveButtons(), layout.getBtnCancelInput());
+
+=====================================================================
+Found a 1 line (42 tokens) duplication in the following files: 
+Starting at line 63 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\CubicSpline.java
+Starting at line 95 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\CubicSpline.java
+
+    		double m = (controlPoints[1].getY() - controlPoints[0].getY()) / (controlPoints[1].getX() - controlPoints[0].getX());
+
+=====================================================================
+Found a 3 line (40 tokens) duplication in the following files: 
+Starting at line 397 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 433 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+        layout.getMassIconButtons().getChildren().remove(selectedMass.getParent());
+        if(layout.getMassIconButtons().getChildren().isEmpty())
+        	layout.getControlPanel().getChildren().addAll(layout.getBtnStartSimulation(), layout.getBtnCancelInput()); 
+
+=====================================================================
+Found a 5 line (39 tokens) duplication in the following files: 
+Starting at line 57 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Circumference.java
+Starting at line 77 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\CubicSpline.java
+
+        	for (int i=0; i < NUMPOINTS; i++) {
+        		t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
+                xPow = intervalX * Math.pow(t, 3);     // Densità maggiore all'inizio con t^2
+        		x = startPoint.getX() + xPow;
+                y = yCenter + evaluateFunction(x + r - xCenter);
+
+=====================================================================
+Found a 6 line (38 tokens) duplication in the following files: 
+Starting at line 156 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 168 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+	            inputController.setEndpoint(new Point(p.getX(), p.getY()));
+	        } catch (IllegalArgumentException e) {
+	            inputController.handleException(e);
+	            return;
+	        }
+	        gc.setFill(Color.BLUE);
+
+=====================================================================
+Found a 4 line (37 tokens) duplication in the following files: 
+Starting at line 57 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Circumference.java
+Starting at line 108 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\CubicSpline.java
+
+        	for (int i=0; i < NUMPOINTS; i++) {
+        		t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
+                xPow = intervalX * Math.pow(t, 3);     // Densità maggiore all'inizio con t^2
+        		x = startPoint.getX() + xPow;
+
+=====================================================================
+Found a 2 line (33 tokens) duplication in the following files: 
+Starting at line 399 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 435 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+        	layout.getControlPanel().getChildren().addAll(layout.getBtnStartSimulation(), layout.getBtnCancelInput()); 
+        else layout.getControlPanel().getChildren().addAll(layout.getBtnStartSimulation(), layout.getBtnInsertAnotherCurve(), layout.getBtnCancelInput()); 
+
+=====================================================================
+Found a 8 line (33 tokens) duplication in the following files: 
+Starting at line 99 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Cycloid.java
+Starting at line 57 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Parabola.java
+
+            slopes[i] = Math.atan(Math.sin(aPow) / (1 - Math.cos(aPow)));
+            logger.debug("pendenza[{}]: {} ", i, (slopes[i] / Math.PI) * 180);
+        }
+        return slopes;
+    }
+
+    public String curveName() {
+        return "cicloide";
+
+=====================================================================
+Found a 3 line (32 tokens) duplication in the following files: 
+Starting at line 361 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 381 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+    	layout.getControlPanel().getChildren().clear();
+    	layout.getControlPanel().getChildren().addAll(layout.getChooseMassMessage(), layout.getMassIconButtons(), layout.getBtnCancelInput());
+    }
+
+=====================================================================
+Found a 3 line (31 tokens) duplication in the following files: 
+Starting at line 239 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 350 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 377 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+    	int blue = simulations.getLast().getCurve().getBlue();
+    	
+    	CurveVisualizer.drawCurve(points, layout.getCurveCanvas().getGraphicsContext2D(), red,  green,  blue);
+
+=====================================================================
+Found a 2 line (31 tokens) duplication in the following files: 
+Starting at line 243 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 361 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+    	simulations.getLast().calculateTimeParametrization(g);
+    	layout.getControlPanel().getChildren().addAll(layout.getChooseMassMessage(), layout.getMassIconButtons(), layout.getBtnCancelInput());
+
+=====================================================================
+Found a 3 line (31 tokens) duplication in the following files: 
+Starting at line 260 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 350 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+    	int blue = simulations.getLast().getCurve().getBlue();
+    	
+    	CurveVisualizer.drawCurve(points, layout.getCurveCanvas().getGraphicsContext2D(), red,  green, blue);
+
+=====================================================================
+Found a 2 line (31 tokens) duplication in the following files: 
+Starting at line 265 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 361 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+    	simulations.getLast().calculateTimeParametrization(g);
+    	layout.getControlPanel().getChildren().addAll(layout.getChooseMassMessage(), layout.getMassIconButtons(), layout.getBtnCancelInput());
+
+=====================================================================
+Found a 3 line (31 tokens) duplication in the following files: 
+Starting at line 289 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 350 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+    	int blue = simulations.getLast().getCurve().getBlue();
+    	
+    	CurveVisualizer.drawCurve(points, layout.getCurveCanvas().getGraphicsContext2D(), red,  green,  blue);
+
+=====================================================================
+Found a 3 line (31 tokens) duplication in the following files: 
+Starting at line 313 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 350 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+    	int blue = simulations.getLast().getCurve().getBlue();
+    	
+    	CurveVisualizer.drawCurve(points, layout.getCurveCanvas().getGraphicsContext2D(), red, green,  blue);
+
+=====================================================================
+Found a 3 line (31 tokens) duplication in the following files: 
+Starting at line 341 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 350 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+    	int blue = simulations.getLast().getCurve().getBlue();
+    	
+    	CurveVisualizer.drawCurve(points, layout.getCurveCanvas().getGraphicsContext2D(), red, green,  blue);
+
+=====================================================================
+Found a 3 line (31 tokens) duplication in the following files: 
+Starting at line 78 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Cycloid.java
+Starting at line 96 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Cycloid.java
+
+        for (int i = 0; i < NUMPOINTS; i++) {
+            t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
+            aPow = alfa * Math.pow(t, 3); // Densità maggiore all'inizio con t^4
+
+=====================================================================
+Found a 4 line (30 tokens) duplication in the following files: 
+Starting at line 200 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 385 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+    public void handleCubicSplineClick()
+    {
+    	layout.getControlPanel().getChildren().clear();
+    	layout.getControlPanel().getChildren().addAll(layout.getIntermediatePointsMessage(), layout.getBtnStopIntermediatePointsInsertion(), layout.getBtnCancelInput());
+
+=====================================================================
+Found a 8 line (30 tokens) duplication in the following files: 
+Starting at line 84 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Cycloid.java
+Starting at line 44 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Parabola.java
+
+            logger.debug("Punto[{}]: x = {}, y = {}", i, x, y);
+        }
+        return points;
+    }
+
+    public double[] calculateSlopes() {
+        double[] slopes = new double[NUMPOINTS];
+        double t;
+
+=====================================================================
+Found a 3 line (29 tokens) duplication in the following files: 
+Starting at line 136 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 360 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+	    	logger.info("g : {}", g);
+	    	layout.getControlPanel().getChildren().clear();
+	    	layout.getControlPanel().getChildren().addAll(layout.getStartPointMessage(), layout.getBtnCancelInput());
+
+=====================================================================
+Found a 3 line (29 tokens) duplication in the following files: 
+Starting at line 295 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 319 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+    	layout.setRadiusSlider(new Slider(initialRadius, initialRadius*3, initialRadius));
+    	// Aggiungi un listener per il valore dello slider e chiama la funzione
+        layout.getRadiusSlider().valueProperty().addListener((observable, oldValue, newValue) -> handleSliderChange(newValue.doubleValue(), 1));
+
+=====================================================================
+Found a 3 line (28 tokens) duplication in the following files: 
+Starting at line 136 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 149 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 162 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 298 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 322 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 360 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+	    	logger.info("g : {}", g);
+	    	layout.getControlPanel().getChildren().clear();
+	    	layout.getControlPanel().getChildren().addAll(layout.getStartPointMessage(), layout.getBtnCancelInput());
+
+=====================================================================
+Found a 4 line (28 tokens) duplication in the following files: 
+Starting at line 134 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Circumference.java
+Starting at line 150 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Circumference.java
+
+                slopes[i] = Math.atan((r-x)/Math.sqrt(2*r*x - Math.pow(x, 2)));
+                logger.debug("pendenza[{}]: {} ", i, (slopes[i] / Math.PI) * 180);
+            }
+    	}
+
+=====================================================================
+Found a 2 line (27 tokens) duplication in the following files: 
+Starting at line 137 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 202 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 299 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 323 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 361 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 387 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+	    	layout.getControlPanel().getChildren().clear();
+	    	layout.getControlPanel().getChildren().addAll(layout.getStartPointMessage(), layout.getBtnCancelInput());
+
+=====================================================================
+Found a 2 line (27 tokens) duplication in the following files: 
+Starting at line 150 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 202 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 387 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+	        layout.getControlPanel().getChildren().clear();
+	        layout.getControlPanel().getChildren().addAll(layout.getEndPointMessage(), layout.getBtnCancelInput());
+
+=====================================================================
+Found a 2 line (27 tokens) duplication in the following files: 
+Starting at line 163 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 202 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+	        layout.getControlPanel().getChildren().clear();
+	        layout.getControlPanel().getChildren().addAll(layout.getChooseCurveMessage(), layout.getCurveButtons(), layout.getBtnCancelInput());
+
+=====================================================================
+Found a 1 line (27 tokens) duplication in the following files: 
+Starting at line 25 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Circumference.java
+Starting at line 26 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Circumference.java
+
+        	this.r = (Math.pow(intervalX, 2)+Math.pow(intervalY, 2))/(2 * intervalY) + 1;
+
+=====================================================================
+Found a 5 line (27 tokens) duplication in the following files: 
+Starting at line 61 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Circumference.java
+Starting at line 76 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Circumference.java
+
+                y = yCenter + evaluateFunction(x + r - xCenter);
+                points[i] = new Point(x,y);
+                logger.debug("Punto[{}]: x = {}, y = {}", i, x, y);
+            }
+    	}
+
+=====================================================================
+Found a 10 line (27 tokens) duplication in the following files: 
+Starting at line 66 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\CubicSpline.java
+Starting at line 28 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Parabola.java
+
+    	else return splineFunction.value(x);
+    }
+    
+    public Point[] calculatePoints()
+    {
+    	Point[] points = new Point[NUMPOINTS];
+    	double x;
+    	double y;
+    	double t;
+    	double xPow;
+
+=====================================================================
+Found a 4 line (26 tokens) duplication in the following files: 
+Starting at line 200 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 271 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 385 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+    public void handleCubicSplineClick()
+    {
+    	layout.getControlPanel().getChildren().clear();
+    	layout.getControlPanel().getChildren().addAll(layout.getIntermediatePointsMessage(), layout.getBtnStopIntermediatePointsInsertion(), layout.getBtnCancelInput());
+
+=====================================================================
+Found a 3 line (26 tokens) duplication in the following files: 
+Starting at line 56 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Circumference.java
+Starting at line 71 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Circumference.java
+Starting at line 129 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Circumference.java
+Starting at line 145 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Circumference.java
+Starting at line 77 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Cycloid.java
+Starting at line 37 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Parabola.java
+Starting at line 53 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Parabola.java
+
+    		logger.info("calcolo punti circonferenza con concavità verso l'alto");
+        	for (int i=0; i < NUMPOINTS; i++) {
+        		t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
+
+=====================================================================
+Found a 4 line (26 tokens) duplication in the following files: 
+Starting at line 61 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Circumference.java
+Starting at line 81 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\CubicSpline.java
+Starting at line 82 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Cycloid.java
+
+                y = yCenter + evaluateFunction(x + r - xCenter);
+                points[i] = new Point(x,y);
+                logger.debug("Punto[{}]: x = {}, y = {}", i, x, y);
+            }
+
+=====================================================================
+Found a 2 line (25 tokens) duplication in the following files: 
+Starting at line 148 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+Starting at line 173 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\EventHandler.java
+
+	        gc.setFill(Color.RED);
+	        gc.fillOval(p.getX() - 5, p.getY() - 5, 10, 10);  // Cerchio rosso per il punto di partenza
+
+=====================================================================
+Found a 3 line (25 tokens) duplication in the following files: 
+Starting at line 134 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Circumference.java
+Starting at line 99 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Cycloid.java
+
+                slopes[i] = Math.atan((r-x)/Math.sqrt(2*r*x - Math.pow(x, 2)));
+                logger.debug("pendenza[{}]: {} ", i, (slopes[i] / Math.PI) * 180);
+            }
+
+=====================================================================
+Found a 3 line (25 tokens) duplication in the following files: 
+Starting at line 150 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Circumference.java
+Starting at line 99 of C:\Users\marco\Git\FallSimulatorRepository\Code\FallSimulatorProject\src\main\java\ingdelsw\fallsimulator\math\curves\Cycloid.java
+
+                slopes[i] = Math.PI/2 - Math.atan((r-y)/Math.sqrt(2*r*y - Math.pow(y, 2)));
+                logger.debug("pendenza[{}]: {} ", i, (slopes[i] / Math.PI) * 180);
+            }
+
