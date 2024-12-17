@@ -9,14 +9,14 @@ import org.apache.logging.log4j.Logger;
 
 import ingdelsw.fallsimulator.enums.MassIcon;
 import ingdelsw.fallsimulator.enums.PlanetIcon;
-import ingdelsw.fallsimulator.listeners.MassArrivalListener;
-import ingdelsw.fallsimulator.listeners.WindowResizingListener;
 import ingdelsw.fallsimulator.math.NonConvergenceException;
 import ingdelsw.fallsimulator.math.Point;
 import ingdelsw.fallsimulator.math.curves.Circumference;
 import ingdelsw.fallsimulator.math.curves.CubicSpline;
 import ingdelsw.fallsimulator.math.curves.Cycloid;
 import ingdelsw.fallsimulator.math.curves.Parabola;
+import ingdelsw.fallsimulator.observers.MassArrivalObserver;
+import ingdelsw.fallsimulator.observers.WindowResizingObserver;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -25,7 +25,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 
-public class EventHandler implements MassArrivalListener, WindowResizingListener{
+public class EventHandler implements MassArrivalObserver, WindowResizingObserver{
 	
 	private static final Logger logger = LogManager.getLogger(EventHandler.class);
 	
