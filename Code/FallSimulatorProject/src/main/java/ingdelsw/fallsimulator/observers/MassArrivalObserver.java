@@ -1,7 +1,7 @@
-package ingdelsw.fallsimulator.listeners;
+package ingdelsw.fallsimulator.observers;
 
 import ingdelsw.fallsimulator.SimulationManager;
 
-public interface MassArrivalListener {
+public interface MassArrivalObserver {
 	void onMassArrival(SimulationManager source, boolean arrived);
 }

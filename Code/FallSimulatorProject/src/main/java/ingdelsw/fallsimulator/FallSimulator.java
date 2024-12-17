@@ -14,6 +14,8 @@ public class FallSimulator extends Application{
     public void start(Stage primaryStage) {
     	
         EventHandler eventHandler = EventHandler.getHandler();
+        Layout layout = Layout.getLayout(null);
+        layout.addWindowResizingObserver(eventHandler);
         
         // Configura la finestra per aprirsi massimizzata
         primaryStage.setMaximized(true);

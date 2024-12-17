@@ -10,9 +10,9 @@ import java.util.Arrays;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import ingdelsw.fallsimulator.listeners.MassArrivalListener;
 import ingdelsw.fallsimulator.math.Point;
 import ingdelsw.fallsimulator.math.curves.Curve;
+import ingdelsw.fallsimulator.observers.MassArrivalObserver;
 import javafx.animation.AnimationTimer;
 
 public class SimulationManager {
@@ -25,15 +25,25 @@ public class SimulationManager {
     private double[] slopes;
     private double[] times;
     
-    private MassArrivalListener listener;
+    private MassArrivalObserver observer;
    
     private long startTime; // Tempo di inizio dell'animazione in nanosecondi
 
-    public SimulationManager(Curve curve, MassArrivalListener listener) {
+    public SimulationManager(Curve curve, MassArrivalObserver listener) {
         mass = null;
         this.curve = curve;
         this.points = curve.calculatePoints();
-        this.listener = listener;
+        this.observer = listener;
+    }
+    
+    public void addMassArrivalObserver(MassArrivalObserver observer)
+    {
+    	this.observer = observer;
+    }
+    
+    public void notifyMassArrivalObserver(boolean arrived)
+    {
+    	observer.onMassArrival(this, arrived);
     }
 
     public Curve getCurve() {
@@ -98,12 +108,6 @@ public class SimulationManager {
         }
         return times;
     }
-
-	
-	public void setMassArrivalListener(MassArrivalListener listener)
-    {
-    	this.listener = listener;
-    }
 	
     public void startAnimation() {
     	
@@ -139,7 +143,7 @@ public class SimulationManager {
         	        double newY = points[points.length - 1].getY() - mass.getMassDiameter() / 2;
         	        mass.getIcon().relocate(newX, newY);
         	        this.stop();
-        	        listener.onMassArrival(SimulationManager.this, true);
+        	        notifyMassArrivalObserver(true);
         	        return;
         	    }
 
@@ -148,7 +152,7 @@ public class SimulationManager {
         	        mass.getIcon().relocate(points[index].getX() - mass.getMassDiameter() / 2,
         	                                points[index].getY() - mass.getMassDiameter() / 2);
         	        this.stop();
-        	        listener.onMassArrival(SimulationManager.this, false);
+        	        notifyMassArrivalObserver(false);
         	        return;
         	    }
 
