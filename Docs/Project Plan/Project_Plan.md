@@ -100,10 +100,10 @@ Attività principali: Le attività su cui il team ha investito più tempo sono l
     - Tempo stimato: 10 ore
     - Dettagli: Sviluppo completo del project plan, con documentazione delle risorse, milestone, rischi e pacchetti di lavoro.
   - Fase 2: Progettazione e rappresentazione delle curve (scadenza gennaio)
-    - Tempo stimato: 15 ore
+    - Tempo stimato: 40 ore
     - Dettagli: Sviluppo del codice per le curve e verifica matematica, con attenzione alla rappresentazione della circonferenza e altre curve preimpostate (parabola, retta, cicloide).
   - Fase 3: Implementazione dell'animazione
-    - Tempo stimato: 15 ore
+    - Tempo stimato: 30 ore
     - Dettagli: Codifica e ottimizzazione dell’animazione, assicurando che la sfera segua le curve senza problemi di prestazione.
   - Fase 4: Test e ottimizzazione finale
     - Tempo stimato: 10 ore
