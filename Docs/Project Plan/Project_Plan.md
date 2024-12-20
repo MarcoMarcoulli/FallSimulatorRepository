@@ -43,6 +43,7 @@ Il team di sviluppo del progetto FallSimulator è composto da due sviluppatori, 
 
 <a name="_toc184575194"></a>**7. Personale**
 
+Ecco come vengono suddivise le varie attivtà tra i componenti del progetto
 - Sviluppo del codice: Questa attività è svolta principalmente da Marco Locatelli, che si occupa della scrittura del codice per la generazione delle curve, il calcolo del tempo "t", e l'implementazione delle animazioni.
 - Analisi matematica: Anche l'analisi matematica necessaria per implementare correttamente le curve è principalmente gestita da Marco, con l'aiuto di Nicolò nei momenti necessari.
 - Gestione del progetto e documentazione: Nicolò Nava si concentra principalmente sulla gestione del project plan e della documentazione, anche se entrambi i membri del team contribuiscono quando necessario.
