@@ -4,7 +4,6 @@
 
 package ingdelsw.fallsimulator;
 
-//codice esaminato ed approvato, trovo che le classi siano ben strutturate ed i metodi chiari
 import java.util.Arrays;
 
 import org.apache.logging.log4j.LogManager;
