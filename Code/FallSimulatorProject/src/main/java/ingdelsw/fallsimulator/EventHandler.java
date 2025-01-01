@@ -366,7 +366,7 @@ public class EventHandler implements MassArrivalObserver, WindowResizingObserver
     
     public void handleStopIntermediatePointsInsertionClick()
     {
-    	state = null;
+    	state = UIStates.SELECTING_GRAVITY;
     	layout.getControlPanel().getChildren().clear();
     	CubicSpline spline = new CubicSpline(inputController.getStartPoint(),inputController.getEndPoint(), inputController.getIntermediatePoint());
     	spline.setRandomColors();
