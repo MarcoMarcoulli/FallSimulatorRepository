@@ -7,6 +7,8 @@
  */
 package ingdelsw.fallsimulator;
 
+import ingdelsw.fallsimulator.UI.Layout;
+import ingdelsw.fallsimulator.controller.EventHandler;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

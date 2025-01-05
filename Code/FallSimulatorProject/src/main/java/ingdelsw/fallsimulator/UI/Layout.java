@@ -3,7 +3,7 @@
  * 
  * manages user interface layout and elements
  */
-package ingdelsw.fallsimulator;
+package ingdelsw.fallsimulator.UI;
 
 import java.util.ArrayList;
 import java.util.List;

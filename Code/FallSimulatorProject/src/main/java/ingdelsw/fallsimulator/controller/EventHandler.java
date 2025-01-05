@@ -1,4 +1,4 @@
-package ingdelsw.fallsimulator;
+package ingdelsw.fallsimulator.controller;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -7,6 +7,8 @@ import java.util.Random;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import ingdelsw.fallsimulator.UI.CurveVisualizer;
+import ingdelsw.fallsimulator.UI.Layout;
 import ingdelsw.fallsimulator.enums.MassIcon;
 import ingdelsw.fallsimulator.enums.PlanetIcon;
 import ingdelsw.fallsimulator.math.NonConvergenceException;
@@ -17,6 +19,8 @@ import ingdelsw.fallsimulator.math.curves.Cycloid;
 import ingdelsw.fallsimulator.math.curves.Parabola;
 import ingdelsw.fallsimulator.observers.MassArrivalObserver;
 import ingdelsw.fallsimulator.observers.WindowResizingObserver;
+import ingdelsw.fallsimulator.simulation.Mass;
+import ingdelsw.fallsimulator.simulation.SimulationManager;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
