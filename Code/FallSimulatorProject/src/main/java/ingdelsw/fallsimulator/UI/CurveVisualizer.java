@@ -1,4 +1,4 @@
-package ingdelsw.fallsimulator;
+package ingdelsw.fallsimulator.UI;
 
 import ingdelsw.fallsimulator.math.Point;
 import javafx.scene.canvas.GraphicsContext;

@@ -5,7 +5,7 @@
 /*
  * class for input managment and control
  */
-package ingdelsw.fallsimulator;
+package ingdelsw.fallsimulator.controller;
 
 import java.util.ArrayList;
 import java.util.List;
