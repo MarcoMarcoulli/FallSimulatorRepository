@@ -34,7 +34,7 @@ public class EventHandler implements MassArrivalObserver, WindowResizingObserver
 	private static final Logger logger = LogManager.getLogger(EventHandler.class);
 	
 	public enum UIStates {
-		SELECTING_GRAVITY,
+		IDLE,
     	WAITING_FOR_START_POINT,
         WAITING_FOR_END_POINT,
         INSERTING_INTERMEDIATE_POINTS;
@@ -59,7 +59,7 @@ public class EventHandler implements MassArrivalObserver, WindowResizingObserver
 		inputController = InputController.getController();
 		layout = Layout.getLayout(this);
 		simulations = new ArrayList<>();
-		state = UIStates.SELECTING_GRAVITY;
+		state = UIStates.IDLE;
 		// Gestione del click sul pannello di disegno
         layout.getPointsCanvas().setOnMouseClicked(this::handleMouseClick);
         layout.getBtnCancelInput().setOnAction(e -> handleCancelInputClick());
@@ -166,6 +166,7 @@ public class EventHandler implements MassArrivalObserver, WindowResizingObserver
 	        gc.fillOval(p.getX() - 5, p.getY() - 5, 10, 10);  // Cerchio blu per il punto di arrivo
 	        layout.getControlPanel().getChildren().clear();
 	        layout.getControlPanel().getChildren().addAll(layout.getChooseCurveMessage(), layout.getCurveButtons(), layout.getBtnCancelInput());
+	        state = UIStates.IDLE;
 	        break;
 	    case INSERTING_INTERMEDIATE_POINTS:
 	    	try {
@@ -192,7 +193,7 @@ public class EventHandler implements MassArrivalObserver, WindowResizingObserver
     public void handleCancelInputClick(){
         layout.clear();
         simulations.clear();
-        state = UIStates.SELECTING_GRAVITY;
+        state = UIStates.IDLE;
     }
     
     private int randomRed;
@@ -370,7 +371,7 @@ public class EventHandler implements MassArrivalObserver, WindowResizingObserver
     
     public void handleStopIntermediatePointsInsertionClick()
     {
-    	state = UIStates.SELECTING_GRAVITY;
+    	state = UIStates.IDLE;
     	layout.getControlPanel().getChildren().clear();
     	CubicSpline spline = new CubicSpline(inputController.getStartPoint(),inputController.getEndPoint(), inputController.getIntermediatePoint());
     	spline.setRandomColors();
