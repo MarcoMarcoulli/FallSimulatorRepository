@@ -43,6 +43,7 @@ Il team di sviluppo del progetto FallSimulator è composto da due sviluppatori, 
 
 <a name="_toc184575194"></a>**7. Personale**
 
+Ecco come vengono suddivise le varie attivtà tra i componenti del progetto
 - Sviluppo del codice: Questa attività è svolta principalmente da Marco Locatelli, che si occupa della scrittura del codice per la generazione delle curve, il calcolo del tempo "t", e l'implementazione delle animazioni.
 - Analisi matematica: Anche l'analisi matematica necessaria per implementare correttamente le curve è principalmente gestita da Marco, con l'aiuto di Nicolò nei momenti necessari.
 - Gestione del progetto e documentazione: Nicolò Nava si concentra principalmente sulla gestione del project plan e della documentazione, anche se entrambi i membri del team contribuiscono quando necessario.
@@ -100,10 +101,10 @@ Attività principali: Le attività su cui il team ha investito più tempo sono l
     - Tempo stimato: 10 ore
     - Dettagli: Sviluppo completo del project plan, con documentazione delle risorse, milestone, rischi e pacchetti di lavoro.
   - Fase 2: Progettazione e rappresentazione delle curve (scadenza gennaio)
-    - Tempo stimato: 15 ore
+    - Tempo stimato: 40 ore
     - Dettagli: Sviluppo del codice per le curve e verifica matematica, con attenzione alla rappresentazione della circonferenza e altre curve preimpostate (parabola, retta, cicloide).
   - Fase 3: Implementazione dell'animazione
-    - Tempo stimato: 15 ore
+    - Tempo stimato: 30 ore
     - Dettagli: Codifica e ottimizzazione dell’animazione, assicurando che la sfera segua le curve senza problemi di prestazione.
   - Fase 4: Test e ottimizzazione finale
     - Tempo stimato: 10 ore

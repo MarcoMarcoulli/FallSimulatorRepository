@@ -1,4 +1,4 @@
-package ingdelsw.fallsimulator;
+package ingdelsw.fallsimulator.controller;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -7,16 +7,20 @@ import java.util.Random;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import ingdelsw.fallsimulator.UI.CurveVisualizer;
+import ingdelsw.fallsimulator.UI.Layout;
 import ingdelsw.fallsimulator.enums.MassIcon;
 import ingdelsw.fallsimulator.enums.PlanetIcon;
-import ingdelsw.fallsimulator.listeners.MassArrivalListener;
-import ingdelsw.fallsimulator.listeners.WindowResizingListener;
 import ingdelsw.fallsimulator.math.NonConvergenceException;
 import ingdelsw.fallsimulator.math.Point;
 import ingdelsw.fallsimulator.math.curves.Circumference;
 import ingdelsw.fallsimulator.math.curves.CubicSpline;
 import ingdelsw.fallsimulator.math.curves.Cycloid;
 import ingdelsw.fallsimulator.math.curves.Parabola;
+import ingdelsw.fallsimulator.observers.MassArrivalObserver;
+import ingdelsw.fallsimulator.observers.WindowResizingObserver;
+import ingdelsw.fallsimulator.simulation.Mass;
+import ingdelsw.fallsimulator.simulation.SimulationManager;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -25,12 +29,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 
-public class EventHandler implements MassArrivalListener, WindowResizingListener{
+public class EventHandler implements MassArrivalObserver, WindowResizingObserver{
 	
 	private static final Logger logger = LogManager.getLogger(EventHandler.class);
 	
 	public enum UIStates {
-		SELECTING_GRAVITY,
+		IDLE,
     	WAITING_FOR_START_POINT,
         WAITING_FOR_END_POINT,
         INSERTING_INTERMEDIATE_POINTS;
@@ -55,7 +59,7 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
 		inputController = InputController.getController();
 		layout = Layout.getLayout(this);
 		simulations = new ArrayList<>();
-		state = UIStates.SELECTING_GRAVITY;
+		state = UIStates.IDLE;
 		// Gestione del click sul pannello di disegno
         layout.getPointsCanvas().setOnMouseClicked(this::handleMouseClick);
         layout.getBtnCancelInput().setOnAction(e -> handleCancelInputClick());
@@ -162,6 +166,7 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
 	        gc.fillOval(p.getX() - 5, p.getY() - 5, 10, 10);  // Cerchio blu per il punto di arrivo
 	        layout.getControlPanel().getChildren().clear();
 	        layout.getControlPanel().getChildren().addAll(layout.getChooseCurveMessage(), layout.getCurveButtons(), layout.getBtnCancelInput());
+	        state = UIStates.IDLE;
 	        break;
 	    case INSERTING_INTERMEDIATE_POINTS:
 	    	try {
@@ -188,7 +193,7 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
     public void handleCancelInputClick(){
         layout.clear();
         simulations.clear();
-        state = UIStates.SELECTING_GRAVITY;
+        state = UIStates.IDLE;
     }
     
     private int randomRed;
@@ -366,6 +371,7 @@ public class EventHandler implements MassArrivalListener, WindowResizingListener
     
     public void handleStopIntermediatePointsInsertionClick()
     {
+    	state = UIStates.IDLE;
     	layout.getControlPanel().getChildren().clear();
     	CubicSpline spline = new CubicSpline(inputController.getStartPoint(),inputController.getEndPoint(), inputController.getIntermediatePoint());
     	spline.setRandomColors();

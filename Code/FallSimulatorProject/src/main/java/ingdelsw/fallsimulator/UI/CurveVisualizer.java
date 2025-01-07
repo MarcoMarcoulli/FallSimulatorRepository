@@ -1,4 +1,4 @@
-package ingdelsw.fallsimulator;
+package ingdelsw.fallsimulator.UI;
 
 import ingdelsw.fallsimulator.math.Point;
 import javafx.scene.canvas.GraphicsContext;
@@ -9,7 +9,8 @@ public final class CurveVisualizer {
 	private CurveVisualizer() {
 		throw new IllegalStateException("Utility class");
 	}
-		
+	
+	//method for curves visualization
 	public static void drawCurve(Point[] points, GraphicsContext gc, int red, int green , int blue) {
 		
         gc.setStroke(Color.rgb(red, green, blue));

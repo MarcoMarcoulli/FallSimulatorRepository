@@ -1,42 +1,57 @@
-
-package ingdelsw.fallsimulator;
+/*
+ * Layout.java;
+ * 
+ * manages user interface layout and elements
+ */
+package ingdelsw.fallsimulator.UI;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ingdelsw.fallsimulator.enums.MassIcon;
 import ingdelsw.fallsimulator.enums.PlanetIcon;
-import ingdelsw.fallsimulator.listeners.WindowResizingListener;
+import ingdelsw.fallsimulator.observers.WindowResizingObserver;
+//javaFX imports
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Layout {
-			// Layout principale
+	//main layout
     private BorderPane root;
     
+    //buttons and messages panel
     private VBox controlPanel;
     
+    //points insertion layout
     private Canvas pointsCanvas;
+    
+    //curves drawing layout
     private Canvas curveCanvas;
     
+    //simulation layout
     private Pane animationPane;
     
+    //layout overlap
+    private StackPane stackPane;
+    
+    //buttons containers
     private HBox curveButtons;
     private HBox massIconButtons;
     private HBox convexityButtons;
     private HBox planetIconButtons;
     
+    //interface messages declaration
     private Label startPointMessage;
     private Label endPointMessage;
     private Label chooseCurveMessage;
@@ -46,7 +61,10 @@ public class Layout {
     private Label chooseConvexityMessage;
     private Label selectGravityMessage;
     private Label simulatingMessage;
+    private List<Label> arrivalTimeMessages;
+    private List<Label> neverArriveMessages;
     
+    //buttons declarations
     private Button btnCancelInput;
     private Button btnCycloid;
     private Button btnParabola;
@@ -59,67 +77,66 @@ public class Layout {
     private Button btnStartSimulation;
     private Button btnInsertAnotherCurve;
     
+    //slider for radius input
     private Slider radiusSlider;
     
+    //times messages container
     private VBox massArrivalMessagesBox;
     
-    private StackPane stackPane;
-    
+    //masses icons
     private VBox iconViewBernoulli;
     private VBox iconViewGalileo;
     private VBox iconViewJakob;
     private VBox iconViewLeibnitz;
     private VBox iconViewNewton;
     
+    //planets icons
     private VBox iconViewMoon;
     private VBox iconViewMars;
     private VBox iconViewEarth;
     private VBox iconViewJupiter;
     private VBox iconViewSun;
     
-    private List<Label> arrivalTimeMessages;
-    private List<Label> neverArriveMessages;
-    
+    //graphics contents drawer
     private GraphicsContext gc;
     
+    //singleton instance
     private static Layout theLayout = null;
     
-    private WindowResizingListener listener;
-
-    private Layout(WindowResizingListener listener) {
-    	
-    	this.listener = listener;
+    //listener for handling window resizing
+    private WindowResizingObserver observer;
+    
+    //interface constructor
+    private Layout() {
     	
     	root = new BorderPane();
-    	// Carica il file CSS
         root.getStylesheets().add(
         	    getClass().getClassLoader().getResource("style.css").toExternalForm()
         	);
         
         controlPanel = new VBox(10);
         controlPanel.getStyleClass().add("control-panel");
-        controlPanel.getStyleClass().add("control-panel");
         controlPanel.setPrefWidth(435);
         controlPanel.setMinWidth(435);
         
-        // Canvas per disegno (a destra)
         curveCanvas = new Canvas();
         pointsCanvas = new Canvas();
         animationPane = new Pane();
-        animationPane.setMouseTransparent(true); // Rendi animationPane trasparente agli eventi di mouse
+        animationPane.setMouseTransparent(true); 
         
         curveButtons = new HBox(10);
         curveButtons.getStyleClass().add("curve-buttons");
         
-        massIconButtons = new HBox(50); // Layout per tenere insieme le icone
+        massIconButtons = new HBox(50); 
         massIconButtons.getStyleClass().add("icon-buttons");
         
-        planetIconButtons = new HBox(50); // Layout per tenere insieme le icone
+        planetIconButtons = new HBox(50); 
         planetIconButtons.getStyleClass().add("icon-buttons");
         
         convexityButtons= new HBox(6);
         
         massArrivalMessagesBox = new VBox();
+        
         stackPane = new StackPane(curveCanvas, pointsCanvas, animationPane);
         
         radiusSlider = null;
@@ -144,7 +161,6 @@ public class Layout {
         final String button = "button";
         btnCancelInput.getStyleClass().add(button);
         btnCancelInput.getStyleClass().add("cancel-button");
-        // Pulsanti per le curve
         btnCubicSpline = new Button("Spline Cubica");
         btnCubicSpline.getStyleClass().add(button);
         btnCycloid = new Button("Cicloide");
@@ -163,14 +179,12 @@ public class Layout {
         curveButtons.getChildren().addAll(btnCycloid, btnCircumference, btnParabola, btnCubicSpline);
         convexityButtons.getChildren().addAll(btnConvexityUp, btnConvexityDown);
         
-        // Carica le icone delle masse
         Image iconBernoulli = new Image(getClass().getResource("/images/Bernoulli.png").toExternalForm());
         Image iconGalileo = new Image(getClass().getResource("/images/Galileo.png").toExternalForm());
         Image iconJakob = new Image(getClass().getResource("/images/Jakob.png").toExternalForm());
         Image iconLeibnitz = new Image(getClass().getResource("/images/Leibnitz.png").toExternalForm());
         Image iconNewton = new Image(getClass().getResource("/images/Newton.png").toExternalForm());
 
-        // Crea pulsanti immagine
         iconViewBernoulli = createMassIconButton(iconBernoulli, "BERNOULLI");
         iconViewGalileo = createMassIconButton(iconGalileo, "GALILEO");
         iconViewJakob = createMassIconButton(iconJakob, "JAKOB");
@@ -179,14 +193,12 @@ public class Layout {
         
         massIconButtons.getChildren().addAll(iconViewBernoulli, iconViewGalileo, iconViewJakob, iconViewLeibnitz, iconViewNewton);
         
-        // Carica le icone delle masse
         Image iconMoon = new Image(getClass().getResource("/images/moon.png").toExternalForm());
         Image iconMars = new Image(getClass().getResource("/images/mars.png").toExternalForm());
         Image iconEarth = new Image(getClass().getResource("/images/earth.png").toExternalForm());
         Image iconJupiter = new Image(getClass().getResource("/images/jupiter.png").toExternalForm());
         Image iconSun = new Image(getClass().getResource("/images/sun.png").toExternalForm());
 
-        // Crea pulsanti immagine
         iconViewMoon = createPlanetIconButton(iconMoon,"LUNA", "g = 1,62");
         iconViewMars = createPlanetIconButton(iconMars,"MARTE", "g = 3,73");
         iconViewEarth = createPlanetIconButton(iconEarth,"TERRA", "g = 9,81");
@@ -200,7 +212,6 @@ public class Layout {
         
         gc = pointsCanvas.getGraphicsContext2D();
         
-        // Aggiungi entrambi i Canvas al centro del layout
         stackPane = new StackPane();
         stackPane.getChildren().addAll(curveCanvas, pointsCanvas, animationPane);
         root.setCenter(stackPane);
@@ -212,7 +223,7 @@ public class Layout {
             curveCanvas.setWidth(newWidth);
             pointsCanvas.setWidth(newWidth);
             animationPane.setPrefWidth(newWidth);
-            this.listener.onWindowResizing();
+            notifyObserver();
         });
 
         root.heightProperty().addListener((obs, oldVal, newVal) -> {
@@ -220,33 +231,45 @@ public class Layout {
             curveCanvas.setHeight(newHeight);
             pointsCanvas.setHeight(newHeight);
             animationPane.setPrefHeight(newHeight);
-            this.listener.onWindowResizing();
+            notifyObserver();
         });
         
     }
     
-    public static Layout getLayout(WindowResizingListener listener)
+    public void addWindowResizingObserver(WindowResizingObserver observer)
+    {
+    	this.observer=observer;
+    }
+    
+    
+    //notify method observer pattern
+    private void notifyObserver()
+    {
+    	observer.onWindowResizing();
+    }
+    
+    //singleton instance getter
+    public static Layout getLayout(WindowResizingObserver listener)
     {
     	if(theLayout == null)
-    		theLayout = new Layout(listener);
+    		theLayout = new Layout();
     	return theLayout;
     }
     
+    //diametro dei pulsanti 
     private static final double ICONBUTTONDIAMETER = 70;
     
-    // Metodo helper per creare un pulsante icona
+    // Metodi helper per creare un pulsante icona
     private VBox createMassIconButton(Image image, String text) {
         ImageView iconView = new ImageView(image);
-        iconView.setFitWidth(ICONBUTTONDIAMETER); // Imposta la larghezza desiderata per l'icona
+        iconView.setFitWidth(ICONBUTTONDIAMETER);
         iconView.setFitHeight(ICONBUTTONDIAMETER);
         
-        // Crea la didascalia
         Label caption = new Label(text);
         caption.getStyleClass().add("label-masses");
 
-        // Aggiungi l'icona e la didascalia in una VBox
-        VBox vbox = new VBox(4); // Spaziatura 
-        vbox.setAlignment(Pos.CENTER); // Centra tutto
+        VBox vbox = new VBox(4); 
+        vbox.setAlignment(Pos.CENTER); 
         vbox.getChildren().addAll(iconView, caption);
 
         return vbox;
@@ -261,7 +284,7 @@ public class Layout {
     }
     
     
-    
+    //getter 
     public BorderPane getBorderPane()
     {
     	return root;
@@ -422,11 +445,6 @@ public class Layout {
     public GraphicsContext getGC()
     {
     	return gc;
-    }
-    
-    public void setWindowResizingListener(WindowResizingListener listener)
-    {
-    	this.listener = listener;
     }
     
     public void clear()
