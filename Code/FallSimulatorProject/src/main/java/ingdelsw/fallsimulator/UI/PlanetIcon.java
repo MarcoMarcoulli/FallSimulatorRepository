@@ -1,4 +1,4 @@
-package ingdelsw.fallsimulator.enums;
+package ingdelsw.fallsimulator.UI;
 
 public enum PlanetIcon {
 	MOON,

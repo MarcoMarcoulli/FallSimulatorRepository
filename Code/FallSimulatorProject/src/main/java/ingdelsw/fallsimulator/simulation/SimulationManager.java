@@ -11,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 
 import ingdelsw.fallsimulator.math.Point;
 import ingdelsw.fallsimulator.math.curves.Curve;
-import ingdelsw.fallsimulator.observers.MassArrivalObserver;
 import javafx.animation.AnimationTimer;
 
 public class SimulationManager {

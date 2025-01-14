@@ -8,11 +8,11 @@ package ingdelsw.fallsimulator.UI;
 import java.util.ArrayList;
 import java.util.List;
 
-import ingdelsw.fallsimulator.enums.MassIcon;
-import ingdelsw.fallsimulator.enums.PlanetIcon;
 import ingdelsw.fallsimulator.observers.WindowResizingObserver;
+import ingdelsw.fallsimulator.simulation.MassIcon;
 //javaFX imports
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
@@ -256,10 +256,15 @@ public class Layout {
     	return theLayout;
     }
     
-    //diametro dei pulsanti 
+    // Method to reset the singleton instance (useful for tests)
+    public static void resetInstance() {
+        theLayout = null;
+    }
+    
+    //buttons diameter 
     private static final double ICONBUTTONDIAMETER = 70;
     
-    // Metodi helper per creare un pulsante icona
+    //Helper methods to create icon buttons
     private VBox createMassIconButton(Image image, String text) {
         ImageView iconView = new ImageView(image);
         iconView.setFitWidth(ICONBUTTONDIAMETER);
@@ -413,6 +418,10 @@ public class Layout {
     public Slider getRadiusSlider() {
         return radiusSlider;
     }
+    
+    public WindowResizingObserver getWindowResizingObserver() {
+		return observer;
+	}
     
     public void setRadiusSlider(Slider radiusSlider) {
         this.radiusSlider = radiusSlider;
