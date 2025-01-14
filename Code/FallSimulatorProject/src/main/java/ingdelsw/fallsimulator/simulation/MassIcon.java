@@ -4,10 +4,8 @@
 
 package ingdelsw.fallsimulator.simulation;
 
-/************************************************************/
-/**
- * 
- */
+
+ 
 public enum MassIcon {
 	/**
 	 * 
