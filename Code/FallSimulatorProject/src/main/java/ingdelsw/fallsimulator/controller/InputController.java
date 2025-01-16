@@ -49,6 +49,10 @@ public class InputController {
     	return theController;
     }
     
+    public static void resetInstance() {
+        theController = null;
+    }
+    
     //inputs getters
     public Point getStartPoint() {
         return startPoint;

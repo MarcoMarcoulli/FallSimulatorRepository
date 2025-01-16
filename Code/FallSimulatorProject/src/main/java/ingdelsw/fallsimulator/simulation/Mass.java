@@ -4,7 +4,6 @@
 
 package ingdelsw.fallsimulator.simulation;
 
-import ingdelsw.fallsimulator.enums.MassIcon;
 import ingdelsw.fallsimulator.math.Point;
 import javafx.scene.image.ImageView;
 
