@@ -8,14 +8,19 @@ import ingdelsw.fallsimulator.math.Point;
 import javafx.scene.image.ImageView;
 
 public class Mass {
+	
     private Point position;
     private MassIcon iconType;
     private ImageView icon;
     private static final double MASSDIAMETER = 40;
+    private Double xProperty;
+    private Double yProperty;
 
     // Costruttore
     public Mass(Point startPosition, MassIcon iconType, ImageView icon) {
         this.position = startPosition;
+        xProperty=startPosition.getX()- MASSDIAMETER / 2;
+        yProperty=startPosition.getY()- MASSDIAMETER / 2;
         this.icon = icon;
         this.icon.setX(position.getX() - MASSDIAMETER/2);
         this.icon.setY(position.getY() - MASSDIAMETER/2);
@@ -36,7 +41,17 @@ public class Mass {
 
     public void setCurrentPosition(Point newPosition) {
         position = newPosition;
-        icon.relocate(position.getX() - MASSDIAMETER/2, position.getY() - MASSDIAMETER/2);
+        xProperty = position.getX() - MASSDIAMETER / 2;
+        yProperty = position.getY() - MASSDIAMETER / 2;
+        icon.relocate(xProperty, yProperty);
+    }
+    
+    public double xProperty() {
+        return xProperty;
+    }
+
+    public double yProperty() {
+        return yProperty;
     }
 
     public String getIconTypeString() {

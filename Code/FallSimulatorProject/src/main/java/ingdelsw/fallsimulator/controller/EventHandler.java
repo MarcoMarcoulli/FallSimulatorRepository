@@ -7,6 +7,14 @@ import java.util.Random;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.stage.Screen;
+
 import ingdelsw.fallsimulator.UI.CurveVisualizer;
 import ingdelsw.fallsimulator.UI.Layout;
 import ingdelsw.fallsimulator.UI.PlanetIcon;
@@ -21,13 +29,6 @@ import ingdelsw.fallsimulator.simulation.Mass;
 import ingdelsw.fallsimulator.simulation.MassArrivalObserver;
 import ingdelsw.fallsimulator.simulation.MassIcon;
 import ingdelsw.fallsimulator.simulation.SimulationManager;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.stage.Screen;
 
 public class EventHandler implements MassArrivalObserver, WindowResizingObserver{
 	
@@ -57,7 +58,7 @@ public class EventHandler implements MassArrivalObserver, WindowResizingObserver
 
 	private EventHandler(){
 		inputController = InputController.getController();
-		layout = Layout.getLayout(this);
+		layout = Layout.getLayout();
 		simulations = new ArrayList<>();
 		state = UIStates.IDLE;
 		// Gestione del click sul pannello di disegno
@@ -113,6 +114,16 @@ public class EventHandler implements MassArrivalObserver, WindowResizingObserver
 	public Layout getLayout()
 	{
 		return layout;
+	}
+	
+	public InputController getInputController()
+	{
+		return inputController;
+	}
+	
+	public UIStates getState()
+	{
+		return state;
 	}
 	
 	 public void handleGravitySelection(PlanetIcon iconType)
@@ -390,14 +401,14 @@ public class EventHandler implements MassArrivalObserver, WindowResizingObserver
     	layout.getControlPanel().getChildren().addAll(layout.getChooseMassMessage(), layout.getMassIconButtons(), layout.getBtnCancelInput());
     }
     
-    private void handleInsertAnotherCurveClick()
+    void handleInsertAnotherCurveClick()
     {
     	layout.getControlPanel().getChildren().clear();
     	layout.getControlPanel().getChildren().addAll(layout.getChooseCurveMessage(), layout.getCurveButtons(), layout.getBtnCancelInput());
     }
     
     // Gestione della selezione della massa
-    private void handleMassSelection(MassIcon iconType, ImageView selectedMass) {
+    void handleMassSelection(MassIcon iconType, ImageView selectedMass) {
         ImageView mass = new ImageView(selectedMass.getImage());
         lastSimulation().setMass(new Mass(inputController.getStartPoint(), iconType, mass));
         layout.getAnimationPane().getChildren().add(lastSimulation().getMass().getIcon());
@@ -446,7 +457,7 @@ public class EventHandler implements MassArrivalObserver, WindowResizingObserver
     }
     
     // Funzione per estrarre il numero dal testo della Label
-    private static int extractNumber(String text) {
+    static int extractNumber(String text) {
         // Rimuove tutto tranne i numeri
         String numberStr = text.replaceAll("[^\\d]", ""); // "\\d" corrisponde a cifre, il caret "^" nega tutto il resto
         try {
@@ -472,7 +483,7 @@ public class EventHandler implements MassArrivalObserver, WindowResizingObserver
     	}
     }
     
-    private SimulationManager lastSimulation()
+    SimulationManager lastSimulation()
     {
     	return simulations.get(simulations.size()-1);
     }
@@ -487,4 +498,7 @@ public class EventHandler implements MassArrivalObserver, WindowResizingObserver
 		return g;
 	}
 
+	public ArrayList<SimulationManager> getSimulations() {
+		return simulations;
+	}
 }

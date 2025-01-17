@@ -21,7 +21,7 @@ public class FallSimulatorTest extends ApplicationTest {
     public void start(Stage stage) {
         this.stage = stage; // Salva il riferimento nello stage della classe
         Layout.resetInstance(); // Reset del singleton Layout
-        layout = Layout.getLayout(null);
+        layout = Layout.getLayout();
         eventHandler = EventHandler.getHandler();
 
         layout.addWindowResizingObserver(eventHandler); // Associa l'osservatore

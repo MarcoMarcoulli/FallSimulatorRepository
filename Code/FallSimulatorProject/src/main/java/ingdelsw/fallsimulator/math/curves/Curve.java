@@ -80,4 +80,9 @@ public abstract class Curve {
 		return startPoint;
 	}
 	
+	public Point getEndPoint()
+	{
+		return endPoint;
+	}
+	
 }

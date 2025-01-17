@@ -3,28 +3,11 @@
 // --------------------------------------------------------
 
 package ingdelsw.fallsimulator.simulation;
-
-
  
 public enum MassIcon {
-	/**
-	 * 
-	 */
 	GALILEO,
-	/**
-	 * 
-	 */
 	NEWTON,
-	/**
-	 * 
-	 */
 	LEIBNITZ,
-	/**
-	 * 
-	 */
 	BERNOULLI,
-	/**
-	 * 
-	 */
 	JAKOB;
 }

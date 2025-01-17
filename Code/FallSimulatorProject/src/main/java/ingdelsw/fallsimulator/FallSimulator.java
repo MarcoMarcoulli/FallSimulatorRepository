@@ -21,7 +21,7 @@ public class FallSimulator extends Application{
     	
     	//get singleton instances
         EventHandler eventHandler = EventHandler.getHandler();
-        Layout layout = Layout.getLayout(null);
+        Layout layout = Layout.getLayout();
         
         //observer pattern association
         layout.addWindowResizingObserver(eventHandler);

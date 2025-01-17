@@ -12,7 +12,6 @@ import ingdelsw.fallsimulator.observers.WindowResizingObserver;
 import ingdelsw.fallsimulator.simulation.MassIcon;
 //javaFX imports
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
@@ -249,7 +248,7 @@ public class Layout {
     }
     
     //singleton instance getter
-    public static Layout getLayout(WindowResizingObserver listener)
+    public static Layout getLayout()
     {
     	if(theLayout == null)
     		theLayout = new Layout();
