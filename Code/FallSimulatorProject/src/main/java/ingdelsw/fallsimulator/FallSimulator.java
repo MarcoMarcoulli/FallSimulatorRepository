@@ -7,7 +7,6 @@
  */
 package ingdelsw.fallsimulator;
 
-import ingdelsw.fallsimulator.UI.Layout;
 import ingdelsw.fallsimulator.controller.EventHandler;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -21,10 +20,6 @@ public class FallSimulator extends Application{
     	
     	//get singleton instances
         EventHandler eventHandler = EventHandler.getHandler();
-        Layout layout = Layout.getLayout();
-        
-        //observer pattern association
-        layout.addWindowResizingObserver(eventHandler);
         
         //full screen on application opening 
         primaryStage.setMaximized(true);

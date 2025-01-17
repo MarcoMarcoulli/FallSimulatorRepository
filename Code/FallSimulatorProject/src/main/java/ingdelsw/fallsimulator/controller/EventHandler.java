@@ -59,6 +59,7 @@ public class EventHandler implements MassArrivalObserver, WindowResizingObserver
 	private EventHandler(){
 		inputController = InputController.getController();
 		layout = Layout.getLayout();
+		layout.addWindowResizingObserver(this);
 		simulations = new ArrayList<>();
 		state = UIStates.IDLE;
 		// Gestione del click sul pannello di disegno
