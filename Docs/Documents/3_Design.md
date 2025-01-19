@@ -77,17 +77,16 @@ migliorare la modularità e l'estendibilità del progetto:
 Il software è suddiviso in diverse componenti per garantire modularità e
 facilità di manutenzione:
 
-- **CurveGenerator**: Genera le curve matematiche (retta, parabola,
+- **Curve**: rappresenta le curve matematiche (retta, parabola,
   cicloide, circonferenza).
 
-- **AnimationHandler**: Gestisce l'animazione della sfera lungo le curve
-  calcolate.
-
-- **TimeCalculator**: Calcola il tempo di percorrenza \"t\" per ogni
+- **SimulationManager**: Gestisce l'animazione delle masse lungo le curve e calcola il tempo di percorrenza \"t\" per ogni
   curva.
 
-- **UserInterface**: Fornisce l'interfaccia grafica per l'utente, che
+- **Layout**: Fornisce l'interfaccia grafica per l'utente, che
   include la selezione delle curve e l'avvio dell'animazione.
+
+- **EventHandler**: reagisce all'interazione con l'utente
 
 **3. Descrizione delle Componenti**
 
@@ -98,18 +97,18 @@ una chiara separazione delle responsabilità:
 - **ingdelsw.fallsimulator.math**: Contiene le classi per i calcoli
   matematici relativi alle curve.
 
-- **ingdelsw.fallsimulator.animation**: Gestisce l'animazione della
+- **ingdelsw.fallsimulator.simulation**: Gestisce l'animazione della
   sfera lungo le traiettorie calcolate.
 
-- **ingdelsw.fallsimulator.ui**: Contiene le classi per l'interfaccia
+- **ingdelsw.fallsimulator.UI**: Contiene le classi per l'interfaccia
   grafica e l'interazione con l'utente.
 
-- **ingdelsw.fallsimulator.core**: Contiene le classi di coordinamento
-  tra i vari moduli, come il Controller.
+- **ingdelsw.fallsimulator.controller**: Contiene le classi di coordinamento
+  tra i vari moduli.
 
 **3.2 Descrizione delle Classi Principali**
 
-1.  **CurveGenerator**
+1.  **Curve** - sottoclassi Cycloid, Parabola, Circumference e CubicSpline
 
     - **Package:** ingdelsw.fallsimulator.math
 
@@ -117,38 +116,28 @@ una chiara separazione delle responsabilità:
       parabola, cicloide, circonferenza).
 
     - **Metodi principali:**
+    - 
+       - calculatePoints()
 
-      - generateLine(Point start, Point end)
+      - calculateSlopes()
 
-      - generateParabola(Point focus, Point vertex)
+      - curveName()
 
-      - generateCircle(Point center, double radius)
-
-2.  **AnimationHandler**
+2.  **SimulationManager**
 
     - **Package:** ingdelsw.fallsimulator.animation
 
     - **Responsabilità:** Gestisce l'animazione della sfera che si muove
-      lungo la curva calcolata.
+      lungo la curva calcolata e Calcola il tempo \"t\" necessario per
+      percorrere la curva.
 
     - **Metodi principali:**
 
       - startAnimation(Curve curve)
 
-      - updatePosition(double timeElapsed)
+      - calculateTimeParametrization(Curve curve, double mass)
 
-3.  **TimeCalculator**
-
-    - **Package:** ingdelsw.fallsimulator.math
-
-    - **Responsabilità:** Calcola il tempo \"t\" necessario per
-      percorrere la curva.
-
-    - **Metodi principali:**
-
-      - calculateTime(Curve curve, double mass, double friction)
-
-4.  **UIController**
+3.  **InputController**
 
     - **Package:** ingdelsw.fallsimulator.ui
 
@@ -157,17 +146,17 @@ una chiara separazione delle responsabilità:
 
     - **Metodi principali:**
 
-      - handleCurveSelection(String curveType)
+      - setStartPoint(Point p)
 
-      - handleStartAnimation()
+      - setEndPoint(Point p)
 
 **3.3 Relazioni tra le Classi**
 
-- Il **UIController** osserva i cambiamenti nel **CurveGenerator** e
-  aggiorna la **View** tramite il pattern **Observer/Listener**.
+- Il **EventHandler** osserva i cambiamenti nel **Layout** e
+  aggiorna il **Layout** tramite il pattern **Observer/Listener**.
 
-- L'**AnimationHandler** utilizza i dati calcolati dal
-  **CurveGenerator** e dal **TimeCalculator** per sincronizzare
+- L'**SimulationManager** utilizza i dati calcolati da
+  **Curves** per sincronizzare
   l'animazione.
 
 **4. Proprietà Desiderabili**
