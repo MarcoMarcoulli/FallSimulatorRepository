@@ -106,12 +106,12 @@ public class InputControllerTest {
     @Test
     public void testClearInput() {
         Point start = new Point(10, 50);
-        Point end = new Point(20, 100); // endPoint è più basso di startPoint
+        Point end = new Point(20, 100); 
         Point intermediate = new Point(15, 75);
 
         controller.setStartpoint(start);
-        controller.setEndpoint(end); // Imposta un punto di arrivo valido
-        controller.addIntermediatePoint(intermediate); // Aggiunge un punto intermedio valido
+        controller.setEndpoint(end); 
+        controller.addIntermediatePoint(intermediate); 
 
         controller.clearInput();
 

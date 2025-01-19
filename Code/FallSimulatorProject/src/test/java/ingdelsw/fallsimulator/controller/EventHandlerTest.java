@@ -1,17 +1,7 @@
 package ingdelsw.fallsimulator.controller;
 
-import ingdelsw.fallsimulator.UI.Layout;
 import ingdelsw.fallsimulator.UI.PlanetIcon;
-import ingdelsw.fallsimulator.math.Point;
-import ingdelsw.fallsimulator.simulation.SimulationManager;
-import ingdelsw.fallsimulator.simulation.MassIcon;
 import javafx.application.Platform;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -23,7 +13,6 @@ public class EventHandlerTest {
 
     @BeforeClass
     public static void setUpClass() {
-        // Inizializza il toolkit JavaFX
         Platform.startup(() -> {});
 
         eventHandler = EventHandler.getHandler();

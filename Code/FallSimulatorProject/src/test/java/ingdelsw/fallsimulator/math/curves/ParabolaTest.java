@@ -30,7 +30,7 @@ public class ParabolaTest {
 
     @Test
     public void testEvaluateX() {
-        double y = 25; // Un punto a metà altezza
+        double y = 25; 
         double expectedX = parabola.getA() * Math.pow(y, 2);
         assertEquals("Il valore di X dovrebbe essere calcolato correttamente", expectedX, parabola.evaluateX(y), 0.001);
     }

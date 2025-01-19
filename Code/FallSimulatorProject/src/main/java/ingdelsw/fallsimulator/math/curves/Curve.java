@@ -14,10 +14,12 @@ public abstract class Curve {
 	protected double intervalY;
 	protected Point startPoint;
 	protected Point endPoint;
+	
+	//color components
 	protected int red;
 	protected int green;
 	protected int blue;
-	protected static final int  NUMPOINTS = 7000;
+	protected static final int  NUMPOINTS = 7000; //number of points of the curve
 	
 	public abstract Point[] calculatePoints();
 	public abstract double[] calculateSlopes();
@@ -32,6 +34,7 @@ public abstract class Curve {
 		
 	}
 	
+	//random color setter for the curve
 	Random random = new Random();
 	public void setRandomColors()
 	{
@@ -40,6 +43,7 @@ public abstract class Curve {
 		green = random.nextInt(230);
 	}
 	
+	//colors setters
 	public void setRed(int red)
 	{
 		this.red = red;
@@ -55,6 +59,7 @@ public abstract class Curve {
 		this.blue = blue;
 	}
 	
+	//getters
 	public int getRed()
 	{
 		return red;

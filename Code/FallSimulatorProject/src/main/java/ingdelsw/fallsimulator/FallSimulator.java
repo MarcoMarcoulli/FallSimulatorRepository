@@ -9,7 +9,9 @@ package ingdelsw.fallsimulator;
 
 import ingdelsw.fallsimulator.controller.EventHandler;
 import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class FallSimulator extends Application{
@@ -18,17 +20,21 @@ public class FallSimulator extends Application{
     @Override
     public void start(Stage primaryStage) {
     	
-    	//get singleton instances
+    	//get eventHandler singleton instance
         EventHandler eventHandler = EventHandler.getHandler();
         
-        //full screen on application opening 
-        primaryStage.setMaximized(true);
+        // get screen size
+        Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
     
-        //scene configuration
-        Scene scene = new Scene(eventHandler.getLayout().getBorderPane(), 1000, 700);
-        primaryStage.setTitle("Fall Simulator");
-        primaryStage.setScene(scene);
-        primaryStage.show(); 
+        //scene configuration: Scene(root node, width, height)
+        Scene scene = new Scene(eventHandler.getLayout().getBorderPane(), visualBounds.getWidth(), visualBounds.getHeight());
+        
+        //full screen when application is first opened
+        primaryStage.setMaximized(true);
+        
+        primaryStage.setTitle("Fall Simulator"); //set title
+        primaryStage.setScene(scene); //set the scene on the stage
+        primaryStage.show(); //show stage
     }
     
     public static void main(String[] args) {

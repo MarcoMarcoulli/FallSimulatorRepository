@@ -11,7 +11,7 @@ public class Parabola extends Curve {
 
     private static final Logger logger = LogManager.getLogger(Parabola.class);
 
-    private double a;  // Coefficiente della parabola
+    private double a;  //parabola coefficient
 
     public Parabola(Point startPoint, Point endPoint) {
         super(startPoint, endPoint);
@@ -35,8 +35,8 @@ public class Parabola extends Curve {
         double yPow;
         logger.info("calcolo punti parabola");
         for (int i = 0; i < NUMPOINTS; i++) {
-            t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
-            yPow = intervalY * Math.pow(t, 3); // Densità maggiore all'inizio con t^3
+            t = (double) i / (NUMPOINTS - 1); 
+            yPow = intervalY * Math.pow(t, 3);
             y = startPoint.getY() + yPow;
             x = startPoint.getX() + evaluateX(y - startPoint.getY());
             points[i] = new Point(x, y);
@@ -51,8 +51,8 @@ public class Parabola extends Curve {
         double t;
         logger.info("calcolo pendenze parabola");
         for (int i = 0; i < NUMPOINTS; i++) {
-            t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
-            yPow = intervalY * Math.pow(t, 3); // Densità maggiore all'inizio con t^2.5
+            t = (double) i / (NUMPOINTS - 1); 
+            yPow = intervalY * Math.pow(t, 3);
             slopes[i] = Math.PI / 2 - Math.atan(2 * a * yPow);
             logger.debug("pendenza[{}]: {} ", i, (slopes[i] / Math.PI) * 180);
         }

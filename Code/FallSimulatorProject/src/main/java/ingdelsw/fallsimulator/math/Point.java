@@ -4,6 +4,7 @@
 
 package ingdelsw.fallsimulator.math;
 
+//2D point definition class
 public class Point {
 	
 	private double x;

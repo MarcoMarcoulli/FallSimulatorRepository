@@ -14,18 +14,15 @@ public class CircumferenceTest {
 
     @Before
     public void setUp() {
-        // Inizializza punti di test
         startPoint = new Point(0, 0);
         endPoint = new Point(10, 10);
 
-        // Crea istanze della classe Circumference
         circumferenceConcaveUp = new Circumference(startPoint, endPoint, 1);
         circumferenceConcaveDown = new Circumference(startPoint, endPoint, -1);
     }
 
     @Test
     public void testConstructorInitialization() {
-        // Verifica che i valori iniziali siano corretti
         assertNotNull("Il costruttore non dovrebbe restituire null", circumferenceConcaveUp);
         assertEquals("Il punto iniziale dovrebbe corrispondere", startPoint, circumferenceConcaveUp.getStartPoint());
         assertEquals("Il punto finale dovrebbe corrispondere", endPoint, circumferenceConcaveUp.getEndPoint());
@@ -38,7 +35,6 @@ public class CircumferenceTest {
         assertNotNull("Il risultato non dovrebbe essere null", points);
         assertEquals("Il numero di punti calcolati dovrebbe essere corretto", Curve.getNumPoints(), points.length);
 
-        // Verifica che il primo e l'ultimo punto corrispondano ai punti di partenza e arrivo
         assertEquals("Il primo punto dovrebbe essere uguale al punto iniziale", startPoint.getX(), points[0].getX(), 0.001);
         assertEquals("Il primo punto dovrebbe essere uguale al punto iniziale", startPoint.getY(), points[0].getY(), 0.001);
         assertEquals("L'ultimo punto dovrebbe essere uguale al punto finale", endPoint.getY(), points[points.length - 1].getY(), 0.01);
@@ -52,7 +48,6 @@ public class CircumferenceTest {
         assertNotNull("Il risultato non dovrebbe essere null", points);
         assertEquals("Il numero di punti calcolati dovrebbe essere corretto", Curve.getNumPoints(), points.length);
 
-        // Verifica che il primo e l'ultimo punto corrispondano ai punti di partenza e arrivo
         assertEquals("Il primo punto dovrebbe essere uguale al punto iniziale", startPoint.getX(), points[0].getX(), 0.001);
         assertEquals("Il primo punto dovrebbe essere uguale al punto iniziale", startPoint.getY(), points[0].getY(), 0.001);
         assertEquals("L'ultimo punto dovrebbe essere uguale al punto finale", endPoint.getY(), points[points.length - 1].getY(), 0.01);

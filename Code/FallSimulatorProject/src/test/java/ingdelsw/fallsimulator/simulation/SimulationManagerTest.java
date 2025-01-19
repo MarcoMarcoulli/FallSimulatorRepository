@@ -3,9 +3,6 @@ package ingdelsw.fallsimulator.simulation;
 import ingdelsw.fallsimulator.math.Point;
 import ingdelsw.fallsimulator.math.curves.Curve;
 import ingdelsw.fallsimulator.math.curves.Parabola;
-import ingdelsw.fallsimulator.simulation.Mass;
-import ingdelsw.fallsimulator.simulation.MassIcon;
-import ingdelsw.fallsimulator.simulation.SimulationManager;
 
 import javafx.application.Platform;
 import javafx.scene.image.Image;
@@ -21,9 +18,7 @@ public class SimulationManagerTest {
 
     @BeforeClass
     public static void setUpClass() {
-        // Inizializza il toolkit JavaFX una sola volta
         Platform.startup(() -> {});
-        // Carica un'immagine di test
         testImage = new Image(SimulationManagerTest.class.getResource("/images/Newton.png").toExternalForm());
     }
 
@@ -31,9 +26,9 @@ public class SimulationManagerTest {
     public void testInitialization() {
         Point startPoint = new Point(0, 0);
         Point endPoint = new Point(100, 50);
-        Curve curve = new Parabola(startPoint, endPoint); // Sostituisci con una curva concreta
+        Curve curve = new Parabola(startPoint, endPoint); 
 
-        SimulationManager manager = new SimulationManager(curve, null);
+        SimulationManager manager = new SimulationManager(curve);
 
         assertEquals("La curva dovrebbe essere inizializzata correttamente", curve, manager.getCurve());
         assertNotNull("I punti della curva non dovrebbero essere null", manager.getPoints());
@@ -46,7 +41,7 @@ public class SimulationManagerTest {
         Point endPoint = new Point(100, 50);
         Curve curve = new Parabola(startPoint, endPoint);
 
-        SimulationManager manager = new SimulationManager(curve, null);
+        SimulationManager manager = new SimulationManager(curve);
 
         ImageView icon = new ImageView(testImage);
         Mass mass = new Mass(startPoint, MassIcon.NEWTON, icon);
@@ -61,14 +56,12 @@ public class SimulationManagerTest {
         Point endPoint = new Point(100, 50);
         Parabola curve = new Parabola(startPoint, endPoint);
 
-        SimulationManager manager = new SimulationManager(curve, null);
+        SimulationManager manager = new SimulationManager(curve);
 
-        // Inizializza le pendenze
         double[] slopes = curve.calculateSlopes();
         manager.setSlopes(slopes);
 
-        // Calcola la parametrizzazione temporale
-        double g = 9.81; // Accelerazione gravitazionale
+        double g = 9.81; 
         double[] times = manager.calculateTimeParametrization(g);
 
         assertNotNull("La parametrizzazione temporale non dovrebbe essere null", times);
@@ -83,25 +76,20 @@ public class SimulationManagerTest {
         Point endPoint = new Point(100, 50);
         Parabola curve = new Parabola(startPoint, endPoint);
 
-        SimulationManager manager = new SimulationManager(curve, null);
+        SimulationManager manager = new SimulationManager(curve);
 
-        // Inizializza le pendenze
         double[] slopes = curve.calculateSlopes();
         manager.setSlopes(slopes);
 
-        // Imposta la massa
         ImageView icon = new ImageView(testImage);
         Mass mass = new Mass(startPoint, MassIcon.NEWTON, icon);
         manager.setMass(mass);
 
-        // Calcola la parametrizzazione temporale per iniziare l'animazione
-        double g = 9.81; // Accelerazione gravitazionale
+        double g = 9.81;
         manager.calculateTimeParametrization(g);
 
-        // Avvia l'animazione
         manager.startAnimation();
 
-        // Dopo l'inizio dell'animazione, controlliamo che la massa sia posizionata correttamente
         assertEquals("La massa dovrebbe essere inizialmente posizionata sul punto di partenza",
                 startPoint.getX(), mass.getIcon().getLayoutX(), 1e-6);
         assertEquals("La massa dovrebbe essere inizialmente posizionata sul punto di partenza",

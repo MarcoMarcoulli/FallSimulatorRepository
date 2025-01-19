@@ -10,6 +10,7 @@ import java.util.List;
 
 import ingdelsw.fallsimulator.observers.WindowResizingObserver;
 import ingdelsw.fallsimulator.simulation.MassIcon;
+
 //javaFX imports
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;

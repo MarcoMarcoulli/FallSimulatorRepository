@@ -19,13 +19,13 @@ public class CubicSpline extends Curve {
 	
 	private static final Logger logger = LogManager.getLogger(CubicSpline.class);
 	
-	private PolynomialSplineFunction splineFunction;  // Funzione spline generata
-	private Point[] controlPoints;  // Array dei punti di controllo
+	private PolynomialSplineFunction splineFunction;  // spline function
+	private Point[] controlPoints;  // control points array
 	
 	 public CubicSpline(Point startPoint, Point endPoint, List<Point> list) {
         super(startPoint, endPoint);
 
-        int n = list.size() + 2;
+        int n = list.size() + 2; //#control points + start point + end point
     	controlPoints = new Point[n];
     	controlPoints[0] = startPoint;
     	for(int i = 1; i < n-1; i++)
@@ -39,14 +39,13 @@ public class CubicSpline extends Curve {
     	double[] x = new double[n];
     	double[] y = new double[n];
 
-        // Estrai le coordinate x e y ordinate dei punti di controllo
     	for(int i=0; i < n; i++)
     	{
     		x[i] = controlPoints[i].getX();
     		y[i] = controlPoints[i].getY();
     	}
     	
-        // Costruisci la funzione spline cubica utilizzando Apache Commons Math
+        //creates cubic spline interpolating function with Apache Commons Math
     	if(controlPoints.length>2) {
     		SplineInterpolator interpolator = new SplineInterpolator();
     		splineFunction = interpolator.interpolate(x, y);
@@ -56,7 +55,7 @@ public class CubicSpline extends Curve {
     	}
     }
  
- 	// Metodo per valutare la spline in un punto x
+ 	// method for evaluating spline y on a point x
     public double evaluateY(double x) {
     	if(splineFunction == null)
     	{
@@ -75,8 +74,8 @@ public class CubicSpline extends Curve {
     	double xPow;
     	logger.info("calcolo punti spline");
     	for (int i=0; i < NUMPOINTS - 1; i++) {
-    		t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
-            xPow = intervalX * Math.pow(t, 3);     // Densità maggiore all'inizio con t^2
+    		t = (double) i / (NUMPOINTS - 1); 
+            xPow = intervalX * Math.pow(t, 3);    
             x = startPoint.getX() + xPow;
     		y = evaluateY(x);
     		points[i] = new Point(x, y);
@@ -106,8 +105,8 @@ public class CubicSpline extends Curve {
     		double  xPow;
     		logger.info("calcolo pendenze spline");
 	    	for (int i=0; i < NUMPOINTS - 1; i++) {
-	    		t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
-                xPow = intervalX * Math.pow(t, 3);     // Densità maggiore all'inizio con t^2
+	    		t = (double) i / (NUMPOINTS - 1); 
+                xPow = intervalX * Math.pow(t, 3);
                 x = startPoint.getX() + xPow;
 	            slopes[i] = Math.atan(splineFunction.derivative().value(x));
 	            logger.debug("pendenza[{}]: {} ", i, (slopes[i] / Math.PI) * 180);

@@ -27,11 +27,10 @@ public class SimulationManager {
    
     private long startTime; // Tempo di inizio dell'animazione in nanosecondi
 
-    public SimulationManager(Curve curve, MassArrivalObserver listener) {
+    public SimulationManager(Curve curve) {
         mass = null;
         this.curve = curve;
         this.points = curve.calculatePoints();
-        this.observer = listener;
     }
     
     public void addMassArrivalObserver(MassArrivalObserver observer)

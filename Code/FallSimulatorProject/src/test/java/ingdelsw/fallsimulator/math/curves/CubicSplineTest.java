@@ -63,8 +63,7 @@ public class CubicSplineTest {
     }
 
     @Test
-    public void testLinearSegmentFallback() {
-        // Testa il comportamento fallback in assenza di più punti di controllo
+    public void testLinearSegment() {
         List<Point> minimalPoints = new ArrayList<>();
         CubicSpline linearSpline = new CubicSpline(startPoint, endPoint, minimalPoints);
         double[] slopes = linearSpline.calculateSlopes();

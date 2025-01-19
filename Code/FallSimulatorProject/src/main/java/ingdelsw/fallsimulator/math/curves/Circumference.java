@@ -13,19 +13,22 @@ public class Circumference extends Curve {
 	
 	private static final Logger logger = LogManager.getLogger(Circumference.class);
 	
-	private double r; 
-	private int convexity;
+	private double r; //circumference radius
+	private int convexity; //circumference convexity
 
     
     //initial circumference constructor
     public Circumference(Point startPoint, Point endPoint, int convexity) {
     	super(startPoint, endPoint);
         this.convexity=convexity;
-        if(convexity == -1)
-        	this.r = (Math.pow(intervalX, 2)+Math.pow(intervalY, 2))/(2 * intervalY) + 1;
-        else this.r = (Math.pow(intervalX, 2)+Math.pow(intervalY, 2))/(2 * intervalX);
+        if(convexity == -1) {//convexity down
+        	this.r = (Math.pow(intervalX, 2)+Math.pow(intervalY, 2))/(2 * intervalY) + 1;//radius for orizontal tangent in start point
+        }
+        //convexity up
+        else this.r = (Math.pow(intervalX, 2)+Math.pow(intervalY, 2))/(2 * intervalX); //radius for vertical tangent in start point
     }
     
+    //selected radius circumference constructor
     public Circumference(Point startPoint, Point endPoint, int convexity, double r) {
     	super(startPoint, endPoint);
     	this.r = r;
@@ -38,12 +41,16 @@ public class Circumference extends Curve {
     	return r;
     }
     
+    //function for a circumference passing from the origin
     public double evaluateFunction(double variable) {
     	return Math.sqrt(2*variable*r - Math.pow(variable, 2));
     }
     
+    @Override
     public Point[] calculatePoints() {
-    	Point[] points = new Point[NUMPOINTS];
+    	Point[] points = new Point[NUMPOINTS];//array for the points 
+    	
+    	//absolute coordinates of the center
     	double xCenter = xCenter(startPoint) + startPoint.getX();
     	double yCenter = yCenter(startPoint) + startPoint.getY();
     	double x;
@@ -55,8 +62,8 @@ public class Circumference extends Curve {
     		double  xPow;
     		logger.info("calcolo punti circonferenza con concavità verso l'alto");
         	for (int i=0; i < NUMPOINTS; i++) {
-        		t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
-                xPow = intervalX * Math.pow(t, 3);     // Densità maggiore all'inizio con t^2
+        		t = (double) i / (NUMPOINTS - 1); // index normalized respect to numpoints
+                xPow = intervalX * Math.pow(t, 3); //more points density in the beginning with a cubic relation
         		x = startPoint.getX() + xPow;
                 y = yCenter + evaluateFunction(x + r - xCenter);
                 points[i] = new Point(x,y);
@@ -70,8 +77,8 @@ public class Circumference extends Curve {
     		double  yPow;
     		logger.info("calcolo punti circonferenza con concavità verso il basso");
         	for (int i=0; i < NUMPOINTS; i++) {
-        		t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
-                yPow = intervalY * Math.pow(t, 3);     // Densità maggiore all'inizio con t^2
+        		t = (double) i / (NUMPOINTS - 1);
+                yPow = intervalY * Math.pow(t, 3); 
         		y = startPoint.getY() + yPow;
                 x = xCenter + (intervalX/Math.abs(intervalX))*evaluateFunction(y + r - yCenter);
                 points[i] = new Point(x,y);
@@ -81,6 +88,7 @@ public class Circumference extends Curve {
     	return points;
     }
     
+    //second order equation coefficients
     private double aCoefficient()
     {
     	return Math.pow(intervalX, 2) + Math.pow(intervalY, 2);
@@ -101,6 +109,7 @@ public class Circumference extends Curve {
     	return Math.pow(bCoefficient(), 2) - 4*aCoefficient()*cCoefficient();
     }
     
+    //calculates center relative X coordinate
     private double xCenter(Point startPoint)
     {	
     	double xCenter;
@@ -109,6 +118,7 @@ public class Circumference extends Curve {
     	return xCenter;
     }
     
+    //calculates center relative Y coordinate
     private double yCenter(Point startPoint)
     {
     	double yCenter = (Math.pow(intervalX, 2) + Math.pow(intervalY, 2) - 2*xCenter(startPoint)*intervalX)/(2*intervalY);
@@ -116,6 +126,7 @@ public class Circumference extends Curve {
     	return yCenter;
     } 
     
+    @Override
     public double[] calculateSlopes()
     {
     	double[] slopes = new double[NUMPOINTS];
@@ -128,10 +139,10 @@ public class Circumference extends Curve {
     		double x0 = r - xCenter(startPoint);
     		logger.info("calcolo pendenze circonferenza con concavità verso l'alto");
         	for (int i=0; i < NUMPOINTS; i++) {
-        		t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
-                xCubic = intervalX * Math.pow(t, 3);     // Densità maggiore all'inizio con t^3
+        		t = (double) i / (NUMPOINTS - 1); 
+                xCubic = intervalX * Math.pow(t, 3);    
                 x = x0 +xCubic;
-                slopes[i] = Math.atan((r-x)/Math.sqrt(2*r*x - Math.pow(x, 2)));
+                slopes[i] = Math.atan((r-x)/Math.sqrt(2*r*x - Math.pow(x, 2))); //circumference derivative
                 logger.debug("pendenza[{}]: {} ", i, (slopes[i] / Math.PI) * 180);
             }
     	}
@@ -144,10 +155,10 @@ public class Circumference extends Curve {
     		double y0 = r - yCenter(startPoint);
     		logger.info("calcolo pendenze circonferenza con concavità verso il basso");
         	for (int i=0; i < NUMPOINTS; i++) {
-        		t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
-                yPow = intervalY * Math.pow(t, 3);     // Densità maggiore all'inizio con t^3
+        		t = (double) i / (NUMPOINTS - 1);
+                yPow = intervalY * Math.pow(t, 3);
                 y = y0 + yPow;
-                slopes[i] = Math.PI/2 - Math.atan((r-y)/Math.sqrt(2*r*y - Math.pow(y, 2)));
+                slopes[i] = Math.PI/2 - Math.atan((r-y)/Math.sqrt(2*r*y - Math.pow(y, 2))); //circumference derivative
                 logger.debug("pendenza[{}]: {} ", i, (slopes[i] / Math.PI) * 180);
             }
     	}

@@ -14,8 +14,8 @@ public class Cycloid extends Curve {
 	
     private static final Logger logger = LogManager.getLogger(Cycloid.class);
 
-    private double alfa;
-    private double r; // Raggio del cerchio generatore della cicloide
+    private double alfa; //parameter for the end point
+    private double r; // radius of the generator circumference
 
     public Cycloid(Point startPoint, Point endPoint) throws NonConvergenceException {
         super(startPoint, endPoint);
@@ -26,27 +26,26 @@ public class Cycloid extends Curve {
     private double f(double a, double x, double y) {
         return ((a - Math.sin(a)) / (1 - Math.cos(a))) - (x / y);
     }
-    
-    //derivata di f 
+     
     private double df(double a) {
         double numerator = Math.pow(Math.sin(a), 2) - a * Math.sin(a);
         double denominator = Math.pow(1 - Math.cos(a), 2);
         return 1 + numerator / denominator;
     }
 
-    // Metodo di Newton-Raphson per trovare t
+    // Newton-Raphson method for finding t
     private double calculateAlfa(double x, double y) throws NonConvergenceException {
-        double alfaLocal = 4 * Math.atan(x / (2 * y)); // buona approssimazione iniziale
+        double alfaLocal = 4 * Math.atan(x / (2 * y)); // good initial approximation
         int maxIterations = 100;
         for (int i = 0; i < maxIterations; i++) {
             double fAlfa = f(alfaLocal, x, y);
             double dfAlfa = df(alfaLocal);
             double alfaNew = alfaLocal - fAlfa / dfAlfa;
 
-            // Controllo la convergenza
+            //method convergence control
             if (Math.abs(alfaNew - alfaLocal) < 1e-6) {
                 logger.info("Convergenza raggiunta: alfa = {}", alfaNew);
-                return alfaNew; // Ritorna il valore di a quando è sufficientemente vicino
+                return alfaNew; // return value when it is near enough
             }
             alfaLocal = alfaNew;
         }
@@ -76,8 +75,8 @@ public class Cycloid extends Curve {
         double y;
         logger.info("calcolo punti cicloide");
         for (int i = 0; i < NUMPOINTS; i++) {
-            t = (double) i / (NUMPOINTS - 1); // Parametro normale da 0 a 1
-            aPow = alfa * Math.pow(t, 3); // Densità maggiore all'inizio con t^4
+            t = (double) i / (NUMPOINTS - 1);
+            aPow = alfa * Math.pow(t, 3);
             x = startPoint.getX() + evaluateX(aPow);
             y = startPoint.getY() + evaluateY(aPow);
             points[i] = new Point(x, y);

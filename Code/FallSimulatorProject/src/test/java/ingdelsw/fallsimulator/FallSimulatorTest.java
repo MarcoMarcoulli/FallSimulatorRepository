@@ -19,12 +19,12 @@ public class FallSimulatorTest extends ApplicationTest {
 
     @Override
     public void start(Stage stage) {
-        this.stage = stage; // Salva il riferimento nello stage della classe
-        Layout.resetInstance(); // Reset del singleton Layout
+        this.stage = stage; 
+        Layout.resetInstance();
         layout = Layout.getLayout();
         eventHandler = EventHandler.getHandler();
 
-        layout.addWindowResizingObserver(eventHandler); // Associa l'osservatore
+        layout.addWindowResizingObserver(eventHandler); 
 
         Scene scene = new Scene(layout.getBorderPane(), 1000, 700);
         stage.setScene(scene);
