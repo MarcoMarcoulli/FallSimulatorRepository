@@ -40,11 +40,11 @@ Il test copre le seguenti aree principali:
 
 - **CurveGenerator**:
   - Test per ogni tipo di curva, includendo scenari con parametri limite (es. raggio minimo per la circonferenza).
-- **AnimationHandler**:
+- **Curves**:
   - Test per verificare il comportamento dell’animazione su curve semplici (es. retta) e complesse (es. cicloide).
-- **TimeCalculator**:
+- **SimulationManager**:
   - Test con valori estremi per verificare la robustezza del calcolo del tempo.
-- **UserInterface**:
+- **EventHandler**:
   - Test con input non validi, come punti coincidenti o parametri errati, per verificare i controlli di validazione.
 -----
 **2. Specifica della Procedura di Test**
@@ -53,7 +53,7 @@ Il test copre le seguenti aree principali:
 La procedura di test definisce i passaggi dettagliati per eseguire ciascun test, garantendo che i risultati siano riproducibili. Ogni procedura include i prerequisiti, le azioni da eseguire e i criteri di successo.
 
 -----
-**2.2 Procedura di Test per le Curve (CurveGenerator)**
+**2.2 Procedura di Test per le Curve**
 
 - **Prerequisiti**: 
   - Ambiente di sviluppo configurato con JavaFX.
@@ -67,7 +67,7 @@ La procedura di test definisce i passaggi dettagliati per eseguire ciascun test,
   - La curva generata corrisponde alla forma attesa.
   - Nessun errore si verifica durante il processo.
 -----
-**2.3 Procedura di Test per il Calcolo del Tempo (TimeCalculator)**
+**2.3 Procedura di Test per il Calcolo del Tempo**
 
 - **Prerequisiti**: 
   - Curva generata correttamente.
@@ -80,7 +80,7 @@ La procedura di test definisce i passaggi dettagliati per eseguire ciascun test,
   - Il tempo calcolato è corretto e verificabile.
   - Non si verificano discrepanze significative rispetto ai valori teorici.
 -----
-**2.4 Procedura di Test per l’Animazione (AnimationHandler)**
+**2.4 Procedura di Test per l’Animazione**
 
 - **Prerequisiti**: 
   - Curva generata correttamente.
@@ -93,7 +93,7 @@ La procedura di test definisce i passaggi dettagliati per eseguire ciascun test,
   - La sfera si muove lungo la traiettoria senza rallentamenti o scatti.
   - Il tempo di animazione corrisponde al tempo calcolato.
 -----
-**2.5 Procedura di Test per l’Interfaccia Utente (UserInterface)**
+**2.5 Procedura di Test per l’Interfaccia Utente**
 
 - **Prerequisiti**: 
   - Ambiente di test configurato.
