@@ -116,11 +116,11 @@ Il registro di test fornisce una registrazione cronologica di tutti gli eventi r
 
 |**Data**|**Componente**|**Test Eseguito**|**Risultato**|**Azioni**|
 | :-: | :-: | :-: | :-: | :-: |
-|2024-10-18|CurveGenerator|Generazione della circonferenza con raggio variabile|Fallito (tilt del sistema)|Modificati i calcoli per gestire 2 variabili. Test ripetuto con successo.|
-|2024-11-12|AnimationHandler|Animazione della parabola e della cicloide|Parabola più veloce della cicloide|Aggiunto controllo per derivate vicine a zero. Test ripetuto con successo.|
-|2024-12-07|UserInterface|Inserimento di due punti coincidenti|Blocco del sistema|Aggiunto controllo per ignorare punti duplicati. Test ripetuto con successo.|
-|2025-01-05|TimeCalculator|Calcolo del tempo "t" su una cicloide|Successo|Verifica con GeoGebra confermata.|
-|2025-01-08|UserInterface|Test di input non validi|Successo|I messaggi di errore vengono mostrati correttamente.|
+|2024-10-18|Curve|Generazione della circonferenza con raggio variabile|Fallito (tilt del sistema)|Modificati i calcoli per gestire 2 variabili. Test ripetuto con successo.|
+|2024-11-12|SimulationManager|Animazione della parabola e della cicloide|Parabola più veloce della cicloide|Aggiunto controllo per derivate vicine a zero. Test ripetuto con successo.|
+|2024-12-07|InputController|Inserimento di due punti coincidenti|Blocco del sistema|Aggiunto controllo per ignorare punti duplicati. Test ripetuto con successo.|
+|2025-01-05|SimulationManager|Calcolo del tempo "t" su una cicloide|Successo|Verifica con GeoGebra confermata.|
+|2025-01-08|Layout|Test di input non validi|Successo|I messaggi di errore vengono mostrati correttamente.|
 
 -----
 
