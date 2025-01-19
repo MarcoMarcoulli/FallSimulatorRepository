@@ -1,19 +1,19 @@
 ﻿**Gestione del progetto**
 
-**Modello di sviluppo: Incrementale**
-
-Il modello di sviluppo incrementale è stato scelto per il progetto **FallSimulator** per gestire in modo efficiente l’aggiunta progressiva di funzionalità, assicurando un rilascio strutturato e una verifica continua del prodotto. Questo approccio consente di creare una versione funzionante del software già dai primi incrementi, fornendo un prodotto parzialmente utilizzabile che verrà progressivamente ampliato e migliorato.
+**Modello di sviluppo: Prototipazione evolutiva - sviluppo incrementale**
+Il modello di sviluppo principale è quello della prototipazione evolutiva, data l'elevata incertezza dell'esito dello sviluppo a causa principalmente della mancanza di esperienze pregresse. Pertanto il progetto è stato costruito focalizzandosi subito sul corretto funzionamento e il raggiungimento di una versione eseguibile. Una considerevole attività di refactoring è stata successivamente svolta per migliorare il design e la qualità del codice.
+Nel contesto dello sviluppo del prototipo è stato seguito l'approccio dello sviluppo incrementale per gestire in modo efficiente l’aggiunta progressiva di funzionalità, assicurando una verifica continua del prodotto. Questo approccio ha consentito di creare una versione funzionante del software già dai primi incrementi, fornendo un prodotto parzialmente utilizzabile che è stato progressivamente ampliato e migliorato.
 
 **Descrizione del processo incrementale**
 
 1. **Suddivisione dei requisiti in incrementi:**
    1. Il progetto viene suddiviso in funzionalità principali o "incrementi" che possono essere completati singolarmente. Gli incrementi principali includono:
-      1. **Curva di base:** Iniziale sviluppo delle curve preimpostate (retta, parabola).
+      1. **Curve più semplici:** Iniziale sviluppo delle curve preimpostate (retta, parabola).
       1. **Estensione delle curve:** Implementazione della circonferenza e della cicloide, con calcoli avanzati per il raggio variabile.
       1. **Animazione e calcolo del tempo:** Sviluppo dell’animazione della sfera e determinazione precisa del tempo "t" di percorrenza.
       1. **Interfaccia utente:** Creazione e ottimizzazione dell’interfaccia per una migliore esperienza utente.
 1. **Pianificazione degli incrementi:**
-   Ogni incremento viene pianificato con obiettivi definiti. Per il FallSimulator, ogni blocco di funzionalità (curva, animazione, ecc.) rappresenta un incremento a sé stante, con una durata media stimata di alcune settimane. Ciascun incremento include:
+   Ogni incremento viene pianificato con obiettivi definiti. Per il FallSimulator, ogni blocco di funzionalità (curva, animazione, ecc.) rappresenta un incremento a sé stante.. Ciascun incremento include:
    1. **Sviluppo:** Implementazione del codice per le nuove funzionalità.
    1. **Test iniziali e verifica:** Controllo della correttezza matematica e funzionale, con test manuali e confronti grafici tramite strumenti come GeoGebra.
    1. **Integrazione con la versione esistente:** Inserimento della nuova funzionalità nella versione stabile, garantendo la compatibilità con le funzioni già presenti.
@@ -66,7 +66,7 @@ Il modello di sviluppo incrementale è stato scelto per il progetto **FallSimula
 **2. Stile di Gestione e Comunicazione**
 
 - **Collaborazione diretta e comunicazione continua:** Il team adotta uno **stile di gestione flessibile e collaborativo**. La maggior parte delle decisioni vengono prese insieme, in modo rapido e diretto. Entrambi i membri del team sono coinvolti nelle fasi principali di sviluppo, promuovendo un alto livello di comunicazione e trasparenza.
-- **Daily Stand-up Meeting e confronto frequente:** Per monitorare l’avanzamento e affrontare eventuali problemi, il team svolge dei **Daily Stand-up Meeting**. Durante questi incontri brevi, ogni membro aggiorna l'altro sui progressi e segnala eventuali ostacoli.
+- **Stand-up Meeting e confronto frequente:** Per monitorare l’avanzamento e affrontare eventuali problemi, il team svolge dei **Stand-up Meeting**. Durante questi incontri brevi, ogni membro aggiorna l'altro sui progressi e segnala eventuali ostacoli.
 - **Sprint Review e retrospettiva:** Alla fine di ogni incremento, viene svolta una revisione dello Sprint per valutare il lavoro svolto e definire gli obiettivi per l’incremento successivo. Questo permette al team di mantenere il controllo e adattarsi ai requisiti in evoluzione.
 
 **3. Gestione dei Problemi e Risoluzione degli Ostacoli**
