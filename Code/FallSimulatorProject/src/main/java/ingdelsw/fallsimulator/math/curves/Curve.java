@@ -29,9 +29,8 @@ public abstract class Curve {
 	{
 		this.startPoint = startPoint;
 		this.endPoint = endPoint;
-		intervalX = endPoint.getX()-startPoint.getX();
-		intervalY = endPoint.getY()-startPoint.getY();
-		
+		intervalX = endPoint.getX() - startPoint.getX();
+		intervalY = endPoint.getY() - startPoint.getY();	
 	}
 	
 	//random color setter for the curve

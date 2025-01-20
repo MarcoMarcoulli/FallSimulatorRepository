@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 
 import ingdelsw.fallsimulator.math.Point;
 import ingdelsw.fallsimulator.math.curves.Curve;
+
 import javafx.animation.AnimationTimer;
 
 public class SimulationManager {
@@ -25,7 +26,7 @@ public class SimulationManager {
     
     private MassArrivalObserver observer;
    
-    private long startTime; // Tempo di inizio dell'animazione in nanosecondi
+    private long startTime; // animation start time in nanoseconds
 
     public SimulationManager(Curve curve) {
         mass = null;
@@ -33,6 +34,7 @@ public class SimulationManager {
         this.points = curve.calculatePoints();
     }
     
+    //observer pattern implementation for MassArrivalObserver
     public void addMassArrivalObserver(MassArrivalObserver observer)
     {
     	this.observer = observer;
@@ -67,37 +69,46 @@ public class SimulationManager {
         this.slopes = slopes;
     }
     
-
+    //creates an array that associates to each point the time in which the mass passes on that point.
     public double[] calculateTimeParametrization(double g) {
         times = new double[points.length];
         times[0] = 0;
-        times[1] = Double.MIN_VALUE;
-        double h1;
-        double h2;
-        double v1;
-        double v2;
-        double v1y;
-        double v2y;
-        double integrand;
-        double dy;
+        times[1] = Double.MIN_VALUE;//initialization to avoid approximated integral to diverge to infinity
+        
+        double h1; //y difference between i point and start point
+        double h2; //y difference between i+1 point and start point
+        double v1; //velocity in i point
+        double v2; //velocity in i+1 point
+        double v1y; //y component of v1
+        double v2y; //y component of v2
+        double integrand; //function to be integrated
+        double dy; //y difference between i point and i+1 point
+        
         logger.info("parametrizzazione curva rispetto al tempo");
+        
         for (int i = 1; i < points.length-1; i++) {
+        	
         	h1 = points[i].getY() - curve.getStartPoint().getY();
         	
-        	if(h1==0){
+        	if(h1==0){ // ensure the integral doesn't diverge to infinity if y difference is so small that is approximated to 0
         		times[i+1] = times[i] + Double.MIN_VALUE;
         		continue;
         	}
         	
         	h2 = points[i+1].getY() - curve.getStartPoint().getY();
+        	
+        	//expressions for velocity due to conservation of energy
         	v1 = Math.sqrt(2*g*h1);
         	v2 = Math.sqrt(2*g*h2);
+        	
+        	//velocity scomposition on y component
         	v1y = v1*Math.abs(Math.sin(slopes[i]));
         	v2y = v2*Math.abs(Math.sin(slopes[i+1]));
-        	dy = (Math.abs(points[i+1].getY() - points[i].getY()));
-        	integrand = ((1/v1y + 1/v2y)/2);
         	
-        	times[i+1] = times[i] + integrand * dy;
+        	dy = (Math.abs(points[i+1].getY() - points[i].getY()));
+        	integrand = ((1/v1y + 1/v2y)/2); //mean value for integrand 
+        	
+        	times[i+1] = times[i] + integrand * dy; //finite increment added to previous calculated time
         	
         	logger.debug("h1 [{}] : {}",i, h1);
         	logger.debug("velocità [{}] : {}",i, v1y);
@@ -106,6 +117,7 @@ public class SimulationManager {
         return times;
     }
 	
+    //method for animating the fall of the mass
     public void startAnimation() {
     	
     	AnimationTimer timer; 
@@ -119,52 +131,53 @@ public class SimulationManager {
         
         timer = new AnimationTimer() {
         	
+        	//define timer behaviour 
         	@Override
         	public void handle(long now) {
         	    if (startTime == 0) 
-        	        startTime = now; // Inizializza il tempo di inizio
+        	        startTime = now; //initialize start time to current time
 
-        	    double elapsedTime = (now - startTime) / 1_000_000_000.0; // Tempo trascorso in secondi
+        	    double elapsedTime = (now - startTime) / 1_000_000_000.0; // time passed from start time in seconds
 
-        	    // Trova l'indice più vicino utilizzando la ricerca binaria
+        	    // find closest index of times array using binary search
         	    int index = Arrays.binarySearch(times, elapsedTime);
-
+        	    
         	    if (index < 0) {
-        	        // Se non c'è una corrispondenza esatta, `binarySearch` restituisce -(insertionPoint) - 1
-        	        index = -index - 2; // Otteniamo l'indice dell'elemento precedente
+        	        // If there is not an exact correspondence, `binarySearch` returns -(insertionIndex) - 1
+        	        index = -index - 1; //get index of previous element respect to where the time would be in the ordered array
         	    }
 
-        	    // Gestione dell'ultimo segmento
+        	    // arrival to end point handling for the mass to position exactly on end point
         	    if (index >= times.length - 1) {
         	        double newX = points[points.length - 1].getX() - mass.getMassDiameter() / 2;
         	        double newY = points[points.length - 1].getY() - mass.getMassDiameter() / 2;
         	        mass.getIcon().relocate(newX, newY);
         	        this.stop();
-        	        notifyMassArrivalObserver(true);
+        	        notifyMassArrivalObserver(true);//arrived=true
         	        return;
         	    }
 
-        	    // Gestione di una condizione speciale
+        	    // handling for the case in which the mass reach a point with the same y of start point, so it needs to stop on that point
         	    if (index < times.length - 2 && points[index + 2].getY() < points[0].getY()) {
         	        mass.getIcon().relocate(points[index].getX() - mass.getMassDiameter() / 2,
         	                                points[index].getY() - mass.getMassDiameter() / 2);
         	        this.stop();
-        	        notifyMassArrivalObserver(false);
+        	        notifyMassArrivalObserver(false);//arrived=false
         	        return;
         	    }
 
-        	    // Calcola la posizione interpolata tra points[index] e points[index + 1]
+        	    // calculate mean position between points[index] and points[index + 1] weighted respect to proximity of elapsed time to times[index] and times[index+1]
         	    double ratio = (elapsedTime - times[index]) / (times[index + 1] - times[index]);
         	    double x = points[index].getX() + (points[index + 1].getX() - points[index].getX()) * ratio - mass.getMassDiameter() / 2;
         	    double y = points[index].getY() + (points[index + 1].getY() - points[index].getY()) * ratio - mass.getMassDiameter() / 2;
 
-        	    // Posiziona la massa
+        	    // set mass position
         	    mass.getIcon().relocate(x, y);
         	}
 
         };
 
-        // Avvia l'AnimationTimer
+        // start AnimationTimer
         timer.start();
     }
 }

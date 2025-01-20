@@ -16,7 +16,6 @@ public class Mass {
     private Double xProperty;
     private Double yProperty;
 
-    // Costruttore
     public Mass(Point startPosition, MassIcon iconType, ImageView icon) {
         this.position = startPosition;
         xProperty=startPosition.getX()- MASSDIAMETER / 2;
