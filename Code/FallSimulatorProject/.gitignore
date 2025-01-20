@@ -7,7 +7,6 @@
 # Escludi la cartella reports
 reports/
 
-# Altre esclusioni comuni per progetti Java/Eclipse
 .project
 bin/
 target/
