@@ -1,1 +1,15 @@
-/target/
+# Escludi la cartella .settings
+.settings/
+
+# Escludi il file .classpath
+.classpath
+
+# Escludi la cartella reports
+reports/
+
+# Altre esclusioni comuni per progetti Java/Eclipse
+.project
+bin/
+target/
+*.log
+*.tmp
