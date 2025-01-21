@@ -1,1 +1,14 @@
-/target/
+# Escludi la cartella .settings
+.settings/
+
+# Escludi il file .classpath
+.classpath
+
+# Escludi la cartella reports
+reports/
+
+.project
+bin/
+target/
+*.log
+*.tmp
