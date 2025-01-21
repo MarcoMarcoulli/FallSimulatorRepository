@@ -38,11 +38,10 @@ Il test copre le seguenti aree principali:
 -----
 **1.5 Identificazione dei Test Associati**
 
-- **CurveGenerator**:
-  - Test per ogni tipo di curva, includendo scenari con parametri limite (es. raggio minimo per la circonferenza).
 - **Curves**:
-  - Test per verificare il comportamento dell’animazione su curve semplici (es. retta) e complesse (es. cicloide).
+  - Test per ogni tipo di curva, includendo scenari con parametri limite (es. raggio minimo per la circonferenza).
 - **SimulationManager**:
+  - Test per verificare il comportamento dell’animazione su curve semplici (es. retta) e complesse (es. cicloide).
   - Test con valori estremi per verificare la robustezza del calcolo del tempo.
 - **EventHandler**:
   - Test con input non validi, come punti coincidenti o parametri errati, per verificare i controlli di validazione.
@@ -71,7 +70,7 @@ La procedura di test definisce i passaggi dettagliati per eseguire ciascun test,
 
 - **Prerequisiti**: 
   - Curva generata correttamente.
-  - Accesso ai parametri fisici (es. massa, attrito).
+  - Accesso ai parametri fisici 
 - **Passaggi**: 
   - Inserire i parametri richiesti per il calcolo del tempo.
   - Eseguire il calcolo.
