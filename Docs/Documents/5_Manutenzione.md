@@ -18,7 +18,7 @@ Questo documento descrive le strategie, le attività e le linee guida per la man
 -----
 **3. Attività di Refactoring**
 
-Le attività di refactoring sono state guidate da **SonarLint**, uno strumento per l’analisi statica del codice, che ha permesso di identificare e correggere problematiche legate alla qualità del codice.
+Le attività di refactoring sono state guidate da **SonarLint** e **StanIDE**, strumenti per l’analisi statica del codice, che hanno permesso di identificare e correggere problematiche legate alla qualità del codice.
 
 - **Introduzione di Design Pattern**
   - **Singleton**: Utilizzato per garantire una sola istanza di classi chiave, come la gestione del contesto grafico.
@@ -26,13 +26,15 @@ Le attività di refactoring sono state guidate da **SonarLint**, uno strumento p
 - **Correzioni Identificate da SonarLint**
   - Rimozione di codice duplicato.
   - Semplificazione di metodi complessi.
-  - Miglioramento della struttura modulare 
+- **Correzioni Identificate da StanIDE**
+  -Miglioramento della struttura modulare.
 -----
 **4. Gestione dei Cambiamenti**
 
 1. **Strumenti Utilizzati**
    1. **SonarLint**: Per l’analisi della qualità del codice.
-   1. **GitHub**: Per il controllo di versione e la tracciabilità delle modifiche.
+   2. **GitHub**: Per il controllo di versione e la tracciabilità delle modifiche.
+   3. **StanIDE**: per la valutazione delle metriche di complessità e l'analisi della struttura modulare 
 1. **Procedure di Gestione**
    1. **Identificazione**: Ogni richiesta di modifica è stata documentata con un obiettivo chiaro e un’analisi dell’impatto.
    1. **Implementazione**: Le modifiche sono state sviluppate in branch separati per garantire l’isolamento.
@@ -41,11 +43,11 @@ Le attività di refactoring sono state guidate da **SonarLint**, uno strumento p
 **5. Attività Future di Manutenzione**
 
 1. **Estensione delle Curve**
-   1. Aggiungere nuove tipologie di curve, come spirali ed ellissi.
+   1. Aggiungere nuove tipologie di curve, come e ellissi, iperboli, ecc.
 1. **Ottimizzazione dell’Animazione**
    1. Ridurre ulteriormente il carico computazionale per migliorare le prestazioni su dispositivi meno potenti.
 1. **Miglioramento dell’Interfaccia**
-   1. Implementare una disposizione più intuitiva e responsiva per l’utente.
+   1. Implementare una disposizione più equilibrata
 1. **Automazione dei Test**
    1. Introdurre test automatici per verificare continuamente la stabilità del software.
 -----
