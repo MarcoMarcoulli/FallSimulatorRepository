@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_lPIfQNTLEe-jYJnESpWjyg" name="model">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_lPrR0NTLEe-jYJnESpWjyg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="_NcR4oNTMEe-jYJnESpWjyg" name="JavaFX">
+    <packagedElement xmi:type="uml:Component" xmi:id="_1K0f4NTLEe-jYJnESpWjyg" name="Scene"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_b6-94NTMEe-jYJnESpWjyg" name="Stage"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_lzc30NTMEe-jYJnESpWjyg" name="Application"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_39RHcNTNEe-jYJnESpWjyg" name="GraphicsContext"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_7TljANTNEe-jYJnESpWjyg" name="Color"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_yKo2INT8Ee-QiZWC27sZ5g" name="Label"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_2NjR8NT8Ee-QiZWC27sZ5g" name="Slider"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_7Q7sQNT8Ee-QiZWC27sZ5g" name="Screen"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_FYcHwNT9Ee-QiZWC27sZ5g" name="ImageView"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_46N3ENT9Ee-QiZWC27sZ5g" name="Alert"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_t1bxQNTMEe-jYJnESpWjyg" name="FallSimulator">
+    <packagedElement xmi:type="uml:Component" xmi:id="_nt3LgNTLEe-jYJnESpWjyg" name="Fall Simulator">
+      <generalization xmi:type="uml:Generalization" xmi:id="_o-i60NTMEe-jYJnESpWjyg" general="_lzc30NTMEe-jYJnESpWjyg"/>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_E13ccNTMEe-jYJnESpWjyg" client="_nt3LgNTLEe-jYJnESpWjyg" supplier="_1K0f4NTLEe-jYJnESpWjyg"/>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_gh4QgNTMEe-jYJnESpWjyg" client="_nt3LgNTLEe-jYJnESpWjyg" supplier="_b6-94NTMEe-jYJnESpWjyg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_3cmf0NTMEe-jYJnESpWjyg" name="UI">
+      <packagedElement xmi:type="uml:Component" xmi:id="_wiSZENTMEe-jYJnESpWjyg" name="Layout"/>
+      <packagedElement xmi:type="uml:Component" xmi:id="_s2SL8NTNEe-jYJnESpWjyg" name="Curvevisualizer">
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_GGCY8NTOEe-jYJnESpWjyg" client="_s2SL8NTNEe-jYJnESpWjyg" supplier="_Ll7lkNTNEe-jYJnESpWjyg"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_JGy0MNTOEe-jYJnESpWjyg" client="_s2SL8NTNEe-jYJnESpWjyg" supplier="_39RHcNTNEe-jYJnESpWjyg"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_J1vk4NTOEe-jYJnESpWjyg" client="_s2SL8NTNEe-jYJnESpWjyg" supplier="_7TljANTNEe-jYJnESpWjyg"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_8C4HYNTMEe-jYJnESpWjyg" name="controller">
+      <packagedElement xmi:type="uml:Component" xmi:id="_yJ4pANTMEe-jYJnESpWjyg" name="EventHandler">
+        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_yNX2gNT7Ee-QiZWC27sZ5g" client="_yJ4pANTMEe-jYJnESpWjyg" supplier="_o2CwMNT6Ee-QiZWC27sZ5g" contract="_o2CwMNT6Ee-QiZWC27sZ5g"/>
+        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_ep9r0NT8Ee-QiZWC27sZ5g" client="_yJ4pANTMEe-jYJnESpWjyg" supplier="_xT67cNT6Ee-QiZWC27sZ5g" contract="_xT67cNT6Ee-QiZWC27sZ5g"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_zldq0NT7Ee-QiZWC27sZ5g" client="_yJ4pANTMEe-jYJnESpWjyg" supplier="_wiSZENTMEe-jYJnESpWjyg"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_-cmzgNT7Ee-QiZWC27sZ5g" client="_yJ4pANTMEe-jYJnESpWjyg" supplier="_IpZjANTNEe-jYJnESpWjyg"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_CL7k8NT8Ee-QiZWC27sZ5g" client="_yJ4pANTMEe-jYJnESpWjyg" supplier="_3cmf0NTMEe-jYJnESpWjyg"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_RAg-INT9Ee-QiZWC27sZ5g" client="_yJ4pANTMEe-jYJnESpWjyg" supplier="_5-OnsNTPEe-jYJnESpWjyg"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_XquzYNT9Ee-QiZWC27sZ5g" client="_yJ4pANTMEe-jYJnESpWjyg" supplier="_8CzukNTPEe-jYJnESpWjyg"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_awm_MNT9Ee-QiZWC27sZ5g" client="_yJ4pANTMEe-jYJnESpWjyg" supplier="_yKo2INT8Ee-QiZWC27sZ5g"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_cMJJENT9Ee-QiZWC27sZ5g" client="_yJ4pANTMEe-jYJnESpWjyg" supplier="_2NjR8NT8Ee-QiZWC27sZ5g"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_dB66gNT9Ee-QiZWC27sZ5g" client="_yJ4pANTMEe-jYJnESpWjyg" supplier="_FYcHwNT9Ee-QiZWC27sZ5g"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_f0BOsNT9Ee-QiZWC27sZ5g" client="_yJ4pANTMEe-jYJnESpWjyg" supplier="_7Q7sQNT8Ee-QiZWC27sZ5g"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_npadoNT9Ee-QiZWC27sZ5g" client="_yJ4pANTMEe-jYJnESpWjyg" supplier="_39RHcNTNEe-jYJnESpWjyg"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_zW2VINT9Ee-QiZWC27sZ5g" client="_yJ4pANTMEe-jYJnESpWjyg" supplier="_RDpSANT6Ee-QiZWC27sZ5g"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="_YsJ_gNTOEe-jYJnESpWjyg" name="InputController">
+        <packagedElement xmi:type="uml:Usage" xmi:id="_vDSOMNT9Ee-QiZWC27sZ5g" client="_YsJ_gNTOEe-jYJnESpWjyg" supplier="_RDpSANT6Ee-QiZWC27sZ5g"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_PXCCYNT-Ee-QiZWC27sZ5g" client="_YsJ_gNTOEe-jYJnESpWjyg" supplier="_46N3ENT9Ee-QiZWC27sZ5g"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_QqrbkNT-Ee-QiZWC27sZ5g" client="_YsJ_gNTOEe-jYJnESpWjyg" supplier="_Ll7lkNTNEe-jYJnESpWjyg"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_IpZjANTNEe-jYJnESpWjyg" name="math">
+      <packagedElement xmi:type="uml:Component" xmi:id="_Ll7lkNTNEe-jYJnESpWjyg" name="Point"/>
+      <packagedElement xmi:type="uml:Component" xmi:id="_jt4nkNTOEe-jYJnESpWjyg" name="NonConvergenceException"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_97wCoNTOEe-jYJnESpWjyg" name="curves">
+        <packagedElement xmi:type="uml:Component" xmi:id="_CB3jcNTPEe-jYJnESpWjyg" name="Curve"/>
+        <packagedElement xmi:type="uml:Component" xmi:id="_HgJKANTPEe-jYJnESpWjyg" name="Parabola">
+          <generalization xmi:type="uml:Generalization" xmi:id="_qYOCsNT8Ee-QiZWC27sZ5g" general="_CB3jcNTPEe-jYJnESpWjyg"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Component" xmi:id="_J-KEkNTPEe-jYJnESpWjyg" name="Circumference">
+          <generalization xmi:type="uml:Generalization" xmi:id="_rNePsNT8Ee-QiZWC27sZ5g" general="_CB3jcNTPEe-jYJnESpWjyg"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Component" xmi:id="_NyU5wNTPEe-jYJnESpWjyg" name="Cycloid">
+          <generalization xmi:type="uml:Generalization" xmi:id="_pU-dANT8Ee-QiZWC27sZ5g" general="_CB3jcNTPEe-jYJnESpWjyg"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Component" xmi:id="_PRNSkNTPEe-jYJnESpWjyg" name="CubicSpline">
+          <generalization xmi:type="uml:Generalization" xmi:id="_k4RoMNT8Ee-QiZWC27sZ5g" general="_CB3jcNTPEe-jYJnESpWjyg"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_jE9yUNUOEe-AZdM9b3j3FA" client="_PRNSkNTPEe-jYJnESpWjyg" supplier="_iD2mgNUBEe-QiZWC27sZ5g"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_j3c_MNUOEe-AZdM9b3j3FA" client="_PRNSkNTPEe-jYJnESpWjyg" supplier="_lbEZ8NUBEe-QiZWC27sZ5g"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_VjLUMNUBEe-QiZWC27sZ5g" client="_97wCoNTOEe-jYJnESpWjyg" supplier="_RDpSANT6Ee-QiZWC27sZ5g"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="_MxLsYNT8Ee-QiZWC27sZ5g" name="Component4"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_pH0rQNTPEe-jYJnESpWjyg" name="observers">
+      <packagedElement xmi:type="uml:Interface" xmi:id="_o2CwMNT6Ee-QiZWC27sZ5g" name="WindowResizingObserver"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_0qxKANTPEe-jYJnESpWjyg" name="simulation">
+      <packagedElement xmi:type="uml:Component" xmi:id="_5-OnsNTPEe-jYJnESpWjyg" name="SimulationManager"/>
+      <packagedElement xmi:type="uml:Component" xmi:id="_8CzukNTPEe-jYJnESpWjyg" name="Mass"/>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_xT67cNT6Ee-QiZWC27sZ5g" name="MassArrivalObserver"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_RDpSANT6Ee-QiZWC27sZ5g" name="Log4J">
+    <packagedElement xmi:type="uml:Component" xmi:id="_X47HwNT6Ee-QiZWC27sZ5g" name="LogManager"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_jp0i8NT6Ee-QiZWC27sZ5g" name="Logger"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_ftM4MNUBEe-QiZWC27sZ5g" name="Apache Common Maths">
+    <packagedElement xmi:type="uml:Component" xmi:id="_iD2mgNUBEe-QiZWC27sZ5g" name="SplineInterpolator"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_lbEZ8NUBEe-QiZWC27sZ5g" name="PolynomialsplineFunction"/>
+  </packagedElement>
+</uml:Model>

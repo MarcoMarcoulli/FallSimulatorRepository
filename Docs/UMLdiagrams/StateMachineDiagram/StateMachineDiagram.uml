@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ActionLanguage="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ">
+  <uml:Model xmi:id="_gArUULY1Ee-CLe24Jx56qg" name="UMLdiagrams">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_gDjpMLY1Ee-CLe24Jx56qg">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:StateMachine" xmi:id="_l0WjILY1Ee-CLe24Jx56qg" name="FallSimulatorStateMachine">
+      <region xmi:type="uml:Region" xmi:id="_mo4-cLY1Ee-CLe24Jx56qg" name="Region1">
+        <transition xmi:type="uml:Transition" xmi:id="_XsIZULY3Ee-CLe24Jx56qg" source="_PV7jYLY3Ee-CLe24Jx56qg" target="_BzDNMLY3Ee-CLe24Jx56qg"/>
+        <transition xmi:type="uml:Transition" xmi:id="_RXgZwLZcEe-vtM7hkXBKnA" source="_BzDNMLY3Ee-CLe24Jx56qg" target="_nvwN8LY3Ee-CLe24Jx56qg">
+          <effect xmi:type="uml:Activity" xmi:id="_IIpwALbJEe-WVu8SLrrCdg" name="set g">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_IIqXELbJEe-WVu8SLrrCdg" name="planet">
+              <type xmi:type="uml:Enumeration" href="../ClassDiagram/ClassDiagram.uml#_uYXIoLWSEe-i45hkw1oocg"/>
+            </ownedParameter>
+          </effect>
+          <trigger xmi:type="uml:Trigger" xmi:id="_qIRsoLbIEe-WVu8SLrrCdg" name="gravity selection"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_SyqwMLZcEe-vtM7hkXBKnA" source="_nvwN8LY3Ee-CLe24Jx56qg" target="_oxNq8LY3Ee-CLe24Jx56qg">
+          <effect xmi:type="uml:Activity" xmi:id="_CIoR0LbKEe-WVu8SLrrCdg" name="set start point"/>
+          <trigger xmi:type="uml:Trigger" xmi:id="_ssbO8LbJEe-WVu8SLrrCdg" name="mouse click on the screen"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_YbG_YLZcEe-vtM7hkXBKnA" guard="_t_rxILbKEe-WVu8SLrrCdg" source="_oxNq8LY3Ee-CLe24Jx56qg" target="_oSdTILbLEe-WVu8SLrrCdg">
+          <ownedRule xmi:type="uml:Constraint" xmi:id="_t_rxILbKEe-WVu8SLrrCdg" name="y(endPoint) &lt; y(startPoint)"/>
+          <effect xmi:type="uml:Activity" xmi:id="_ycX-4LbKEe-WVu8SLrrCdg" name="set end point "/>
+          <trigger xmi:type="uml:Trigger" xmi:id="_kvSj0LbKEe-WVu8SLrrCdg" name="mouse click on the screen "/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_aIfuQLZcEe-vtM7hkXBKnA" guard="_sX2xgLbnEe-ANserdLvP0g" source="_pXXE8LY3Ee-CLe24Jx56qg" target="_Nq6osLZbEe-vtM7hkXBKnA">
+          <ownedRule xmi:type="uml:Constraint" xmi:id="_sX2xgLbnEe-ANserdLvP0g" name="Spline"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_bsvvQLZcEe-vtM7hkXBKnA" guard="_x2k5cLbmEe-ANserdLvP0g" source="_pXXE8LY3Ee-CLe24Jx56qg" target="_M8n_ULZbEe-vtM7hkXBKnA">
+          <ownedRule xmi:type="uml:Constraint" xmi:id="_x2k5cLbmEe-ANserdLvP0g" name="circumference"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_dJCHELZcEe-vtM7hkXBKnA" guard="_EHCZELbnEe-ANserdLvP0g" kind="local" source="_dD5wALbLEe-WVu8SLrrCdg" target="_pXXE8LY3Ee-CLe24Jx56qg">
+          <ownedRule xmi:type="uml:Constraint" xmi:id="_EHCZELbnEe-ANserdLvP0g" name="Circumference OR Spline"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_eBD7QLZcEe-vtM7hkXBKnA" source="_M8n_ULZbEe-vtM7hkXBKnA" target="_NTp_QLZbEe-vtM7hkXBKnA">
+          <effect xmi:type="uml:Activity" xmi:id="_3saEYLbmEe-ANserdLvP0g" name="set initial circumference"/>
+          <trigger xmi:type="uml:Trigger" xmi:id="_GzaJcLbLEe-WVu8SLrrCdg" name="convexity selection"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_fDwHULZcEe-vtM7hkXBKnA" guard="_Q13cILbnEe-ANserdLvP0g" source="_dD5wALbLEe-WVu8SLrrCdg" target="_kH3Z4LY6Ee-CLe24Jx56qg">
+          <ownedRule xmi:type="uml:Constraint" xmi:id="_Q13cILbnEe-ANserdLvP0g" name="Cycloid OR Parabola"/>
+          <effect xmi:type="uml:Activity" xmi:id="_VYKioLbnEe-ANserdLvP0g" name="calculate curve math"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_gpDRMLZcEe-vtM7hkXBKnA" source="_wA-V4LY6Ee-CLe24Jx56qg" target="_BzDNMLY3Ee-CLe24Jx56qg">
+          <effect xmi:type="uml:Activity" xmi:id="_hLPqwLbJEe-WVu8SLrrCdg" name="clear layout and data structures"/>
+          <trigger xmi:type="uml:Trigger" xmi:id="_V2Ko4LbJEe-WVu8SLrrCdg" name="cancel input click "/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_ixDfgLZcEe-vtM7hkXBKnA" source="_kH3Z4LY6Ee-CLe24Jx56qg" target="_OfXH8LZcEe-vtM7hkXBKnA">
+          <effect xmi:type="uml:Activity" xmi:id="_UMLhYLbLEe-WVu8SLrrCdg" name="show mass on start point"/>
+          <trigger xmi:type="uml:Trigger" xmi:id="_QdPKcLbLEe-WVu8SLrrCdg" name="mass selection"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_lE80wLZcEe-vtM7hkXBKnA" source="_c5HRMLZbEe-vtM7hkXBKnA" target="_MkXQULZbEe-vtM7hkXBKnA">
+          <trigger xmi:type="uml:Trigger" xmi:id="_iF7m0LbIEe-WVu8SLrrCdg" name="all the masses arrive to the end point"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_ueKl4LZnEe-vtM7hkXBKnA" name="insert another curve click" source="_kS_yYLZnEe-vtM7hkXBKnA" target="_oSdTILbLEe-WVu8SLrrCdg"/>
+        <transition xmi:type="uml:Transition" xmi:id="_zfl4YLZnEe-vtM7hkXBKnA" guard="_hE3PwLbmEe-ANserdLvP0g" source="_kS_yYLZnEe-vtM7hkXBKnA" target="_c5HRMLZbEe-vtM7hkXBKnA">
+          <ownedRule xmi:type="uml:Constraint" xmi:id="_hE3PwLbmEe-ANserdLvP0g" name="start simulation click"/>
+          <effect xmi:type="uml:Activity" xmi:id="_kpSYwLbmEe-ANserdLvP0g" name="start simulation"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_kkq7wLZoEe-vtM7hkXBKnA" kind="local" source="_NTp_QLZbEe-vtM7hkXBKnA" target="_kH3Z4LY6Ee-CLe24Jx56qg">
+          <effect xmi:type="uml:Activity" xmi:id="_ZxO0oLbnEe-ANserdLvP0g" name="calculate curve math"/>
+          <trigger xmi:type="uml:Trigger" xmi:id="_LyNlwLbLEe-WVu8SLrrCdg" name="radius selection"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_lf7qILZoEe-vtM7hkXBKnA" source="_Nq6osLZbEe-vtM7hkXBKnA" target="_kH3Z4LY6Ee-CLe24Jx56qg">
+          <effect xmi:type="uml:Activity" xmi:id="_elDwALbnEe-ANserdLvP0g" name="calculate Curve Math"/>
+          <trigger xmi:type="uml:Trigger" xmi:id="_xbU8ILbLEe-WVu8SLrrCdg" name="stop point insertion"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_KsRk8LZpEe-vtM7hkXBKnA" source="_OfXH8LZcEe-vtM7hkXBKnA" target="_HvZkILZpEe-vtM7hkXBKnA">
+          <trigger xmi:type="uml:Trigger" xmi:id="_YYOPwLbmEe-ANserdLvP0g" name="user decision"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_M9lgQLZpEe-vtM7hkXBKnA" source="_MkXQULZbEe-vtM7hkXBKnA" target="_HvZkILZpEe-vtM7hkXBKnA">
+          <trigger xmi:type="uml:Trigger" xmi:id="_aKKHcLbmEe-ANserdLvP0g" name="user decision"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_MCsHMLbKEe-WVu8SLrrCdg" source="_HvZkILZpEe-vtM7hkXBKnA" target="_kS_yYLZnEe-vtM7hkXBKnA"/>
+        <transition xmi:type="uml:Transition" xmi:id="_hzMJoLbLEe-WVu8SLrrCdg" source="_oMdYELY3Ee-CLe24Jx56qg" target="_dD5wALbLEe-WVu8SLrrCdg">
+          <trigger xmi:type="uml:Trigger" xmi:id="_9lTxcLbmEe-ANserdLvP0g" name="curve selection"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_sgc9kLbLEe-WVu8SLrrCdg" source="_oSdTILbLEe-WVu8SLrrCdg" target="_oMdYELY3Ee-CLe24Jx56qg"/>
+        <subvertex xmi:type="uml:State" xmi:id="_BzDNMLY3Ee-CLe24Jx56qg" name="SELECTING GRAVITY"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_PV7jYLY3Ee-CLe24Jx56qg"/>
+        <subvertex xmi:type="uml:State" xmi:id="_nvwN8LY3Ee-CLe24Jx56qg" name="WAITING FOR START POINT"/>
+        <subvertex xmi:type="uml:State" xmi:id="_oMdYELY3Ee-CLe24Jx56qg" name="CHOOSING CURVE"/>
+        <subvertex xmi:type="uml:State" xmi:id="_oxNq8LY3Ee-CLe24Jx56qg" name="WAITING FOR END POINT"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_pXXE8LY3Ee-CLe24Jx56qg" name="curve type" kind="choice"/>
+        <subvertex xmi:type="uml:State" xmi:id="_kH3Z4LY6Ee-CLe24Jx56qg" name="CHOOSING MASS"/>
+        <subvertex xmi:type="uml:State" xmi:id="_wA-V4LY6Ee-CLe24Jx56qg" name="ANY STATE">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_w9HOALY6Ee-CLe24Jx56qg">
+            <body></body>
+          </ownedComment>
+        </subvertex>
+        <subvertex xmi:type="uml:State" xmi:id="_MkXQULZbEe-vtM7hkXBKnA" name="SHOWING RESULTS"/>
+        <subvertex xmi:type="uml:State" xmi:id="_M8n_ULZbEe-vtM7hkXBKnA" name="CHOOSING CONVEXITY"/>
+        <subvertex xmi:type="uml:State" xmi:id="_NTp_QLZbEe-vtM7hkXBKnA" name="CHOOSING RADIUS"/>
+        <subvertex xmi:type="uml:State" xmi:id="_Nq6osLZbEe-vtM7hkXBKnA" name="INSERTING INTERMEDIATE POINTS"/>
+        <subvertex xmi:type="uml:State" xmi:id="_c5HRMLZbEe-vtM7hkXBKnA" name="SIMULATING"/>
+        <subvertex xmi:type="uml:State" xmi:id="_OfXH8LZcEe-vtM7hkXBKnA" name="WAITING TO START"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_kS_yYLZnEe-vtM7hkXBKnA" name="user decision" kind="choice"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_HvZkILZpEe-vtM7hkXBKnA" kind="junction"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_dD5wALbLEe-WVu8SLrrCdg" name="curve type" kind="choice"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_oSdTILbLEe-WVu8SLrrCdg" kind="junction"/>
+      </region>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_lLEjULY6Ee-CLe24Jx56qg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_lLHmoLY6Ee-CLe24Jx56qg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
+  </uml:Model>
+  <ActionLanguage:TextualRepresentation xmi:id="_w9IcILY6Ee-CLe24Jx56qg" base_Comment="_w9HOALY6Ee-CLe24Jx56qg" language="org.eclipse.papyrus.uml.textedit.state.xtext.UmlState"/>
+</xmi:XMI>

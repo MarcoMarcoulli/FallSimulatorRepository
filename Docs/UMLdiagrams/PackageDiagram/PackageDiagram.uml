@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_-MXpwLhMEe-nSJ8jYFbkbg" name="model3">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_-MyggLhMEe-nSJ8jYFbkbg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="_eR0BwM5-Ee-vPIzHRrRuEA" name="fallsimulator">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_8_qPIM5-Ee-vPIzHRrRuEA" client="_eR0BwM5-Ee-vPIzHRrRuEA" supplier="_gC7aEM5-Ee-vPIzHRrRuEA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_etZxkM5-Ee-vPIzHRrRuEA" name="simulation">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_P-wWYM5_Ee-vPIzHRrRuEA" client="_etZxkM5-Ee-vPIzHRrRuEA" supplier="_fAY_AM5-Ee-vPIzHRrRuEA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_fAY_AM5-Ee-vPIzHRrRuEA" name="math">
+    <packagedElement xmi:type="uml:Package" xmi:id="_2PnesM5-Ee-vPIzHRrRuEA" name="curves"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_fQq2sM5-Ee-vPIzHRrRuEA" name="UI">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_GH_FkM5_Ee-vPIzHRrRuEA" client="_fQq2sM5-Ee-vPIzHRrRuEA" supplier="_vaJbsM5-Ee-vPIzHRrRuEA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_BprRwM6AEe-vPIzHRrRuEA" client="_fQq2sM5-Ee-vPIzHRrRuEA" supplier="_etZxkM5-Ee-vPIzHRrRuEA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_E5VEoM6AEe-vPIzHRrRuEA" client="_fQq2sM5-Ee-vPIzHRrRuEA" supplier="_fAY_AM5-Ee-vPIzHRrRuEA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_gC7aEM5-Ee-vPIzHRrRuEA" name="controller">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_CtvMQM5_Ee-vPIzHRrRuEA" client="_gC7aEM5-Ee-vPIzHRrRuEA" supplier="_fQq2sM5-Ee-vPIzHRrRuEA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_HjmvAM5_Ee-vPIzHRrRuEA" client="_gC7aEM5-Ee-vPIzHRrRuEA" supplier="_vaJbsM5-Ee-vPIzHRrRuEA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_OGvr4M5_Ee-vPIzHRrRuEA" client="_gC7aEM5-Ee-vPIzHRrRuEA" supplier="_etZxkM5-Ee-vPIzHRrRuEA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_os0LkM5_Ee-vPIzHRrRuEA" client="_gC7aEM5-Ee-vPIzHRrRuEA" supplier="_fAY_AM5-Ee-vPIzHRrRuEA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_vaJbsM5-Ee-vPIzHRrRuEA" name="observers"/>
+</uml:Model>
