@@ -16,7 +16,7 @@
 **2.1 Generazione delle Curve**
 
 - **Descrizione:** L'applicazione deve generare le curve matematiche preimpostate, selezionabili dall'utente.
-- **Dettagli operativi:** L'utente può scegliere tra retta, parabola, circonferenza (con raggio variabile) e cicloide.
+- **Dettagli operativi:** L'utente può scegliere tra parabola, circonferenza (con raggio variabile), spline e cicloide.
 - **Diagramma dei casi d’uso:** Descrive le interazioni dell'utente con l'app per selezionare e visualizzare le curve.
 2. **Calcolo del Tempo di Percorrenza**
 - **Descrizione:** Per ogni curva, l'applicazione deve calcolare il tempo "t" impiegato dalla sfera per percorrere l’intera traiettoria.
