@@ -22,10 +22,12 @@ public class Circumference extends Curve {
     	super(startPoint, endPoint);
         this.convexity=convexity;
         if(convexity == -1) {//convexity down
-        	this.r = (Math.pow(intervalX, 2)+Math.pow(intervalY, 2))/(2 * intervalY) + 1;//radius for orizontal tangent in start point
+        	//radius for orizontal tangent in start point
+        	this.r = (Math.pow(intervalX, 2)+Math.pow(intervalY, 2))/(2 * intervalY) + 1;
         }
         //convexity up
-        else this.r = (Math.pow(intervalX, 2)+Math.pow(intervalY, 2))/(2 * intervalX); //radius for vertical tangent in start point
+        //radius for vertical tangent in start point
+        else this.r = (Math.pow(intervalX, 2)+Math.pow(intervalY, 2))/(2 * intervalX); 
     }
     
     //selected radius circumference constructor
@@ -63,7 +65,8 @@ public class Circumference extends Curve {
     		logger.info("calcolo punti circonferenza con concavità verso l'alto");
         	for (int i=0; i < NUMPOINTS; i++) {
         		t = (double) i / (NUMPOINTS - 1); // index normalized respect to numpoints
-                xPow = intervalX * Math.pow(t, 3); //more points density in the beginning with a cubic relation
+        		//more points density at the beginning with a cubic relation
+        		xPow = intervalX * Math.pow(t, 3); 
         		x = startPoint.getX() + xPow;
                 y = yCenter + evaluateFunction(x + r - xCenter);
                 points[i] = new Point(x,y);
@@ -142,7 +145,8 @@ public class Circumference extends Curve {
         		t = (double) i / (NUMPOINTS - 1); 
                 xCubic = intervalX * Math.pow(t, 3);    
                 x = x0 +xCubic;
-                slopes[i] = Math.atan((r-x)/Math.sqrt(2*r*x - Math.pow(x, 2))); //circumference derivative
+                //circumference derivative
+                slopes[i] = Math.atan((r-x)/Math.sqrt(2*r*x - Math.pow(x, 2))); 
                 logger.debug("pendenza[{}]: {} ", i, (slopes[i] / Math.PI) * 180);
             }
     	}
@@ -158,7 +162,8 @@ public class Circumference extends Curve {
         		t = (double) i / (NUMPOINTS - 1);
                 yPow = intervalY * Math.pow(t, 3);
                 y = y0 + yPow;
-                slopes[i] = Math.PI/2 - Math.atan((r-y)/Math.sqrt(2*r*y - Math.pow(y, 2))); //circumference derivative
+                //circumference derivative
+                slopes[i] = Math.PI/2 - Math.atan((r-y)/Math.sqrt(2*r*y - Math.pow(y, 2))); 
                 logger.debug("pendenza[{}]: {} ", i, (slopes[i] / Math.PI) * 180);
             }
     	}

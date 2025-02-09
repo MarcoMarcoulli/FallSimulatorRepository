@@ -15,7 +15,7 @@ public class Cycloid extends Curve {
     private static final Logger logger = LogManager.getLogger(Cycloid.class);
 
     private double alfa; //parameter for the end point
-    private double r; // radius of the generator circumference
+    private double r; // radius of the generator circle
 
     public Cycloid(Point startPoint, Point endPoint) throws NonConvergenceException {
         super(startPoint, endPoint);

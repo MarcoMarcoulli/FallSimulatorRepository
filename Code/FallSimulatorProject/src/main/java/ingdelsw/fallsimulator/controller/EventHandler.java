@@ -50,13 +50,14 @@ public class EventHandler implements MassArrivalObserver, WindowResizingObserver
 	
     private Layout layout;
     
-	private static EventHandler theHandler = null;
+	private static EventHandler theHandler = null; //singleton instance 
 	
 	private double g;
 	
 	private double pixelHeightMm;
 	
-	private EventHandler(){
+	private EventHandler() //private constructor
+	{
 		
 		inputController = InputController.getController();
 		layout = Layout.getLayout();
@@ -288,7 +289,6 @@ public class EventHandler implements MassArrivalObserver, WindowResizingObserver
     	parabola.setRandomColors();//set random color for the parabola
     	simulations.add(new SimulationManager(parabola)); //add parabola simulation
     	lastSimulation().addMassArrivalObserver(this);
-    	
     	//get parabola points and color
     	Point[] points = lastSimulation().getPoints();
     	int red = lastSimulation().getCurve().getRed();
@@ -322,8 +322,7 @@ public class EventHandler implements MassArrivalObserver, WindowResizingObserver
     	Circumference circumference = new Circumference(inputController.getStartPoint(),inputController.getEndPoint(), convexity);
     	circumference.setRandomColors();//set random color for the circumference
     	simulations.add(new SimulationManager(circumference));//add circumference simulation
-    	lastSimulation().addMassArrivalObserver(this);
-    	
+    	lastSimulation().addMassArrivalObserver(this);    	
     	//get circumference points and color
     	Point[] points = lastSimulation().getPoints();    	
     	int red = lastSimulation().getCurve().getRed();
