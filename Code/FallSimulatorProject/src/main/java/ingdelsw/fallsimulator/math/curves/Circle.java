@@ -61,14 +61,15 @@ public class Circle extends Curve {
     	if(convexity == 1)
     	{
     		double t;
-    		double  xPow;
+    		double xCubic;
+    		double x0 = xCenter - r;
     		logger.info("calcolo punti circonferenza con concavità verso l'alto");
         	for (int i=0; i < NUMPOINTS; i++) {
         		t = (double) i / (NUMPOINTS - 1); // index normalized respect to numpoints
         		//more points density at the beginning with a cubic relation
-        		xPow = intervalX * Math.pow(t, 3); 
-        		x = startPoint.getX() + xPow;
-                y = yCenter + evaluateFunction(x + r - xCenter);
+        		xCubic = intervalX * Math.pow(t, 3);
+        		x = startPoint.getX() + xCubic;
+                y = yCenter + evaluateFunction(x - x0);
                 points[i] = new Point(x,y);
                 logger.debug("Punto[{}]: x = {}, y = {}", i, x, y);
             }
@@ -77,13 +78,14 @@ public class Circle extends Curve {
     	else if(convexity == -1)
     	{
     		double t;
-    		double  yPow;
+    		double  yCubic;
+    		double y0 = yCenter - r;
     		logger.info("calcolo punti circonferenza con concavità verso il basso");
         	for (int i=0; i < NUMPOINTS; i++) {
         		t = (double) i / (NUMPOINTS - 1);
-                yPow = intervalY * Math.pow(t, 3); 
-        		y = startPoint.getY() + yPow;
-                x = xCenter + (intervalX/Math.abs(intervalX))*evaluateFunction(y + r - yCenter);
+                yCubic = intervalY * Math.pow(t, 3); 
+        		y = startPoint.getY() + yCubic;
+                x = xCenter + Math.signum(intervalX)*evaluateFunction(y -y0);
                 points[i] = new Point(x,y);
                 logger.debug("Punto[{}]: x = {}, y = {}", i, x, y);
             }
@@ -97,21 +99,17 @@ public class Circle extends Curve {
     }
     
     private double bCoefficient(){
-    	return intervalX*aCoefficient();
+    	return -intervalX*aCoefficient();
     }
     
     private double cCoefficient(){
     	return Math.pow(aCoefficient()/2, 2) - Math.pow(intervalY*r, 2);
     }
     
-    private double delta(){
-    	return Math.pow(bCoefficient(), 2) - 4*aCoefficient()*cCoefficient();
-    }
-    
     //calculates center relative X coordinate
     private double xCenter(){	
     	double xCenter;
-    	xCenter = (bCoefficient() + convexity*(intervalX/Math.abs(intervalX))*Math.sqrt(delta()))/(2*aCoefficient());
+    	xCenter = intervalX/2 + convexity*Math.signum(intervalX) * Math.sqrt(Math.pow(intervalX/2,2)-cCoefficient()/aCoefficient());
     	logger.debug(" yCenter : {}", xCenter);
     	return xCenter;
     }
@@ -127,19 +125,23 @@ public class Circle extends Curve {
     public double[] calculateSlopes(){
     	double[] slopes = new double[NUMPOINTS];
     	
+    	//absolute coordinates of the center
+    	double xCenter = xCenter() + startPoint.getX();
+    	double yCenter = yCenter() + startPoint.getY();
+    	
     	if(convexity == 1)
     	{
     		double t;
     		double xCubic;
     		double x;
-    		double x0 = r - xCenter();
+    		double x0 = xCenter-r;
     		logger.info("calcolo pendenze circonferenza con concavità verso l'alto");
         	for (int i=0; i < NUMPOINTS; i++) {
         		t = (double) i / (NUMPOINTS - 1); 
                 xCubic = intervalX * Math.pow(t, 3);    
-                x = x0 +xCubic;
+                x = startPoint.getX() + xCubic;
                 //circumference derivative
-                slopes[i] = Math.atan((r-x)/Math.sqrt(2*r*x - Math.pow(x, 2))); 
+                slopes[i] = Math.atan((r-(x-x0))/Math.sqrt(2*r*(x-x0) - Math.pow(x-x0, 2))); 
                 logger.debug("pendenza[{}]: {} ", i, (slopes[i] / Math.PI) * 180);
             }
     	}
@@ -147,16 +149,16 @@ public class Circle extends Curve {
     	else if(convexity == -1)
     	{
     		double t;
-    		double yPow;
+    		double yCubic;
     		double y;
-    		double y0 = r - yCenter();
+    		double y0 = yCenter-r;
     		logger.info("calcolo pendenze circonferenza con concavità verso il basso");
         	for (int i=0; i < NUMPOINTS; i++) {
         		t = (double) i / (NUMPOINTS - 1);
-                yPow = intervalY * Math.pow(t, 3);
-                y = y0 + yPow;
+                yCubic = intervalY * Math.pow(t, 3);
+                y = startPoint.getY() + yCubic;
                 //circle derivative
-                slopes[i] = Math.PI/2 - Math.atan((r-y)/Math.sqrt(2*r*y - Math.pow(y, 2))); 
+                slopes[i] = Math.PI/2 - Math.atan((r-(y-y0))/Math.sqrt(2*r*(y-y0) - Math.pow(y-y0, 2))); 
                 logger.debug("pendenza[{}]: {} ", i, (slopes[i] / Math.PI) * 180);
             }
     	}

@@ -35,16 +35,16 @@ public class Parabola extends Curve {
     	double x;
     	double y;
     	double t;
-    	double yPow;
+    	double yCubic;
     	for (int i = 0; i < NUMPOINTS; i++) {
     		//t is the index i normalized respect to NUMPOINTS
     		t = (double) i / (NUMPOINTS - 1); 
     		//cubic distribution of points along intervalY
-    	    yPow = intervalY * Math.pow(t, 3);
+    	    yCubic = intervalY * Math.pow(t, 3);
     	    //addition of startPoint y component
-    	    y = startPoint.getY() + yPow;
+    	    y = startPoint.getY() + yCubic;
     	    //x coordinate evaluation and addition of startPoint x component
-    	    x = startPoint.getX() + evaluateX(yPow);
+    	    x = startPoint.getX() + evaluateX(yCubic);
     	    //add the calculated point to the array	
     	    points[i] = new Point(x, y);
     	    }
@@ -54,13 +54,13 @@ public class Parabola extends Curve {
 
     public double[] calculateSlopes() {
         double[] slopes = new double[NUMPOINTS];
-        double yPow;
+        double yCubic;
         double t;
         logger.info("calcolo pendenze parabola");
         for (int i = 0; i < NUMPOINTS; i++) {
             t = (double) i / (NUMPOINTS - 1); 
-            yPow = intervalY * Math.pow(t, 3);
-            slopes[i] = Math.PI / 2 - Math.atan(2 * a * yPow);
+            yCubic = intervalY * Math.pow(t, 3);
+            slopes[i] = Math.PI / 2 - Math.atan(2 * a * yCubic);
             logger.debug("pendenza[{}]: {} ", i, (slopes[i] / Math.PI) * 180);
         }
         return slopes;

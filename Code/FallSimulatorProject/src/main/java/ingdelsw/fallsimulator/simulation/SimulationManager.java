@@ -68,7 +68,7 @@ public class SimulationManager {
     public void setSlopes(double[] slopes) {
         this.slopes = slopes;
     }
-    
+   
     //creates an array that associates to each point the time in which the mass passes on that point.
     public double[] calculateTimeParametrization(double g) {
         times = new double[points.length];

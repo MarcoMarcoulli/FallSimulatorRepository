@@ -20,33 +20,33 @@ public class CubicSpline extends Curve {
 	private static final Logger logger = LogManager.getLogger(CubicSpline.class);
 	
 	private PolynomialSplineFunction splineFunction;  // spline function
-	private Point[] controlPoints;  // control points array
+	private Point[] interpolationPoints;  // control points array
 	
-	 public CubicSpline(Point startPoint, Point endPoint, List<Point> list) {
+	public CubicSpline(Point startPoint, Point endPoint, List<Point> intermediatePoints) {
         super(startPoint, endPoint);
 
-        int n = list.size() + 2; //#control points + start point + end point
-    	controlPoints = new Point[n];
-    	controlPoints[0] = startPoint;
+        int n = intermediatePoints.size() + 2; //#control points + start point + end point
+    	interpolationPoints = new Point[n];
+    	interpolationPoints[0] = startPoint;
     	for(int i = 1; i < n-1; i++)
     	{
-    		controlPoints[i] = list.get(i-1);
+    		interpolationPoints[i] = intermediatePoints.get(i-1);
     	}
-    	controlPoints[n-1] = endPoint;
+    	interpolationPoints[n-1] = endPoint;
     	
-    	Arrays.sort(controlPoints, Comparator.comparingDouble(Point::getX));
+    	Arrays.sort(interpolationPoints, Comparator.comparingDouble(Point::getX));
     	
     	double[] x = new double[n];
     	double[] y = new double[n];
 
     	for(int i=0; i < n; i++)
     	{
-    		x[i] = controlPoints[i].getX();
-    		y[i] = controlPoints[i].getY();
+    		x[i] = interpolationPoints[i].getX();
+    		y[i] = interpolationPoints[i].getY();
     	}
     	
         //creates cubic spline interpolating function with Apache Commons Math
-    	if(controlPoints.length>2) {
+    	if(interpolationPoints.length>2) {
     		SplineInterpolator interpolator = new SplineInterpolator();
     		splineFunction = interpolator.interpolate(x, y);
     	}
@@ -57,11 +57,13 @@ public class CubicSpline extends Curve {
  
  	// method for evaluating spline y on a point x
     public double evaluateY(double x) {
+    	//linear segment between startPoint and endPoint
     	if(splineFunction == null)
     	{
-    		double m = (controlPoints[1].getY() - controlPoints[0].getY()) / (controlPoints[1].getX() - controlPoints[0].getX());
-    		return m * (x - controlPoints[0].getX()) + controlPoints[0].getY();
+    		double m = intervalY / intervalX;
+    		return m * (x - startPoint.getX()) + startPoint.getY();
     	}
+    	//spline function evaluation
     	else return splineFunction.value(x);
     }
     
@@ -71,17 +73,17 @@ public class CubicSpline extends Curve {
     	double x;
     	double y;
     	double t;
-    	double xPow;
+    	double xCubic;
     	logger.info("calcolo punti spline");
-    	for (int i=0; i < NUMPOINTS - 1; i++) {
+    	for (int i=0; i < NUMPOINTS-1 ; i++) {
     		t = (double) i / (NUMPOINTS - 1); 
-            xPow = intervalX * Math.pow(t, 3);    
-            x = startPoint.getX() + xPow;
+            xCubic = intervalX * Math.pow(t, 3);    
+            x = startPoint.getX() + xCubic;
     		y = evaluateY(x);
     		points[i] = new Point(x, y);
     		logger.debug("Punto[{}]: x = {}, y = {}", i, x, y);
         }
-    	points[NUMPOINTS-1] = endPoint;
+    	points[NUMPOINTS-1]= endPoint;
     	return points;
     }
     
@@ -91,7 +93,7 @@ public class CubicSpline extends Curve {
     	if(splineFunction == null)
     	{
     		logger.info("calcolo pendenza segmento lineare");
-    		double m = (controlPoints[1].getY() - controlPoints[0].getY()) / (controlPoints[1].getX() - controlPoints[0].getX());
+    		double m = intervalY / intervalX;
     		for(int i=0; i < NUMPOINTS; i++)
     		{	
     			slopes[i] = Math.atan(m);
@@ -102,12 +104,12 @@ public class CubicSpline extends Curve {
     	else {
     		double x;
     		double  t;
-    		double  xPow;
+    		double  xCubic;
     		logger.info("calcolo pendenze spline");
 	    	for (int i=0; i < NUMPOINTS - 1; i++) {
 	    		t = (double) i / (NUMPOINTS - 1); 
-                xPow = intervalX * Math.pow(t, 3);
-                x = startPoint.getX() + xPow;
+                xCubic = intervalX * Math.pow(t, 3);
+                x = startPoint.getX() + xCubic;
 	            slopes[i] = Math.atan(splineFunction.derivative().value(x));
 	            logger.debug("pendenza[{}]: {} ", i, (slopes[i] / Math.PI) * 180);
 	    	}
