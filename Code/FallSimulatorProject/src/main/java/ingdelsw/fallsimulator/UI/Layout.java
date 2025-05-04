@@ -103,7 +103,7 @@ public class Layout {
     //singleton instance
     private static Layout theLayout = null;
     
-    //listener for handling window resizing
+    //observer for handling window resizing
     private WindowResizingObserver observer;
     
     //interface constructor
@@ -223,7 +223,7 @@ public class Layout {
             curveCanvas.setWidth(newWidth);
             pointsCanvas.setWidth(newWidth);
             animationPane.setPrefWidth(newWidth);
-            notifyObserver();
+            notifyWindowResizingObserver();
         });
 
         root.heightProperty().addListener((obs, oldVal, newVal) -> {
@@ -231,20 +231,17 @@ public class Layout {
             curveCanvas.setHeight(newHeight);
             pointsCanvas.setHeight(newHeight);
             animationPane.setPrefHeight(newHeight);
-            notifyObserver();
+            notifyWindowResizingObserver();
         });
         
     }
     
-    public void addWindowResizingObserver(WindowResizingObserver observer)
-    {
+    public void addWindowResizingObserver(WindowResizingObserver observer){
     	this.observer=observer;
     }
     
-    
     //notify method observer pattern
-    private void notifyObserver()
-    {
+    private void notifyWindowResizingObserver(){
     	observer.onWindowResizing();
     }
     

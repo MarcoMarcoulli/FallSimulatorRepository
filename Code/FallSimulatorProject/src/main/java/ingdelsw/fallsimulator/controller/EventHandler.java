@@ -21,7 +21,7 @@ import ingdelsw.fallsimulator.UI.Layout;
 import ingdelsw.fallsimulator.UI.PlanetIcon;
 import ingdelsw.fallsimulator.math.NonConvergenceException;
 import ingdelsw.fallsimulator.math.Point;
-import ingdelsw.fallsimulator.math.curves.Circumference;
+import ingdelsw.fallsimulator.math.curves.Circle;
 import ingdelsw.fallsimulator.math.curves.CubicSpline;
 import ingdelsw.fallsimulator.math.curves.Cycloid;
 import ingdelsw.fallsimulator.math.curves.Parabola;
@@ -50,13 +50,14 @@ public class EventHandler implements MassArrivalObserver, WindowResizingObserver
 	
     private Layout layout;
     
-	private static EventHandler theHandler = null;
+	private static EventHandler theHandler = null; //singleton instance 
 	
 	private double g;
 	
 	private double pixelHeightMm;
 	
-	private EventHandler(){
+	private EventHandler() //private constructor
+	{
 		
 		inputController = InputController.getController();
 		layout = Layout.getLayout();
@@ -71,7 +72,7 @@ public class EventHandler implements MassArrivalObserver, WindowResizingObserver
         layout.getBtnCancelInput().setOnAction(e -> handleCancelInputClick());
         layout.getBtnParabola().setOnAction(e -> handleParabolaClick());
         layout.getBtnCycloid().setOnAction(e -> handleCycloidClick());
-        layout.getBtnCircumference().setOnAction(e -> handleCircumferenceClick());
+        layout.getBtnCircumference().setOnAction(e -> handleCircleClick());
         layout.getBtnCubicSpline().setOnAction(e-> handleCubicSplineClick());
         layout.getBtnConvexityUp().setOnAction(e -> handleConvexityClick(1));
         layout.getBtnConvexityDown().setOnAction(e -> handleConvexityClick(-1));
@@ -288,7 +289,6 @@ public class EventHandler implements MassArrivalObserver, WindowResizingObserver
     	parabola.setRandomColors();//set random color for the parabola
     	simulations.add(new SimulationManager(parabola)); //add parabola simulation
     	lastSimulation().addMassArrivalObserver(this);
-    	
     	//get parabola points and color
     	Point[] points = lastSimulation().getPoints();
     	int red = lastSimulation().getCurve().getRed();
@@ -307,7 +307,7 @@ public class EventHandler implements MassArrivalObserver, WindowResizingObserver
     }
     
     //circumference click handling
-    public void handleCircumferenceClick()
+    public void handleCircleClick()
     {
     	//state transition to choose convexity
     	layout.getControlPanel().getChildren().clear();
@@ -319,11 +319,10 @@ public class EventHandler implements MassArrivalObserver, WindowResizingObserver
     public void handleConvexityClick(int convexity)
     {
     	//create initial circumference
-    	Circumference circumference = new Circumference(inputController.getStartPoint(),inputController.getEndPoint(), convexity);
+    	Circle circumference = new Circle(inputController.getStartPoint(),inputController.getEndPoint(), convexity);
     	circumference.setRandomColors();//set random color for the circumference
     	simulations.add(new SimulationManager(circumference));//add circumference simulation
-    	lastSimulation().addMassArrivalObserver(this);
-    	
+    	lastSimulation().addMassArrivalObserver(this);    	
     	//get circumference points and color
     	Point[] points = lastSimulation().getPoints();    	
     	int red = lastSimulation().getCurve().getRed();
@@ -362,7 +361,7 @@ public class EventHandler implements MassArrivalObserver, WindowResizingObserver
     	//clear canvas
     	layout.getCurveCanvas().getGraphicsContext2D().clearRect(0, 0, layout.getCurveCanvas().getWidth(), layout.getCurveCanvas().getHeight());
     	//create circumference
-    	Circumference circumference = new Circumference(inputController.getStartPoint(),inputController.getEndPoint(), convexity, radius);
+    	Circle circumference = new Circle(inputController.getStartPoint(),inputController.getEndPoint(), convexity, radius);
     	
     	//set colors from initial circumference 
     	circumference.setRed(lastSimulation().getCurve().getRed());

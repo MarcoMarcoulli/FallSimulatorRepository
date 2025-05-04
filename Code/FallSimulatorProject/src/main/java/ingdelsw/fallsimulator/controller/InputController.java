@@ -83,12 +83,10 @@ public class InputController {
     
     //intermediate points setter that adds intermediate points for the cubic spline and controls that they are orizzontally between startpoint and endpoint
     public void addIntermediatePoint(Point p) {
-    	for(int i = 0; i<intermediatePoints.size(); i++)
-    	{
+    	for(int i = 0; i<intermediatePoints.size(); i++){
     		if(intermediatePoints.get(i).getX() == p.getX())//intermediate points can't be on the same vertical
     			p.setX(p.getX()+1);//push intermediate point point by one pixel
     	}
-    	
     	if(endPoint.getX() <= p.getX() && startPoint.getX() <= p.getX() || endPoint.getX() >= p.getX() && startPoint.getX() >= p.getX()) //intermediate point is not orizzontally between startpoint and endpoint
     		throw new IllegalArgumentException("I punti intermedi devono essere compresi tra il punto di partenza e il punto di arrivo");
     	else{

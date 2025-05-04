@@ -15,7 +15,7 @@ public class Parabola extends Curve {
 
     public Parabola(Point startPoint, Point endPoint) {
         super(startPoint, endPoint);
-        a = (endPoint.getX() - startPoint.getX()) / Math.pow(endPoint.getY() - startPoint.getY(), 2);
+        a = intervalX / Math.pow(intervalY, 2);
         logger.info("coefficiente a = {}", a);
     }
 
@@ -27,33 +27,40 @@ public class Parabola extends Curve {
         return a * Math.pow(y, 2);
     }
 
+   
+    
     public Point[] calculatePoints() {
-        Point[] points = new Point[NUMPOINTS];
-        double x;
-        double y;
-        double t;
-        double yPow;
-        logger.info("calcolo punti parabola");
-        for (int i = 0; i < NUMPOINTS; i++) {
-            t = (double) i / (NUMPOINTS - 1); 
-            yPow = intervalY * Math.pow(t, 3);
-            y = startPoint.getY() + yPow;
-            x = startPoint.getX() + evaluateX(y - startPoint.getY());
-            points[i] = new Point(x, y);
-            logger.debug("Punto[{}]: X = {}, Y = {}", i, x, y);
-        }
-        return points;
+    	//declaration of an array of points of dimensions NUMPOINTS
+    	Point[] points = new Point[NUMPOINTS];
+    	double x;
+    	double y;
+    	double t;
+    	double yCubic;
+    	for (int i = 0; i < NUMPOINTS; i++) {
+    		//t is the index i normalized respect to NUMPOINTS
+    		t = (double) i / (NUMPOINTS - 1); 
+    		//cubic distribution of points along intervalY
+    	    yCubic = intervalY * Math.pow(t, 3);
+    	    //addition of startPoint y component
+    	    y = startPoint.getY() + yCubic;
+    	    //x coordinate evaluation and addition of startPoint x component
+    	    x = startPoint.getX() + evaluateX(yCubic);
+    	    //add the calculated point to the array	
+    	    points[i] = new Point(x, y);
+    	    }
+    	return points;
     }
+
 
     public double[] calculateSlopes() {
         double[] slopes = new double[NUMPOINTS];
-        double yPow;
+        double yCubic;
         double t;
         logger.info("calcolo pendenze parabola");
         for (int i = 0; i < NUMPOINTS; i++) {
             t = (double) i / (NUMPOINTS - 1); 
-            yPow = intervalY * Math.pow(t, 3);
-            slopes[i] = Math.PI / 2 - Math.atan(2 * a * yPow);
+            yCubic = intervalY * Math.pow(t, 3);
+            slopes[i] = Math.PI / 2 - Math.atan(2 * a * yCubic);
             logger.debug("pendenza[{}]: {} ", i, (slopes[i] / Math.PI) * 180);
         }
         return slopes;

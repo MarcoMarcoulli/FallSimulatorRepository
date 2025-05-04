@@ -9,16 +9,16 @@ public class CircumferenceTest {
 
     private Point startPoint;
     private Point endPoint;
-    private Circumference circumferenceConcaveUp;
-    private Circumference circumferenceConcaveDown;
+    private Circle circumferenceConcaveUp;
+    private Circle circumferenceConcaveDown;
 
     @Before
     public void setUp() {
         startPoint = new Point(0, 0);
         endPoint = new Point(10, 10);
 
-        circumferenceConcaveUp = new Circumference(startPoint, endPoint, 1);
-        circumferenceConcaveDown = new Circumference(startPoint, endPoint, -1);
+        circumferenceConcaveUp = new Circle(startPoint, endPoint, 1);
+        circumferenceConcaveDown = new Circle(startPoint, endPoint, -1);
     }
 
     @Test

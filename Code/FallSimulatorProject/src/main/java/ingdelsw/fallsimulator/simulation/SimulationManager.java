@@ -25,7 +25,6 @@ public class SimulationManager {
     private double[] times;
     
     private MassArrivalObserver observer;
-   
     private long startTime; // animation start time in nanoseconds
 
     public SimulationManager(Curve curve) {
@@ -86,33 +85,32 @@ public class SimulationManager {
         
         logger.info("parametrizzazione curva rispetto al tempo");
         
-        for (int i = 1; i < points.length-1; i++) {
+        for (int i = 2; i < points.length; i++) {
         	
-        	h1 = points[i].getY() - curve.getStartPoint().getY();
+        	h1 = points[i-1].getY() - curve.getStartPoint().getY();
         	
         	if(h1==0){ // ensure the integral doesn't diverge to infinity if y difference is so small that is approximated to 0
-        		times[i+1] = times[i] + Double.MIN_VALUE;
+        		times[i] = times[i-1] + Double.MIN_VALUE;
         		continue;
         	}
         	
-        	h2 = points[i+1].getY() - curve.getStartPoint().getY();
+        	h2 = points[i].getY() - curve.getStartPoint().getY();
         	
         	//expressions for velocity due to conservation of energy
         	v1 = Math.sqrt(2*g*h1);
         	v2 = Math.sqrt(2*g*h2);
         	
         	//velocity scomposition on y component
-        	v1y = v1*Math.abs(Math.sin(slopes[i]));
-        	v2y = v2*Math.abs(Math.sin(slopes[i+1]));
+        	v1y = v1*Math.abs(Math.sin(slopes[i-1]));
+        	v2y = v2*Math.abs(Math.sin(slopes[i]));
         	
-        	dy = (Math.abs(points[i+1].getY() - points[i].getY()));
+        	dy = (Math.abs(points[i].getY() - points[i-1].getY()));
         	integrand = ((1/v1y + 1/v2y)/2); //mean value for integrand 
-        	
-        	times[i+1] = times[i] + integrand * dy; //finite increment added to previous calculated time
+        	times[i] = times[i-1] + integrand * dy; //finite increment added to previous calculated time
         	
         	logger.debug("h1 [{}] : {}",i, h1);
         	logger.debug("velocità [{}] : {}",i, v1y);
-            logger.debug(" tempi [{}] : {}",i+1, times[i+1]);
+            logger.debug(" tempi [{}] : {}",i, times[i]);
         }
         return times;
     }
