@@ -32,4 +32,8 @@ Apri un terminale e digita:
 ```bash
 git clone https://github.com/MarcoMarcoulli/FallSimulatorRepository.git
 cd FallSimulatorRepository/Code/FallSimulatorProject
+
+## Avvio applicazione
+
+```bash
 mvn javafx:run
