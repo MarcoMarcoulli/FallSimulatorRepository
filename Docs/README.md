@@ -30,6 +30,6 @@ L’interfaccia grafica consente di:
 Apri un terminale e digita:
 
 ```bash
-git clone https://github.com/MarcoMarcoulli/FallSimulatorPrototype.git
-cd FallSimulatorPrototype/Code/FallSimulatorProject
+git clone https://github.com/MarcoMarcoulli/FallSimulatorRepository.git
+cd FallSimulatorRepository/Code/FallSimulatorProject
 mvn javafx:run
