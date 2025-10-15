@@ -97,27 +97,13 @@
                 <mainClass>ingdelsw.fallsimulator.FallSimulator</mainClass> 
             </configuration>
         </plugin>
-        <plugin>
-  			<groupId>org.apache.maven.plugins</groupId>
-  			<artifactId>maven-compiler-plugin</artifactId>
-  			<version>3.12.1</version>
-  			<dependencies>
-    		<!-- Backend javac aggiornato -->
-    		<dependency>
-      			<groupId>org.codehaus.plexus</groupId>
-      			<artifactId>plexus-compiler-javac</artifactId>
-      			<version>2.15.0</version>
-    		</dependency>
-   			<!-- Rilevamento versione Java aggiornato -->
-    		<dependency>
-      			<groupId>org.codehaus.plexus</groupId>
-      			<artifactId>plexus-java</artifactId>
-      			<version>1.5.0</version>
-    		</dependency>
-  			</dependencies>
-  			<configuration>
-    			<release>21</release>
-  			</configuration>
+        <plugin> 
+			<groupId>org.apache.maven.plugins</groupId> 
+			<artifactId>maven-compiler-plugin</artifactId> 
+			<version>3.10.1</version> 
+			<configuration> 
+				<release>21</release> 
+			</configuration> 
 		</plugin>
         <plugin>
     		<groupId>org.apache.maven.plugins</groupId>
